@@ -23,3 +23,10 @@ vite-dev.err
 *.njsproj
 *.sln
 *.sw?
+
+# Firebase
+.firebase
+firebase-debug.log
+
+# macOS junk
+__MACOSX/

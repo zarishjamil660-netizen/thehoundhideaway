@@ -1,15 +1,15 @@
-
 import Header from '../layout/Header'
 import heroBg from '../../assets/Bgg for site 1.png'
 import dogImg from '../../assets/THH Dog Illustration II.png'
 import './HeroSection.css'
-import { motion } from 'framer-motion'
 
 export function HeroSection() {
   return (
     <section className="hero" id="top">
       <div className="hero__bg" aria-hidden>
-        <img src={heroBg} alt="" className="hero__bg-img" />
+        <div className="hero__bg-strip">
+          <img src={heroBg} alt="" className="hero__bg-img" loading="lazy" decoding="async" />
+        </div>
       </div>
 
       <Header />
@@ -18,32 +18,15 @@ export function HeroSection() {
         <div className="hero__stage">
           <h1 className="sr-only">This is where trust begins</h1>
 
-          <motion.p
-            className="hero__where"
-            aria-hidden
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-          >
+          <p className="hero__where" aria-hidden>
             THIS IS WHERE
-          </motion.p>
+          </p>
 
           <div className="hero__cluster">
-            <motion.span
-              className="hero__trust"
-              aria-hidden
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-            >
+            <span className="hero__trust" aria-hidden>
               Trust
-            </motion.span>
-            <motion.div
-              className="hero__dog-wrap"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
-            >
+            </span>
+            <div className="hero__dog-wrap">
               <img
                 src={dogImg}
                 alt="Illustration of a grey dog in a fedora, mascot for The Hound Hideaway"
@@ -53,44 +36,36 @@ export function HeroSection() {
                 loading="eager"
                 decoding="async"
               />
-            </motion.div>
-            <motion.p
-              className="hero__begins"
-              aria-hidden
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, delay: 0.6, ease: 'easeOut' }}
-            >
+            </div>
+            <p className="hero__begins" aria-hidden>
               BEGINS!
-            </motion.p>
+            </p>
           </div>
 
-          <motion.p
-            className="hero__sub"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9, ease: 'easeOut' }}
-          >
+          <p className="hero__sub">
             Because leaving your dog shouldn&apos;t feel stressful. Watch them anytime.
             Know they&apos;re safe. Feel completely at ease.
-          </motion.p>
+          </p>
 
-          <motion.div
-            className="hero__actions"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.1, ease: 'easeOut' }}
-          >
+          <div className="hero__actions">
             <a className="hero__btn hero__btn--primary" href="#book">
               Book their stay
             </a>
-            <a className="hero__btn hero__btn--ghost" href="#experience">
+            <a className="hero__btn hero__btn--ghost" href="/experience">
               Explore the experience
             </a>
-          </motion.div>
+          </div>
         </div>
+      </div>
+
+      <div className="hero__wave" aria-hidden>
+        <svg className="hero__wave-svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+          <path
+            fill="var(--thh-forest)"
+            d="M0,55 C180,5 360,95 540,50 C720,5 900,95 1080,48 C1260,5 1350,40 1440,35 L1440,100 L0,100 Z"
+          />
+        </svg>
       </div>
     </section>
   )
 }
-

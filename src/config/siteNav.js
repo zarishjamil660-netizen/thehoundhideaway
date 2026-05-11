@@ -1,6 +1,9 @@
+/** Paths use `/#section` so links work from /experience and other routes. */
 export const siteNav = [
-  { label: 'The experience', href: '#experience' },
-  { label: 'Live camera', href: '#camera' },
-  { label: 'Book a stay', href: '#book' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Home', href: '/#top' },
+  { label: 'Experience', href: '/experience' },
+  { label: 'Track suite', href: '/#suites' },
+  { label: 'Pricing', href: '/#pricing' },
+  { label: 'About', href: '/#about' },
+  { label: 'Contact', href: '/#contact' },
 ]

@@ -1,13 +1,19 @@
+import { useLocation } from 'react-router-dom'
 import logoDark from '../../assets/THH logo - Dark Green 1.png'
+import logoMint from '../../assets/THH logo 1@2x.png'
 import { siteNav } from '../../config/siteNav'
 import './Footer.css'
 
 export function Footer() {
+  const { pathname } = useLocation()
+  const isExperience = pathname === '/experience'
+  const logoSrc = isExperience ? logoMint : logoDark
+
   return (
     <footer className="site-footer" id="contact">
       <div className="site-footer__inner">
         <img
-          src={logoDark}
+          src={logoSrc}
           alt="The Hound Hideaway"
           className="site-footer__logo"
           width={200}

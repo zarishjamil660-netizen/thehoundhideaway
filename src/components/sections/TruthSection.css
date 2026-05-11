@@ -1,0 +1,207 @@
+.truth-ref {
+  flex: 1 0 auto;
+  width: 100%;
+  overflow: hidden;
+  padding: clamp(1rem, 3.5vw, 2.5rem) clamp(1.1rem, 4vw, 1.75rem) clamp(8rem, 15vw, 12rem);
+  background: var(--thh-mint-soft);
+  color: var(--thh-forest-deep);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.truth-ref__head {
+  text-align: center;
+  max-width: 42rem;
+}
+
+.truth-ref__sub {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(1.15rem, calc(0.65rem + 2.4vw), 3rem);
+  line-height: 1.12;
+  letter-spacing: 0.005em;
+  color: var(--thh-forest-deep);
+}
+
+.truth-ref__sub-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.truth-ref__sub-line + .truth-ref__sub-line {
+  margin-top: 0.06em;
+}
+
+.truth-ref__cards {
+  list-style: none;
+  margin: clamp(5rem, 9vw, 7rem) 0 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  width: min(100%, 72rem);
+}
+
+.truth-ref__card-wrap {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 34%;
+  perspective: 900px;
+}
+
+.truth-ref__card-wrap:nth-child(1) {
+  z-index: 1;
+}
+
+.truth-ref__card-wrap:nth-child(2) {
+  z-index: 2;
+  margin-left: clamp(-2.75rem, -5.5vw, -1.35rem);
+}
+
+.truth-ref__card-wrap:nth-child(3) {
+  z-index: 3;
+  margin-left: clamp(-2.75rem, -5.5vw, -1.35rem);
+}
+
+.truth-ref__card-wrap.is-hidden {
+  opacity: 0;
+  transform: translateY(2rem) scale(0.96);
+}
+
+.truth-ref__card-wrap.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.truth-ref__card-wrap {
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
+}
+
+.truth-ref__card {
+  position: relative;
+  min-height: clamp(17.5rem, 34vw, 26rem);
+  margin: 0;
+  padding: clamp(1.35rem, 3.8vw, 2.1rem) clamp(1rem, 3.2vw, 1.65rem);
+  background: var(--thh-forest);
+  color: var(--thh-mint-soft);
+  border-radius: 0.08rem;
+  box-shadow: -0.2rem 0.6rem 0.85rem rgb(0 0 0 / 0.2), -0.35rem 1.05rem 1.25rem rgb(0 0 0 / 0.12);
+  transform: rotate(-5deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.truth-ref__card-wrap:nth-child(2) .truth-ref__card {
+  transform: translateY(2.9rem) rotate(3deg);
+}
+
+.truth-ref__card-wrap:nth-child(3) .truth-ref__card {
+  transform: translateY(-0.6rem) rotate(6deg);
+}
+
+.truth-ref__card-n {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: clamp(4rem, 8.5vw, 6.25rem);
+  line-height: 0.78;
+  color: var(--thh-mint-soft);
+}
+
+.truth-ref__card-q {
+  margin: clamp(0.85rem, 2.2vw, 1.15rem) 0 0;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: clamp(1.35rem, 2.85vw, 2.05rem);
+  line-height: 1.08;
+}
+
+.truth-ref__line {
+  display: block;
+}
+
+.truth-ref__card-q .truth-ref__line--compact {
+  text-transform: uppercase;
+  font-size: clamp(0.72rem, 1.55vw, 1.18rem);
+  letter-spacing: 0.045em;
+  line-height: 1.12;
+}
+
+.truth-ref__line--accent {
+  margin-top: clamp(0.15rem, 0.6vw, 0.35rem);
+  font-family: var(--font-serif);
+  font-size: 86.15px;
+  letter-spacing: -0.055em;
+  text-transform: none;
+  font-weight: 400;
+  line-height: 0.82;
+}
+
+@media (min-width: 1024px) {
+  .truth-ref {
+    min-height: 205vh;
+  }
+
+  .truth-ref__cards {
+    position: sticky;
+    top: 16vh;
+  }
+}
+
+@media (max-width: 1023px) {
+  .truth-ref__sub-line {
+    white-space: normal;
+  }
+
+  .truth-ref__cards {
+    width: min(100%, 23rem);
+    flex-direction: column;
+    gap: 0.85rem;
+    max-width: none;
+  }
+
+  .truth-ref__card-wrap {
+    max-width: none;
+    margin-left: 0 !important;
+  }
+
+  .truth-ref__card {
+    min-height: clamp(11rem, 42vw, 14rem);
+    padding-inline: clamp(1.15rem, 4.5vw, 1.65rem);
+  }
+
+  .truth-ref__card-q {
+    margin-top: clamp(0.65rem, 2.5vw, 1rem);
+  }
+
+  .truth-ref__line--accent {
+    margin-top: clamp(0.5rem, 2.8vw, 0.95rem);
+    font-size: clamp(2.35rem, 10.2vw, 5.375rem);
+    line-height: 1.06;
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .truth-ref__card-wrap:nth-child(1) .truth-ref__card {
+    transform: rotate(-3deg);
+  }
+
+  .truth-ref__card-wrap:nth-child(2) .truth-ref__card {
+    transform: translateY(0) rotate(2deg);
+  }
+
+  .truth-ref__card-wrap:nth-child(3) .truth-ref__card {
+    transform: translateY(0) rotate(-2.5deg);
+  }
+}

@@ -1,13 +1,12 @@
 :root {
-  --thh-forest: #1b3d2f;
-  --thh-forest-deep: #1b3d2f;
-  --thh-mint: #c1e8b4;
-  --thh-mint-soft: #c1e8b4;
+  --thh-forest: #1b4632;
+  --thh-forest-deep: #1b4632;
+  --thh-mint: #beedb9;
+  --thh-mint-soft: #beedb9;
   --thh-brand-light: var(--thh-mint);
   --thh-white: #ffffff;
-  --thh-body-text: #1b3d2f;
+  --thh-body-text: #1b4632;
 
-  --font-serif: 'Playfair Display', 'The New Elegance', 'Times New Roman', Times, serif;
+  --font-serif: 'The New Elegance';
   --font-sans: 'Montserrat', ui-sans-serif, system-ui, 'Segoe UI', Roboto, sans-serif;
 }
-

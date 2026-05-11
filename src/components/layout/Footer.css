@@ -57,3 +57,23 @@
   color: var(--thh-forest-deep);
   opacity: 0.88;
 }
+
+/* Experience page: forest footer (main uses .thh-page--experience) */
+main.thh-page--experience + .site-footer {
+  background: var(--thh-forest);
+  color: var(--thh-mint-soft);
+}
+
+main.thh-page--experience + .site-footer .site-footer__nav a {
+  color: var(--thh-mint-soft);
+}
+
+main.thh-page--experience + .site-footer .site-footer__nav a:hover,
+main.thh-page--experience + .site-footer .site-footer__nav a:focus-visible {
+  color: var(--thh-white);
+}
+
+main.thh-page--experience + .site-footer .site-footer__copy {
+  color: var(--thh-mint-soft);
+  opacity: 0.92;
+}

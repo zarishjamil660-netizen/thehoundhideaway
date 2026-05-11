@@ -3,7 +3,6 @@ import { LuxurySuitesSection } from './components/sections/LuxurySuitesSection'
 import { TruthSection } from './components/sections/TruthSection'
 import { DifferenceSection } from './components/sections/DifferenceSection'
 import { StorySections } from './components/sections/StorySections'
-import { Footer } from './components/layout/Footer'
 
 function App() {
   return (
@@ -13,7 +12,6 @@ function App() {
       <TruthSection />
       <DifferenceSection />
       <StorySections />
-      <Footer />
     </main>
   )
 }

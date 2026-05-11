@@ -1,0 +1,195 @@
+.experience-trust {
+  position: relative;
+  z-index: 2;
+  /* Pull block up so the dog’s head crosses into the mission / forest band above */
+  margin-top: clamp(-12.5rem, -24vw, -20rem);
+  padding-top: 0;
+  padding-bottom: clamp(5rem, 12vw, 7rem);
+  overflow: visible;
+}
+
+@media (min-width: 768px) {
+  .experience-trust {
+    padding-bottom: clamp(6rem, 14vw, 8rem);
+  }
+}
+
+.experience-trust__inner {
+  width: 100%;
+  max-width: min(100%, 1440px);
+  margin-inline: auto;
+  overflow: visible;
+}
+
+/* Dog (l) + copy (r); comp uses ~55/45 and left-aligned type in the right column */
+.experience-trust__lift {
+  display: grid;
+  align-items: start;
+  gap: clamp(1.75rem, 4vw, 2.5rem);
+}
+
+@media (min-width: 768px) {
+  .experience-trust__lift {
+    /* max-content keeps the dog column from shrinking when the heading is wide */
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: clamp(1.25rem, 3.5vw, 3rem);
+    row-gap: clamp(2rem, 4vw, 3rem);
+  }
+}
+
+.experience-trust__figure-wrap {
+  position: relative;
+  z-index: 1;
+  width: max-content;
+  max-width: none;
+  justify-self: start;
+  margin-top: clamp(-10rem, -18vw, -16rem);
+  /* Cancel section horizontal padding so the dog can sit flush to the viewport edge */
+  margin-left: -1rem;
+  overflow: visible;
+  line-height: 0;
+  align-self: start;
+}
+
+@media (min-width: 768px) {
+  .experience-trust__figure-wrap {
+    margin-left: -2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .experience-trust__figure-wrap {
+    margin-left: -3rem;
+  }
+}
+
+/* Full art visible (no crop); shift up into the band above the mint block */
+.experience-trust__img {
+  display: block;
+  width: auto;
+  max-width: min(96vw, 960px);
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+  /* override global img { max-width: 100% } so width isn’t tied to a squeezed grid cell */
+  transform: translateY(clamp(-6.75rem, -14vw, -12.5rem));
+}
+
+@media (min-width: 768px) {
+  .experience-trust__img {
+    max-width: min(64vw, 960px);
+    transform: translateY(clamp(-9.25rem, -17vw, -15.5rem));
+  }
+}
+
+.experience-trust__text-col {
+  width: 100%;
+  text-align: left;
+  padding-top: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+@media (min-width: 768px) {
+  .experience-trust__text-col {
+    padding-top: clamp(1.5rem, 3.5vw, 3.25rem);
+  }
+}
+
+.experience-trust__heading {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2rem, 6.5vw, 6.891875rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-align: left;
+  color: var(--thh-forest-deep);
+  white-space: nowrap;
+}
+
+.experience-trust__list {
+  list-style: none;
+  margin: clamp(1.75rem, 3.5vw, 2.25rem) 0 0;
+  padding: 0;
+  text-align: left;
+}
+
+.experience-trust__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+
+.experience-trust__item + .experience-trust__item {
+  margin-top: clamp(1.1rem, 2.5vw, 1.4rem);
+}
+
+.experience-trust__item span {
+  font-family: Franie, var(--font-sans);
+  font-weight: 500;
+  font-style: normal;
+  font-size: clamp(1rem, 3.2vw, 2.5rem);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-align: left;
+  color: var(--thh-forest-deep);
+}
+
+.experience-trust__paw {
+  flex-shrink: 0;
+  width: clamp(2rem, 7vw, 53.101193139823735px);
+  height: clamp(2rem, 7vw, 53.101193139823735px);
+  margin-top: 0.12em;
+  object-fit: contain;
+}
+
+.experience-trust__tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.02em;
+  width: 100%;
+  max-width: none;
+  margin: clamp(2.75rem, 8vw, 5rem) auto 0;
+  padding: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2rem, 6.5vw, 6.891875rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: none;
+  color: var(--thh-forest-deep);
+}
+
+.experience-trust__tagline-line {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .experience-trust__heading {
+    font-size: 110.27px;
+  }
+
+  .experience-trust__item span {
+    font-size: 40px;
+  }
+
+  .experience-trust__paw {
+    width: 53.101193139823735px;
+    height: 53.101193139823735px;
+  }
+
+  .experience-trust__tagline {
+    font-size: 110.27px;
+  }
+
+  .experience-trust__tagline-line {
+    white-space: nowrap;
+  }
+}

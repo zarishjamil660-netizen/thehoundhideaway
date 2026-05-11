@@ -5,3 +5,19 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: 'Franie';
+  src: url('../../Exports/TTF/Franie-Regular.ttf') format('truetype');
+  font-weight: 400 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Franie';
+  src: url('../../Exports/TTF/Franie-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

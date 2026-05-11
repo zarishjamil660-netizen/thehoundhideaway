@@ -1,0 +1,107 @@
+.experience-mission {
+  position: relative;
+  z-index: 1;
+  overflow: visible;
+}
+
+.experience-mission__inner {
+  width: 100%;
+  max-width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
+.experience-mission__copy {
+  width: 100%;
+  text-align: center;
+}
+
+.experience-mission__media {
+  margin-top: clamp(4rem, 8vw, 6rem);
+  width: 100%;
+  overflow: visible;
+}
+
+.experience-mission__img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: center bottom;
+  box-shadow: 0 1.5rem 3rem rgb(27 61 47 / 0.12);
+}
+
+.experience-mission__heading-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-inline: clamp(0.5rem, 3vw, 2rem);
+  box-sizing: border-box;
+}
+
+.experience-mission__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2.65rem, 9.5vw, 10.708125rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: capitalize;
+  color: var(--thh-forest-deep);
+}
+
+.experience-mission__heading-line {
+  display: block;
+}
+
+.experience-mission__heading-line--shift {
+  /* “Mission” stepped right under “Rescue” (see layout ref) */
+  padding-left: clamp(2rem, 12vw, 5.25rem);
+}
+
+.experience-mission__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35em;
+  width: 100%;
+  max-width: min(100%, 48rem);
+  margin: clamp(3.75rem, 11vw, 7.5rem) auto 0;
+  padding: 0;
+  font-family: Franie, var(--font-sans);
+  font-weight: 500;
+  font-style: normal;
+  font-size: clamp(1.0625rem, 3.5vw, 2.5rem);
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-align: center;
+  color: var(--thh-forest-deep);
+}
+
+.experience-mission__body-line {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .experience-mission__body {
+    font-size: 40px;
+  }
+
+  .experience-mission__body-line {
+    white-space: nowrap;
+  }
+}
+
+@media (min-width: 1024px) {
+  .experience-mission__heading {
+    font-size: 10.708125rem;
+  }
+}
