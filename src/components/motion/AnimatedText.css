@@ -1,0 +1,105 @@
+.text-motion {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: inherit;
+  white-space: normal;
+}
+
+.text-motion__unit {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity, filter;
+  opacity: 0;
+  transform:
+    translate3d(var(--tm-x, 0), var(--tm-y, 0), 0)
+    rotate(var(--tm-rotate, 0deg))
+    scale(var(--tm-scale, 1));
+  filter: blur(var(--tm-blur, 0));
+  animation: text-motion-unit var(--tm-duration, 900ms) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--tm-delay, 0ms);
+}
+
+.reveal .text-motion__unit {
+  animation-play-state: paused;
+}
+
+.reveal.is-visible .text-motion__unit {
+  animation-play-state: running;
+}
+
+.text-motion--words .text-motion__unit--space {
+  width: 0.32em;
+}
+
+.text-motion--chars .text-motion__unit--space {
+  width: 0.45em;
+}
+
+.text-motion--ascend {
+  --tm-y: 1.35em;
+}
+
+.text-motion--shift {
+  --tm-x: -1.15em;
+}
+
+.text-motion--bounce {
+  --tm-y: 1em;
+  --tm-scale: 0.72;
+}
+
+.text-motion--roll {
+  --tm-y: 0.95em;
+  --tm-rotate: 18deg;
+  --tm-scale: 0.94;
+}
+
+.text-motion--skate {
+  --tm-x: -1.35em;
+  --tm-y: 0.5em;
+  --tm-rotate: -11deg;
+}
+
+.text-motion--burst {
+  --tm-y: 1.35em;
+  --tm-scale: 0.32;
+  --tm-rotate: -24deg;
+}
+
+.text-motion--clarity {
+  --tm-y: 0.55em;
+  --tm-blur: 18px;
+}
+
+.text-motion--typewriter {
+  --tm-y: 0.75em;
+  --tm-x: -0.45em;
+  --tm-blur: 4px;
+}
+
+@keyframes text-motion-unit {
+  0% {
+    opacity: 0;
+  }
+
+  55% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    filter: blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-motion__unit {
+    opacity: 1;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    will-change: auto;
+  }
+}

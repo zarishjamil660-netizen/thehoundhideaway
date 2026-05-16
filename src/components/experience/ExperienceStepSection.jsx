@@ -64,7 +64,7 @@ export function ExperienceStepSection({
     >
       <div className="experience-step-section__inner w-full">
         {titleInTopBand ? (
-          <div className="experience-step-section__title-band">
+          <div className="experience-step-section__title-band" data-experience-reveal style={{ '--experience-delay': '80ms' }}>
             <SectionDisplayTitle id={id}>{sectionTitle}</SectionDisplayTitle>
           </div>
         ) : null}
@@ -73,18 +73,35 @@ export function ExperienceStepSection({
         >
           <div className="experience-step-section__copy min-w-0 text-left">
             {sectionTitle && !titleInTopBand ? (
-              <SectionDisplayTitle id={id}>{sectionTitle}</SectionDisplayTitle>
+              <div data-experience-reveal style={{ '--experience-delay': '80ms' }}>
+                <SectionDisplayTitle id={id}>{sectionTitle}</SectionDisplayTitle>
+              </div>
             ) : null}
-            <p className="experience-step-section__number">{number}</p>
-            <StepSubtitle id={`${id}-heading`}>{title}</StepSubtitle>
+            <p className="experience-step-section__number" data-experience-reveal style={{ '--experience-delay': '160ms' }}>
+              {number}
+            </p>
+            <div data-experience-reveal style={{ '--experience-delay': '240ms' }}>
+              <StepSubtitle id={`${id}-heading`}>{title}</StepSubtitle>
+            </div>
             <ul className="experience-step-section__list">
-              {bullets.map((line) => (
-                <li key={line} className="experience-step-section__list-item">
+              {bullets.map((line, index) => (
+                <li
+                  key={line}
+                  className="experience-step-section__list-item"
+                  data-experience-reveal
+                  style={{ '--experience-delay': `${320 + index * 110}ms` }}
+                >
                   {line}
                 </li>
               ))}
             </ul>
-            <div className="experience-step-section__nav" role="group" aria-label="Slide navigation">
+            <div
+              className="experience-step-section__nav"
+              role="group"
+              aria-label="Slide navigation"
+              data-experience-reveal
+              style={{ '--experience-delay': '620ms' }}
+            >
               <button type="button" className="experience-step-section__nav-btn" aria-label="Previous">
                 <svg
                   className="experience-step-section__nav-chevron"
@@ -127,7 +144,11 @@ export function ExperienceStepSection({
           </div>
 
           <div className="experience-step-section__media-col min-w-0">
-            <div className="experience-step-section__media">
+            <div
+              className="experience-step-section__media"
+              data-experience-reveal="image"
+              style={{ '--experience-delay': '260ms' }}
+            >
               <img
                 src={imageSrc}
                 alt={imageAlt}

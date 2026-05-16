@@ -6,9 +6,9 @@ import './Header.css'
 const NAV_LINKS = [
   { href: '/#top', label: 'Home' },
   { href: '/experience', label: 'Experience' },
-  { href: '/#suites', label: 'Track suite' },
-  { href: '/#pricing', label: 'Pricing' },
-  { href: '/#contact', label: 'Contact us' },
+  { href: '/private-suites', label: 'Private Suites' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/contact', label: 'Contact us' },
 ]
 
 function Header({ surface = 'hero' }) {

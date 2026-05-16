@@ -1,0 +1,523 @@
+/* Private Suites — mint hero + forest carousel (reference layout) */
+
+.private-suites {
+  --ps-mint: var(--thh-mint-soft);
+  --ps-forest: var(--thh-forest);
+  --ps-text-dark: var(--thh-forest-deep);
+  min-height: 100%;
+  background: var(--ps-mint);
+}
+
+/* —— Hero —— */
+.private-suites__hero {
+  position: relative;
+  background: var(--ps-mint);
+  color: var(--ps-text-dark);
+  padding-bottom: clamp(2rem, 8vw, 5rem);
+  overflow-x: clip;
+  overflow-y: visible;
+}
+
+.private-suites__hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(100%, 720px);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+  padding-top: clamp(0.25rem, 2vw, 1rem);
+  text-align: center;
+}
+
+/* Comp type: Franie 500, ~39px desktop frame; capitalize */
+.private-suites__hero-kicker {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+  max-width: min(100%, 48rem);
+  padding-inline: clamp(1rem, 4vw, 1.5rem);
+  box-sizing: border-box;
+  font-family: Franie, var(--font-sans);
+  font-weight: 500;
+  font-style: normal;
+  font-size: clamp(0.875rem, 3.5vw, 1.5rem);
+  line-height: 1.35;
+  letter-spacing: -0.04px;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--ps-text-dark);
+  opacity: 1;
+}
+
+.private-suites__hero-title {
+  margin: clamp(0.75rem, 3vw, 1.25rem) 0 0;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2.25rem, 9vw, 181.15px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ps-text-dark);
+}
+
+/* Mobile / tablet: dog below headline */
+.private-suites__hero-art-wrap {
+  position: relative;
+  z-index: 0;
+  margin-top: clamp(1rem, 4vw, 2rem);
+  margin-bottom: clamp(-1rem, -2vw, 0);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  pointer-events: none;
+}
+
+.private-suites__hero-art {
+  width: min(100%, 420px);
+  height: auto;
+  aspect-ratio: 666 / 1193.25;
+  object-fit: contain;
+  object-position: center bottom;
+  display: block;
+}
+
+/* Hidden below desktop comp; positioned in 1440px+ query */
+.private-suites__hero-tennis {
+  display: none;
+}
+
+.private-suites__hero-tennis img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .private-suites__hero-inner {
+    max-width: 840px;
+  }
+
+  .private-suites__hero-kicker {
+    font-size: clamp(1rem, 2.2vw, 1.75rem);
+  }
+
+  .private-suites__hero-title {
+    font-size: clamp(3rem, 7.5vw, 181.15px);
+  }
+
+  .private-suites__hero-art {
+    width: min(90%, 520px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .private-suites__hero-inner {
+    max-width: 960px;
+  }
+
+  .private-suites__hero-title {
+    font-size: clamp(3.5rem, 8.5vw, 181.15px);
+  }
+
+  .private-suites__hero-art {
+    width: min(85%, 600px);
+  }
+}
+
+/* Desktop comp: 1440px frame — dog 666×1193.25 at top: 43px, left: 731px */
+@media (min-width: 1440px) {
+  .private-suites__hero {
+    min-height: calc(43px + 1193.25px + 2rem);
+    padding-bottom: 3rem;
+  }
+
+  .private-suites__hero-inner {
+    max-width: 40rem;
+    margin-left: max(1.5rem, calc((100vw - 1440px) / 2 + 48px));
+    margin-right: auto;
+    text-align: left;
+    /* Space below comp kicker (top 232 + ~57px) */
+    padding-top: calc(232px + 56.74212646484375px + 1.75rem);
+  }
+
+  .private-suites__hero-kicker {
+    position: absolute;
+    top: 232px;
+    left: max(0px, calc((100vw - 1440px) / 2 + 255px));
+    width: 926px;
+    max-width: none;
+    height: 56.74212646484375px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38.92px;
+    /* Figma listed 1.99px — use tight line box to match ~56.74px frame */
+    line-height: calc(56.74212646484375px / 38.92px);
+    letter-spacing: -0.04px;
+    text-align: center;
+    text-transform: capitalize;
+    opacity: 1;
+  }
+
+  .private-suites__hero-title {
+    font-size: 181.15px;
+  }
+
+  .private-suites__hero-art-wrap {
+    position: absolute;
+    top: 43px;
+    left: max(0px, calc((100vw - 1440px) / 2 + 731px));
+    width: 666px;
+    height: 1193.25px;
+    margin: 0;
+    display: block;
+    align-items: stretch;
+  }
+
+  .private-suites__hero-art {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: left bottom;
+  }
+
+  /* Tennis ball — comp: ~86.86px, top 850px, left 683px @ 1440, 42.8° */
+  .private-suites__hero-tennis {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    width: 86.85740236344672px;
+    height: 86.85740236344672px;
+    top: 850px;
+    left: max(0px, calc((100vw - 1440px) / 2 + 683px));
+    transform: rotate(42.8deg);
+    transform-origin: center center;
+    opacity: 1;
+  }
+}
+
+/* —— Luxury stays (forest) —— */
+.private-suites__luxury {
+  background: var(--ps-forest);
+  color: var(--ps-mint);
+  padding: clamp(2.5rem, 8vw, 5rem) 0 clamp(3rem, 10vw, 6rem);
+}
+
+.private-suites__luxury-inner {
+  width: 100%;
+  max-width: min(100%, 1100px);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.private-suites__luxury-label {
+  margin: 0 0 clamp(1.5rem, 5vw, 2.75rem);
+  font-family: Franie, var(--font-sans);
+  font-weight: 700;
+  font-style: normal;
+  font-size: clamp(1.375rem, 11vw, 107.29px);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ps-mint);
+}
+
+@media (min-width: 1440px) {
+  .private-suites__luxury-label {
+    font-size: 107.29px;
+  }
+}
+
+.private-suites__carousel {
+  --ps-card-gap: 0.75rem;
+  --ps-slide-w: min(82vw, 26rem);
+  --ps-track-offset: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.1rem, 3.5vw, 1.65rem);
+}
+
+/* Peek: side cards visible; overflow clips */
+.private-suites__viewport {
+  width: 100%;
+  max-width: min(100%, 36rem);
+  margin-inline: auto;
+  overflow: hidden;
+  padding-inline: clamp(0.25rem, 2vw, 0.5rem);
+  position: relative;
+  opacity: 1;
+}
+
+.private-suites__track {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: var(--ps-card-gap);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transition: transform 0.45s cubic-bezier(0.25, 0.1, 0.25, 1);
+  will-change: transform;
+  transform: translateX(
+    calc(var(--ps-track-offset) + var(--ps-i) * -1 * (var(--ps-slide-w) + var(--ps-card-gap)))
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .private-suites__track {
+    transition: none;
+  }
+}
+
+.private-suites__slide {
+  flex: 0 0 var(--ps-slide-w);
+  min-width: 0;
+  scroll-snap-align: center;
+}
+
+.private-suites__card {
+  display: flex;
+  flex-direction: column;
+  background: var(--ps-mint);
+  border-radius: clamp(1rem, 3vw, 1.35rem);
+  overflow: hidden;
+  text-align: left;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.2);
+  height: 100%;
+  opacity: 1;
+}
+
+.private-suites__card-media {
+  aspect-ratio: 4 / 3;
+  background: var(--ps-forest);
+}
+
+.private-suites__card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.private-suites__card-body {
+  padding: clamp(1.1rem, 3.5vw, 1.5rem);
+  background: var(--ps-mint);
+  color: var(--ps-text-dark);
+}
+
+.private-suites__card-title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.25rem, 3.8vw, 1.75rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ps-text-dark);
+}
+
+/* Description sits on forest band (mint type), below cards — reference */
+.private-suites__carousel-caption {
+  margin: 0;
+  max-width: min(36rem, 100%);
+  padding-inline: clamp(0.5rem, 3vw, 1.25rem);
+  font-family: Franie, var(--font-sans);
+  font-weight: 500;
+  font-style: normal;
+  font-size: clamp(1rem, 2.6vw, 27.47px);
+  line-height: 1.45;
+  text-align: center;
+  white-space: pre-line;
+  color: var(--ps-mint);
+}
+
+.private-suites__carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.75rem, 3vw, 1.25rem);
+}
+
+.private-suites__chev {
+  box-sizing: border-box;
+  width: clamp(2.75rem, 10vw, 3.25rem);
+  height: clamp(2.75rem, 10vw, 3.25rem);
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ps-mint);
+  border-radius: 0.35rem;
+  background: transparent;
+  color: var(--ps-mint);
+  font-size: clamp(1.5rem, 5vw, 1.75rem);
+  line-height: 1;
+  opacity: 1;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.private-suites__chev:hover {
+  background: var(--ps-mint);
+  color: var(--ps-forest);
+}
+
+.private-suites__chev:focus-visible {
+  outline: 2px solid var(--ps-mint);
+  outline-offset: 3px;
+}
+
+.private-suites__cta-wrap {
+  margin-top: clamp(2rem, 6vw, 3.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .private-suites__cta-wrap {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .private-suites__cta {
+    flex: 1 1 12rem;
+    min-width: 0;
+  }
+}
+
+.private-suites__cta {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.25rem;
+  padding: 0.65rem clamp(1.75rem, 6vw, 3rem);
+  border-radius: 999px;
+  border: none;
+  background: var(--ps-mint);
+  color: var(--ps-text-dark);
+  font-family: Franie, var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.6875rem, 2.2vw, 0.8125rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  opacity: 1;
+  transition: filter 0.2s ease, transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.private-suites__cta--outline {
+  border: 2px solid var(--ps-mint);
+  background: transparent;
+  color: var(--ps-mint);
+}
+
+.private-suites__cta--outline:hover {
+  filter: none;
+  background: color-mix(in srgb, var(--ps-mint) 14%, transparent);
+  color: var(--ps-mint);
+}
+
+.private-suites__cta--primary:hover {
+  filter: brightness(1.05);
+}
+
+.private-suites__cta:focus-visible {
+  outline: 2px solid var(--ps-mint);
+  outline-offset: 3px;
+}
+
+@media (min-width: 900px) {
+  .private-suites__carousel {
+    --ps-slide-w: min(72vw, 28rem);
+  }
+
+  .private-suites__viewport {
+    max-width: 42rem;
+  }
+}
+
+/* Comp: center card ~2412×1093 frame (width capped to viewport); left -486; top 1469 skipped (page Y) */
+@media (min-width: 1440px) {
+  .private-suites__luxury-inner {
+    overflow-x: clip;
+  }
+
+  .private-suites__carousel {
+    --ps-slide-w: min(2412.92138671875px, 72vw);
+    --ps-track-offset: -486px;
+  }
+
+  .private-suites__viewport {
+    max-width: none;
+    width: min(100%, calc(100vw - 3rem));
+    margin-inline: auto;
+    padding-inline: 0;
+    overflow: hidden;
+  }
+
+  .private-suites__card {
+    height: min(1093px, 85vh);
+    min-height: min(1093px, 85vh);
+  }
+
+  .private-suites__card-media {
+    aspect-ratio: unset;
+    flex: 1 1 0;
+    min-height: 12rem;
+  }
+
+  .private-suites__carousel-caption {
+    font-size: 27.47px;
+  }
+
+  /* Comp: nav arrows ~296×101, border 4.71 (frame top/left omitted) */
+  .private-suites__chev {
+    width: 295.830078125px;
+    height: 101.36058044433594px;
+    border-width: 4.71px;
+    border-radius: 0.75rem;
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+  }
+
+  /* Comp: dual CTAs row ~1008×87, radius 43.41, border 6.09 */
+  .private-suites__cta-wrap {
+    width: min(1008.352294921875px, 100%);
+    max-width: 1008.352294921875px;
+    gap: 0;
+  }
+
+  .private-suites__cta {
+    flex: 1 1 0;
+    height: 87.046630859375px;
+    min-height: 87.046630859375px;
+    padding: 0 clamp(0.75rem, 2vw, 1.75rem);
+    border-radius: 43.41px;
+    border: 6.09px solid var(--ps-mint);
+    font-size: clamp(0.75rem, 1.05vw, 0.875rem);
+  }
+
+  .private-suites__cta--outline {
+    border: 6.09px solid var(--ps-mint);
+  }
+}
+
+@media (min-width: 1100px) {
+  .private-suites__luxury-inner {
+    max-width: 1200px;
+  }
+}

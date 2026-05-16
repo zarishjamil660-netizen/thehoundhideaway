@@ -40,6 +40,8 @@ export function PageLoadScreen({ children }) {
   const [phase, setPhase] = useState('loading')
 
   useEffect(() => {
+    document.body.classList.remove('site-is-loaded')
+
     let loadDone = document.readyState === 'complete'
     const onLoad = () => {
       loadDone = true
@@ -76,6 +78,7 @@ export function PageLoadScreen({ children }) {
         window.clearInterval(intervalId)
         window.clearTimeout(forceDoneId)
         window.removeEventListener('load', onLoad)
+        document.body.classList.add('site-is-loaded')
         setPhase('exit')
         window.setTimeout(() => setPhase('gone'), 480)
       }
@@ -85,6 +88,7 @@ export function PageLoadScreen({ children }) {
       window.clearInterval(intervalId)
       window.clearTimeout(forceDoneId)
       window.removeEventListener('load', onLoad)
+      document.body.classList.remove('site-is-loaded')
     }
   }, [])
 

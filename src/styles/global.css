@@ -62,6 +62,13 @@ button {
   font-family: inherit;
 }
 
+/* Experience: prevent horizontal scroll from 100vw / wide hero art (Windows scrollbar) */
+main.thh-page--experience {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

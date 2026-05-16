@@ -18,7 +18,7 @@ function Paw() {
 export function ExperienceTrust({ imageSrc, imageAlt }) {
   const items = [
     'How we handle nervous dogs',
-    'Why we don’t rush',
+    "Why we don't rush",
     'How we build trust',
   ]
 
@@ -30,16 +30,30 @@ export function ExperienceTrust({ imageSrc, imageAlt }) {
     >
       <div className="experience-trust__inner">
         <div className="experience-trust__lift">
-          <div className="experience-trust__figure-wrap">
+          <div
+            className="experience-trust__figure-wrap"
+            data-experience-reveal="image"
+            style={{ '--experience-delay': '120ms' }}
+          >
             <img src={imageSrc} alt={imageAlt} className="experience-trust__img" decoding="async" />
           </div>
           <div className="experience-trust__text-col">
-            <h2 id="trust-heading" className="experience-trust__heading">
+            <h2
+              id="trust-heading"
+              className="experience-trust__heading"
+              data-experience-reveal
+              style={{ '--experience-delay': '100ms' }}
+            >
               This shapes:
             </h2>
             <ul className="experience-trust__list">
-              {items.map((line) => (
-                <li key={line} className="experience-trust__item">
+              {items.map((line, index) => (
+                <li
+                  key={line}
+                  className="experience-trust__item"
+                  data-experience-reveal
+                  style={{ '--experience-delay': `${180 + index * 110}ms` }}
+                >
                   <Paw />
                   <span>{line}</span>
                 </li>
@@ -49,9 +63,27 @@ export function ExperienceTrust({ imageSrc, imageAlt }) {
         </div>
 
         <p className="experience-trust__tagline">
-          <span className="experience-trust__tagline-line">Every stay</span>
-          <span className="experience-trust__tagline-line">supports that</span>
-          <span className="experience-trust__tagline-line">mission.</span>
+          <span
+            className="experience-trust__tagline-line"
+            data-experience-reveal
+            style={{ '--experience-delay': '120ms' }}
+          >
+            Every stay
+          </span>
+          <span
+            className="experience-trust__tagline-line"
+            data-experience-reveal
+            style={{ '--experience-delay': '220ms' }}
+          >
+            supports that
+          </span>
+          <span
+            className="experience-trust__tagline-line"
+            data-experience-reveal
+            style={{ '--experience-delay': '320ms' }}
+          >
+            mission.
+          </span>
         </p>
       </div>
     </section>

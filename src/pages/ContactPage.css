@@ -1,0 +1,404 @@
+/* Contact — mint dome hero, forest body (reference mockup) */
+
+.thh-page--contact {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.contact-page {
+  --cp-mint: var(--thh-mint-soft);
+  --cp-forest: var(--thh-forest);
+  --cp-text: var(--thh-forest-deep);
+  min-height: 100%;
+  background: var(--cp-forest);
+  color: var(--cp-mint);
+}
+
+/* —— Hero (mint arch) —— */
+.contact-page__hero {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  padding-bottom: clamp(2.5rem, 10vw, 5rem);
+  background: var(--cp-forest);
+}
+
+.contact-page__hero-circle {
+  position: absolute;
+  z-index: 0;
+  width: min(1750px, 220vw);
+  height: min(1750px, 220vw);
+  top: max(-42vw, -700px);
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  border-radius: 50%;
+  background: var(--cp-mint);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.contact-page__title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.35rem, 2vw, 0.75rem);
+  margin: clamp(1.5rem, 6vw, 3rem) auto 0;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+  max-width: min(100%, 52rem);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2.25rem, 16vw, 232.04px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  opacity: 1;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--cp-text);
+}
+
+.contact-page__title-ball {
+  flex-shrink: 0;
+  width: clamp(2.5rem, 6vw, 85.51703865125911px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  transform: rotate(12deg);
+}
+
+/* —— Forest body —— */
+.contact-page__body {
+  position: relative;
+  z-index: 1;
+  padding: 0 clamp(1rem, 4vw, 2rem) clamp(6rem, 18vw, 12rem);
+}
+
+/* Follow: dog + paw */
+.contact-page__follow {
+  margin-bottom: clamp(2rem, 8vw, 4rem);
+}
+
+.contact-page__follow-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 2.5rem);
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.contact-page__dog {
+  width: min(100%, 1053px);
+  height: auto;
+  max-height: min(90vw, 1215px);
+  aspect-ratio: 1053 / 1215;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.contact-page__paw {
+  position: relative;
+  margin: 0;
+  width: min(100%, 1179.8076211025764px);
+  max-width: 1179.8076211025764px;
+  aspect-ratio: 1 / 1;
+}
+
+.contact-page__paw-art {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* Hit targets over paw “toes” on composite art */
+.contact-page__social {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-page__social-link {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(2.25rem, 7vw, 100.86329650878906px);
+  height: clamp(2.25rem, 7vw, 100.86329650878906px);
+  border-radius: 50%;
+  text-decoration: none;
+  transform: translate(-50%, -50%);
+}
+
+.contact-page__social-icon {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.contact-page__social-link:nth-child(1) {
+  top: 14%;
+  left: 20%;
+}
+
+.contact-page__social-link:nth-child(2) {
+  top: 9%;
+  left: 50%;
+}
+
+.contact-page__social-link:nth-child(3) {
+  top: 13%;
+  left: 80%;
+}
+
+.contact-page__social-link:focus-visible {
+  outline: 2px solid var(--cp-mint);
+  outline-offset: 3px;
+}
+
+/* —— Form —— */
+.contact-page__form-section {
+  max-width: min(100%, 36rem);
+  margin-inline: auto;
+  text-align: center;
+}
+
+.contact-page__form-heading {
+  margin: 0 0 clamp(1.75rem, 6vw, 2.75rem);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2rem, 12.7vw, 182.97px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--cp-mint);
+  opacity: 1;
+}
+
+.contact-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(0.85rem, 3vw, 1.15rem);
+  text-align: left;
+}
+
+.contact-page__field {
+  display: block;
+}
+
+.contact-page__field input,
+.contact-page__field textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: clamp(0.85rem, 3vw, 1.1rem) clamp(1rem, 4vw, 1.35rem);
+  border: 8px solid var(--cp-mint);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cp-mint);
+  font-family: Franie, var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(0.875rem, 2.5vw, 1rem);
+  line-height: 1.4;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-page__field textarea {
+  border-radius: clamp(1.25rem, 4vw, 2rem);
+  resize: vertical;
+  min-height: clamp(8rem, 28vw, 12rem);
+}
+
+.contact-page__field input::placeholder,
+.contact-page__field textarea::placeholder {
+  color: rgb(190 237 185 / 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+.contact-page__field input:focus,
+.contact-page__field textarea:focus {
+  border-color: var(--cp-mint);
+  box-shadow: 0 0 0 3px rgb(190 237 185 / 0.25);
+}
+
+.contact-page__submit {
+  box-sizing: border-box;
+  align-self: center;
+  margin-top: clamp(0.5rem, 2vw, 1rem);
+  width: min(100%, 1094px);
+  min-height: clamp(3rem, 12vw, 117px);
+  height: auto;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--cp-mint);
+  color: var(--cp-text);
+  font-family: Franie, var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.75rem, 2.5vw, 0.875rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 1;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.contact-page__submit:hover {
+  filter: brightness(1.05);
+}
+
+.contact-page__submit:focus-visible {
+  outline: 2px solid var(--cp-mint);
+  outline-offset: 3px;
+}
+
+.contact-page__sent {
+  margin: 0.5rem 0 0;
+  font-family: Franie, var(--font-sans);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  text-align: center;
+  color: var(--cp-mint);
+}
+
+/* Book stay tennis ball */
+.contact-page__book {
+  position: absolute;
+  z-index: 3;
+  bottom: clamp(1rem, 4vw, 2rem);
+  left: clamp(0.5rem, 3vw, 1.5rem);
+  display: block;
+  line-height: 0;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.contact-page__book img {
+  width: clamp(7rem, 28vw, 927px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+}
+
+.contact-page__book:hover {
+  transform: scale(1.03);
+}
+
+.contact-page__book:focus-visible {
+  outline: 2px solid var(--cp-mint);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+  .contact-page__follow-inner {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(1rem, 3vw, 2rem);
+  }
+
+  .contact-page__dog {
+    flex: 0 1 min(48%, 1053px);
+    width: min(48%, 1053px);
+    max-height: none;
+  }
+
+  .contact-page__paw {
+    flex: 0 1 min(52%, 28rem);
+    width: min(52%, 28rem);
+  }
+
+  .contact-page__form-section {
+    max-width: min(100%, 42rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-page__paw {
+    width: min(48%, 32rem);
+  }
+}
+
+@media (min-width: 1440px) {
+  .contact-page__title {
+    font-size: 232.04px;
+    line-height: 1.05;
+  }
+
+  .contact-page__title-ball {
+    width: 85.51703865125911px;
+    height: 85.51703865125911px;
+  }
+
+  /* Comp: follow us paw — 1179.808×1179.808 */
+  .contact-page__follow-inner {
+    max-width: min(100%, 90rem);
+  }
+
+  .contact-page__paw {
+    flex: 0 0 auto;
+    width: 1179.8076211025764px;
+    height: 1179.8076211025764px;
+    max-width: none;
+  }
+
+  .contact-page__paw-art {
+    width: 1179.8076211025764px;
+    height: 1179.8076211025764px;
+  }
+
+  .contact-page__social-link {
+    width: 100.86329650878906px;
+    height: 100.86329650878906px;
+  }
+
+  /* Comp: dog with phone — 1053×1215 */
+  .contact-page__dog {
+    flex: 0 0 auto;
+    width: 1053px;
+    height: 1215px;
+    max-width: none;
+    max-height: none;
+    aspect-ratio: auto;
+  }
+
+  /* Comp: “Any Questions?” — The New Elegance 182.97px */
+  .contact-page__form-heading {
+    font-size: 182.97px;
+    line-height: 1.05;
+  }
+
+  .contact-page__form-section {
+    max-width: min(100%, 1094px);
+  }
+
+  /* Comp: submit — 1094×117 */
+  .contact-page__submit {
+    width: 1094px;
+    height: 117px;
+    min-height: 117px;
+    max-width: 100%;
+  }
+
+  /* Comp: book their stay ball — 927×927 */
+  .contact-page__book img {
+    width: 927px;
+    height: 927px;
+    max-width: min(927px, calc(100vw - 2rem));
+  }
+}

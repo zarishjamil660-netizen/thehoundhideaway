@@ -1,7 +1,6 @@
 .experience-trust {
   position: relative;
   z-index: 2;
-  /* Pull block up so the dog’s head crosses into the mission / forest band above */
   margin-top: clamp(-12.5rem, -24vw, -20rem);
   padding-top: 0;
   padding-bottom: clamp(5rem, 12vw, 7rem);
@@ -21,7 +20,6 @@
   overflow: visible;
 }
 
-/* Dog (l) + copy (r); comp uses ~55/45 and left-aligned type in the right column */
 .experience-trust__lift {
   display: grid;
   align-items: start;
@@ -30,10 +28,14 @@
 
 @media (min-width: 768px) {
   .experience-trust__lift {
-    /* max-content keeps the dog column from shrinking when the heading is wide */
     grid-template-columns: max-content minmax(0, 1fr);
-    column-gap: clamp(1.25rem, 3.5vw, 3rem);
+    align-items: start;
+    column-gap: clamp(2.25rem, 4.5vw, 4.25rem);
     row-gap: clamp(2rem, 4vw, 3rem);
+  }
+
+  .experience-trust__text-col {
+    align-self: start;
   }
 }
 
@@ -44,7 +46,6 @@
   max-width: none;
   justify-self: start;
   margin-top: clamp(-10rem, -18vw, -16rem);
-  /* Cancel section horizontal padding so the dog can sit flush to the viewport edge */
   margin-left: -1rem;
   overflow: visible;
   line-height: 0;
@@ -63,43 +64,45 @@
   }
 }
 
-/* Full art visible (no crop); shift up into the band above the mint block */
 .experience-trust__img {
   display: block;
   width: auto;
-  max-width: min(96vw, 960px);
+  max-width: min(92vw, 500px);
   height: auto;
   object-fit: contain;
   object-position: left top;
-  /* override global img { max-width: 100% } so width isn’t tied to a squeezed grid cell */
   transform: translateY(clamp(-6.75rem, -14vw, -12.5rem));
 }
 
 @media (min-width: 768px) {
   .experience-trust__img {
-    max-width: min(64vw, 960px);
+    max-width: min(44vw, 480px);
     transform: translateY(clamp(-9.25rem, -17vw, -15.5rem));
   }
 }
 
 .experience-trust__text-col {
   width: 100%;
+  max-width: min(100%, 38rem);
   text-align: left;
-  padding-top: clamp(0.5rem, 2vw, 1.25rem);
+  padding-top: clamp(4.25rem, 7.5vw, 6.75rem);
+  transform: none;
 }
 
 @media (min-width: 768px) {
   .experience-trust__text-col {
-    padding-top: clamp(1.5rem, 3.5vw, 3.25rem);
+    padding-top: clamp(8rem, 12vw, 11.5rem);
+    padding-right: clamp(1.25rem, 4.5vw, 3.25rem);
+    transform: none;
   }
 }
 
 .experience-trust__heading {
-  margin: 0;
+  margin: 0 0 clamp(2.75rem, 6vw, 4.5rem);
   font-family: var(--font-serif);
-  font-weight: 400;
+  font-weight: 600;
   font-style: normal;
-  font-size: clamp(2rem, 6.5vw, 6.891875rem);
+  font-size: clamp(2.125rem, 5vw + 1rem, 6rem);
   line-height: 1.08;
   letter-spacing: -0.02em;
   text-align: left;
@@ -109,27 +112,28 @@
 
 .experience-trust__list {
   list-style: none;
-  margin: clamp(1.75rem, 3.5vw, 2.25rem) 0 0;
+  margin: 0;
   padding: 0;
+  padding-inline-start: clamp(0.5rem, 1.5vw, 1.125rem);
   text-align: left;
 }
 
 .experience-trust__item {
   display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
+  align-items: center;
+  gap: clamp(0.65rem, 1.5vw, 0.85rem);
 }
 
 .experience-trust__item + .experience-trust__item {
-  margin-top: clamp(1.1rem, 2.5vw, 1.4rem);
+  margin-top: clamp(2rem, 5vw, 3.25rem);
 }
 
 .experience-trust__item span {
-  font-family: Franie, var(--font-sans);
+  font-family: var(--font-sans);
   font-weight: 500;
   font-style: normal;
-  font-size: clamp(1rem, 3.2vw, 2.5rem);
-  line-height: 1.4;
+  font-size: clamp(1rem, 2.4vw + 0.35rem, 1.875rem);
+  line-height: 1.45;
   letter-spacing: 0;
   text-align: left;
   color: var(--thh-forest-deep);
@@ -137,9 +141,8 @@
 
 .experience-trust__paw {
   flex-shrink: 0;
-  width: clamp(2rem, 7vw, 53.101193139823735px);
-  height: clamp(2rem, 7vw, 53.101193139823735px);
-  margin-top: 0.12em;
+  width: clamp(1.75rem, 5vw, 2.5rem);
+  height: clamp(1.75rem, 5vw, 2.5rem);
   object-fit: contain;
 }
 
@@ -150,8 +153,9 @@
   gap: 0.02em;
   width: 100%;
   max-width: none;
-  margin: clamp(2.75rem, 8vw, 5rem) auto 0;
+  margin: 0 auto;
   padding: 0;
+  transform: translateY(clamp(-4.75rem, -11vw, -2.25rem));
   font-family: var(--font-serif);
   font-weight: 400;
   font-style: normal;
@@ -173,16 +177,29 @@
 
 @media (min-width: 768px) {
   .experience-trust__heading {
-    font-size: 110.27px;
+    font-size: 6rem;
+    line-height: 1.08;
+    font-weight: 600;
+    margin-bottom: 4.5rem;
+  }
+
+  .experience-trust__list {
+    padding-inline-start: 1.125rem;
+  }
+
+  .experience-trust__item + .experience-trust__item {
+    margin-top: 3.5rem;
   }
 
   .experience-trust__item span {
-    font-size: 40px;
+    font-size: 1.875rem;
+    line-height: 1.45;
+    font-weight: 500;
   }
 
   .experience-trust__paw {
-    width: 53.101193139823735px;
-    height: 53.101193139823735px;
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .experience-trust__tagline {

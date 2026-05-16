@@ -114,7 +114,7 @@
   height: 1750px;
   top: -700px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, 0, 0);
   opacity: 1;
   border-radius: 50%;
   background: var(--thh-mint-soft);
@@ -124,7 +124,7 @@
 .experience-hero__media {
   position: relative;
   isolation: isolate;
-  margin-top: -23.5rem;
+  margin-top: -35.75rem;
 }
 
 .experience-hero__art {
@@ -145,10 +145,10 @@
     height: 146vw;
     top: -72vw;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 
   .experience-hero__media {
-    margin-top: -5.5rem;
+    margin-top: -14.75rem;
   }
 }

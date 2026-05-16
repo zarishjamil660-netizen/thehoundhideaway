@@ -138,6 +138,8 @@
   margin-left: clamp(-2.5rem, -6vw, -1.25rem);
   transform: none;
   filter: drop-shadow(0 16px 22px rgb(0 0 0 / 0.22));
+  transform-origin: 52% 58%;
+  animation: hero-dog-breathe 6.8s ease-in-out infinite;
 }
 
 .hero__dog {
@@ -220,6 +222,32 @@
 
 .hero__wave {
   display: none;
+}
+
+@keyframes hero-dog-breathe {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  25% {
+    transform: translate3d(0.18rem, -0.22rem, 0) rotate(-0.55deg);
+  }
+
+  50% {
+    transform: translate3d(0.32rem, 0.06rem, 0) rotate(0.35deg);
+  }
+
+  75% {
+    transform: translate3d(0.14rem, -0.14rem, 0) rotate(-0.25deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__dog-wrap,
+  .hero__dog {
+    animation: none !important;
+  }
 }
 
 @media (min-width: 480px) {

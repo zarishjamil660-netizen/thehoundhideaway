@@ -1,13 +1,11 @@
 import { useCallback, useEffect, useState } from 'react'
 import suiteImg1 from '../../assets/Mask group.png'
-import suiteImg2 from '../../assets/Background+Shadow.png'
-import suiteImg3 from '../../assets/Background (1).png'
 import './LuxurySuitesSection.css'
 
 const slides = [
   { src: suiteImg1, alt: 'Outdoor countryside dog suites', caption: 'Countryside Suites' },
-  { src: suiteImg2, alt: 'Garden suite', caption: 'Garden Suites' },
-  { src: suiteImg3, alt: 'Signature suite', caption: 'Signature Suite' },
+  { src: suiteImg1, alt: 'Outdoor countryside dog suites', caption: 'Garden Suites' },
+  { src: suiteImg1, alt: 'Outdoor countryside dog suites', caption: 'Signature Suite' },
 ]
 
 const pagerLabels = ['01', '02', '03']

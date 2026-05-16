@@ -1,6 +1,8 @@
 import Header from '../layout/Header'
+import { AnimatedText } from '../motion/AnimatedText'
 import heroBg from '../../assets/Bgg for site 1.png'
 import dogImg from '../../assets/THH Dog Illustration II.png'
+import { ScrollReveal } from '../motion/ScrollReveal'
 import './HeroSection.css'
 
 export function HeroSection() {
@@ -14,18 +16,18 @@ export function HeroSection() {
 
       <Header />
 
-      <div className="hero__content">
+      <ScrollReveal className="hero__content" variant="lift" delay={120} distance={30}>
         <div className="hero__stage">
           <h1 className="sr-only">This is where trust begins</h1>
 
-          <p className="hero__where" aria-hidden>
+          <AnimatedText as="p" className="hero__where" effect="clarity" split="chars" delay={140}>
             THIS IS WHERE
-          </p>
+          </AnimatedText>
 
           <div className="hero__cluster">
-            <span className="hero__trust" aria-hidden>
+            <AnimatedText as="span" className="hero__trust" effect="burst" split="words" delay={240}>
               Trust
-            </span>
+            </AnimatedText>
             <div className="hero__dog-wrap">
               <img
                 src={dogImg}
@@ -37,9 +39,9 @@ export function HeroSection() {
                 decoding="async"
               />
             </div>
-            <p className="hero__begins" aria-hidden>
+            <AnimatedText as="p" className="hero__begins" effect="skate" split="words" delay={340}>
               BEGINS!
-            </p>
+            </AnimatedText>
           </div>
 
           <p className="hero__sub">
@@ -56,7 +58,7 @@ export function HeroSection() {
             </a>
           </div>
         </div>
-      </div>
+      </ScrollReveal>
 
       <div className="hero__wave" aria-hidden>
         <svg className="hero__wave-svg" viewBox="0 0 1440 100" preserveAspectRatio="none">

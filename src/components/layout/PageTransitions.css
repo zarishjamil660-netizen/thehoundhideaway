@@ -1,0 +1,53 @@
+.page-transition {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483645;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+.page-transition::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgb(24 71 52 / 0.98), rgb(184 236 177 / 0.98));
+  transform: translateX(-108%);
+  transition:
+    transform 440ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 440ms ease;
+  opacity: 0;
+}
+
+.page-transition--leaving {
+  opacity: 1;
+}
+
+.page-transition--leaving::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+body.site-is-transitioning .site-main,
+body.site-is-transitioning .site-main--stack {
+  filter: blur(6px);
+  transform: scale(0.985);
+  transition:
+    filter 440ms ease,
+    transform 440ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition::before {
+    transition: none;
+  }
+
+  body.site-is-transitioning .site-main,
+  body.site-is-transitioning .site-main--stack {
+    filter: none;
+    transform: none;
+    transition: none;
+  }
+}

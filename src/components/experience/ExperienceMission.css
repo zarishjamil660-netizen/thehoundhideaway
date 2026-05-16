@@ -17,18 +17,29 @@
 
 .experience-mission__media {
   margin-top: clamp(4rem, 8vw, 6rem);
-  width: 100%;
-  overflow: visible;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
+  line-height: 0;
 }
 
 .experience-mission__img {
   display: block;
   width: 100%;
-  max-width: 100%;
+  max-width: none;
   height: auto;
   object-fit: contain;
-  object-position: center bottom;
-  box-shadow: 0 1.5rem 3rem rgb(27 61 47 / 0.12);
+  object-position: center center;
+  transform: scale(1.085);
+  transform-origin: center center;
+}
+
+@media (min-width: 1024px) {
+  .experience-mission__img {
+    transform: scale(1.12);
+  }
 }
 
 .experience-mission__heading-wrap {
@@ -59,7 +70,6 @@
 }
 
 .experience-mission__heading-line--shift {
-  /* “Mission” stepped right under “Rescue” (see layout ref) */
   padding-left: clamp(2rem, 12vw, 5.25rem);
 }
 

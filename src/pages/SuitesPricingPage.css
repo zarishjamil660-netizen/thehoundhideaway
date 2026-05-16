@@ -1,0 +1,364 @@
+/* Suites pricing — forest page, mint cards (reference mockup) */
+
+.thh-page--suites-pricing {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.suites-pricing {
+  --sp-forest: var(--thh-forest);
+  --sp-mint: var(--thh-mint-soft);
+  --sp-text: var(--thh-forest-deep);
+  min-height: 100%;
+  background: var(--sp-forest);
+  color: var(--sp-mint);
+}
+
+.suites-pricing__hero {
+  position: relative;
+  overflow-x: clip;
+  padding-bottom: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+.suites-pricing__hero-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.35rem, 2.5vw, 1.5rem);
+  max-width: min(100%, 40rem);
+  margin-inline: auto;
+  padding-inline: clamp(0.75rem, 4vw, 1.25rem);
+}
+
+.suites-pricing__hero-dog {
+  flex: 0 1 clamp(3.5rem, 20vw, 7.5rem);
+  width: auto;
+  height: auto;
+  max-height: clamp(6rem, 28vw, 11rem);
+  object-fit: contain;
+  object-position: center bottom;
+  user-select: none;
+  pointer-events: none;
+}
+
+.suites-pricing__title {
+  margin: 0;
+  flex: 0 1 auto;
+  max-width: min(100%, 1004px);
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(2rem, 10.8vw, 155.56px);
+  line-height: 1.189;
+  letter-spacing: -0.16px;
+  text-align: center;
+  text-transform: capitalize;
+  color: var(--sp-mint);
+  opacity: 1;
+}
+
+.suites-pricing__tiers {
+  padding: clamp(0.5rem, 3vw, 1.5rem) 0 clamp(2rem, 8vw, 4rem);
+}
+
+.suites-pricing__cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.85rem, 4vw, 2rem);
+  max-width: min(22rem, calc(100% - 2rem));
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.suites-pricing__col {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.25rem, 12vw, 6rem);
+}
+
+.suites-pricing__col--right {
+  padding-top: clamp(2.5rem, 11vw, 6.25rem);
+}
+
+.suites-pricing__card-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 554px;
+  margin-inline: auto;
+}
+
+.suites-pricing__card {
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  max-width: 554px;
+  aspect-ratio: 554 / 568.356689453125;
+  min-height: 0;
+  padding: clamp(1.2rem, 5vw, 1.85rem) clamp(1rem, 4vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--sp-mint);
+  color: var(--sp-text);
+  text-align: center;
+  border-top-left-radius: clamp(1.35rem, 7vw, 5rem);
+  border-bottom-right-radius: clamp(1.35rem, 7vw, 5rem);
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  box-shadow: 0 10px 32px rgb(0 0 0 / 0.18);
+}
+
+.suites-pricing__card-name {
+  margin: 0 0 clamp(0.85rem, 3vw, 1.15rem);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.65rem, 2.8vw, 0.78rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--sp-text);
+}
+
+.suites-pricing__card-price {
+  margin: 0 0 clamp(0.65rem, 2.5vw, 0.95rem);
+  font-family: Franie, var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(2rem, 9vw, 2.85rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--sp-text);
+}
+
+.suites-pricing__card-unit {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.58rem, 2.4vw, 0.68rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: var(--sp-text);
+}
+
+.suites-pricing__fetch {
+  box-sizing: border-box;
+  margin-top: clamp(0.65rem, 2.5vw, 0.95rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 1.5em;
+  font-family: Franie, var(--font-sans);
+  font-weight: 700;
+  font-style: normal;
+  font-size: clamp(0.75rem, 2.4vw, 28.63px);
+  line-height: 1.34;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 0.28em;
+  color: var(--sp-mint);
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.suites-pricing__fetch:hover {
+  opacity: 1;
+}
+
+.suites-pricing__fetch:focus-visible {
+  outline: 2px solid var(--sp-mint);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.suites-pricing__closing {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.75rem, 6vw, 2.75rem);
+  padding: 0 clamp(0.75rem, 4vw, 1.5rem) clamp(2.5rem, 10vw, 5rem);
+}
+
+.suites-pricing__trio {
+  width: min(100%, 1240px);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  max-height: min(70vw, 1240px);
+  object-fit: contain;
+  object-position: left bottom;
+  opacity: 1;
+}
+
+.suites-pricing__cta {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: min(100%, 610px);
+  min-height: clamp(3rem, 12vw, 100px);
+  padding: 0.7rem clamp(1.75rem, 8vw, 3.25rem);
+  border-radius: 43.41px;
+  border: 6.09px solid var(--sp-mint);
+  background: var(--sp-mint);
+  color: var(--sp-text);
+  font-family: Franie, var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(0.65rem, 2.4vw, 0.8rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  opacity: 1;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.suites-pricing__cta:hover {
+  filter: brightness(1.05);
+}
+
+.suites-pricing__cta:focus-visible {
+  outline: 2px solid var(--sp-mint);
+  outline-offset: 3px;
+}
+
+@media (min-width: 640px) {
+  .suites-pricing__cols {
+    max-width: min(32rem, calc(100% - 2.5rem));
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+  }
+
+  .suites-pricing__trio {
+    max-height: min(55vw, 40rem);
+  }
+}
+
+@media (min-width: 900px) {
+  .suites-pricing__hero-row {
+    max-width: min(100%, 56rem);
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+  }
+
+  .suites-pricing__hero-dog {
+    flex-basis: clamp(6rem, 12vw, 9rem);
+    max-height: clamp(10rem, 18vw, 14rem);
+  }
+
+  .suites-pricing__cols {
+    max-width: min(40rem, calc(100% - 3rem));
+  }
+}
+
+/* Comp: “Suites Pricing” ~1004×516 frame; The New Elegance 155.56 / 185.11 */
+@media (min-width: 1440px) {
+  .suites-pricing__hero-row {
+    z-index: 1;
+    max-width: min(100%, calc(1004px + 14rem));
+    gap: clamp(1.5rem, 2.5vw, 2.75rem);
+  }
+
+  .suites-pricing__title {
+    max-width: 1004px;
+    font-size: 155.56px;
+    line-height: 185.11px;
+    letter-spacing: -0.16px;
+  }
+
+  /* Comp: dog 1 — 825×825, top 170, left -153 @ 1440 */
+  .suites-pricing__hero-dog--left {
+    position: absolute;
+    z-index: 0;
+    top: 170px;
+    left: max(0px, calc((100vw - 1440px) / 2 + (-153px)));
+    width: 825px;
+    height: 825px;
+    max-width: none;
+    max-height: none;
+    flex: none;
+    object-fit: contain;
+    object-position: left bottom;
+    opacity: 1;
+  }
+
+  /* Comp: dog 2 — 1020×1020, top 102, left 587 @ 1440 */
+  .suites-pricing__hero-dog--right {
+    position: absolute;
+    z-index: 0;
+    top: 102px;
+    left: max(0px, calc((100vw - 1440px) / 2 + 587px));
+    width: 1020px;
+    height: 1020px;
+    max-width: none;
+    max-height: none;
+    flex: none;
+    object-fit: contain;
+    object-position: right bottom;
+    opacity: 1;
+  }
+
+  /* Comp: price cards — 554×568.357 */
+  .suites-pricing__cols {
+    grid-template-columns: 554px 554px;
+    justify-content: center;
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    max-width: min(100%, calc(554px * 2 + 2.5rem));
+    padding-inline: clamp(1rem, 4vw, 2rem);
+  }
+
+  .suites-pricing__card-wrap {
+    width: 554px;
+    max-width: none;
+    margin-inline: 0;
+  }
+
+  .suites-pricing__card {
+    width: 554px;
+    height: 568.356689453125px;
+    max-width: none;
+    aspect-ratio: auto;
+  }
+
+  /* Comp: “Go fetch” — 271×38.34, Franie 700 28.63px */
+  .suites-pricing__fetch {
+    width: 271px;
+    min-height: 38.34416961669922px;
+    font-size: 28.63px;
+    line-height: 38.34416961669922px;
+  }
+
+  /* Comp: “make them look happy” trio — 1240×1240, left 99 @ 1440 (top 2508 = page Y) */
+  .suites-pricing__closing {
+    align-items: stretch;
+  }
+
+  .suites-pricing__trio {
+    width: 1240px;
+    height: 1240px;
+    max-width: none;
+    max-height: none;
+    aspect-ratio: auto;
+    align-self: flex-start;
+    margin-left: max(0px, calc((100vw - 1440px) / 2 + 99px));
+    margin-right: auto;
+    object-fit: contain;
+    object-position: left bottom;
+    opacity: 1;
+  }
+
+  /* Comp: “Book their stay” — 610×100 */
+  .suites-pricing__cta {
+    width: 610px;
+    height: 100px;
+    min-height: 100px;
+    padding: 0 1.5rem;
+    align-self: center;
+  }
+}

@@ -51,6 +51,11 @@
   min-width: 0;
   max-width: 34%;
   perspective: 900px;
+  transition:
+    opacity 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--card-delay, 0ms);
+  will-change: opacity, transform;
 }
 
 .truth-ref__card-wrap:nth-child(1) {
@@ -75,12 +80,6 @@
 .truth-ref__card-wrap.is-visible {
   opacity: 1;
   transform: none;
-}
-
-.truth-ref__card-wrap {
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
 }
 
 .truth-ref__card {
@@ -174,6 +173,7 @@
   .truth-ref__card-wrap {
     max-width: none;
     margin-left: 0 !important;
+    transition-delay: var(--card-delay, 0ms);
   }
 
   .truth-ref__card {

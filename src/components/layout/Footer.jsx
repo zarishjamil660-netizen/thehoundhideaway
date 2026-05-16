@@ -6,8 +6,9 @@ import './Footer.css'
 
 export function Footer() {
   const { pathname } = useLocation()
-  const isExperience = pathname === '/experience'
-  const logoSrc = isExperience ? logoMint : logoDark
+  const isForestFooter =
+    pathname === '/experience' || pathname === '/pricing' || pathname === '/contact'
+  const logoSrc = isForestFooter ? logoMint : logoDark
 
   return (
     <footer className="site-footer" id="contact">

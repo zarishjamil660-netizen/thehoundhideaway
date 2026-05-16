@@ -5,7 +5,7 @@ import './DifferenceSection.css'
 export function DifferenceSection() {
   return (
     <section className="diff-ref" id="difference" aria-labelledby="diff-ref-heading">
-      <ScrollReveal className="diff-ref__head">
+      <ScrollReveal className="diff-ref__head" variant="fade-up" delay={0}>
         <h2 id="diff-ref-heading" className="diff-ref__title">
           <span className="diff-ref__title-the">The </span>
           <span className="diff-ref__title-word">Difference</span>
@@ -13,7 +13,7 @@ export function DifferenceSection() {
         <p className="diff-ref__kicker">So we built something better.</p>
       </ScrollReveal>
 
-      <ScrollReveal className="diff-ref__visual">
+      <ScrollReveal className="diff-ref__visual" variant="fade-up" delay={140} distance={32}>
         <img
           src={dogsImg}
           alt="Dogs enjoying calm, attentive care at The Hound Hideaway"
@@ -25,7 +25,7 @@ export function DifferenceSection() {
         />
       </ScrollReveal>
 
-      <ScrollReveal className="diff-ref__copy">
+      <ScrollReveal className="diff-ref__copy" variant="fade-up" delay={220}>
         <p className="diff-ref__lede">Not just somewhere to leave your dog.</p>
         <p className="diff-ref__lede">Somewhere you can actually</p>
         <p className="diff-ref__relax">Relax</p>

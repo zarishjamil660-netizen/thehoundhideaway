@@ -1,0 +1,18 @@
+main.thh-page--experience.experience-motion-ready [data-experience-reveal] {
+  opacity: 0;
+  transition: opacity 500ms ease;
+  transition-delay: var(--experience-delay, 0ms);
+  will-change: opacity;
+}
+
+main.thh-page--experience.experience-motion-ready [data-experience-reveal].is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main.thh-page--experience.experience-motion-ready [data-experience-reveal],
+  main.thh-page--experience.experience-motion-ready [data-experience-reveal-group] > * {
+    opacity: 1;
+    transition: none;
+  }
+}

@@ -8,11 +8,11 @@ export function StorySections() {
   return (
     <>
       <section className="story section-close" id="camera">
-        <ScrollReveal className="story__close-head">
+        <ScrollReveal className="story__close-head" variant="fade-up" delay={0}>
           <h2 className="story__close-heading">Always Close</h2>
           <p className="story__close-kicker">Even when you&apos;re away</p>
         </ScrollReveal>
-        <ScrollReveal className="story__close-split">
+        <ScrollReveal className="story__close-split" variant="fade-up" delay={140}>
           <div className="story__close-phone-col">
             <img
               src={phoneCamImg}
@@ -48,7 +48,7 @@ export function StorySections() {
       </section>
 
       <section className="story section-mint section-about" id="about">
-        <ScrollReveal className="story__about-intro">
+        <ScrollReveal className="story__about-intro" variant="fade-up" delay={0}>
           <div className="story__about-head">
             <h2 className="story__about-title">About</h2>
             <img
@@ -61,7 +61,7 @@ export function StorySections() {
           </div>
           <p className="story__about-kicker">Built from experience</p>
         </ScrollReveal>
-        <ScrollReveal className="story__about-row">
+        <ScrollReveal className="story__about-row" variant="fade-right" delay={120}>
           <div className="story__about-copy">
             <p className="story__about-copy-lede">This started with our own dogs.</p>
             <p className="story__about-copy-rest">
@@ -75,7 +75,7 @@ export function StorySections() {
       </section>
 
       <section className="story section-dark section-family" id="book">
-        <ScrollReveal>
+        <ScrollReveal variant="fade-up" delay={0}>
           <div className="story__family-quote">
             <p className="story__family-lead">
               <span className="story__family-line">You should feel good</span>
@@ -85,7 +85,7 @@ export function StorySections() {
             <p className="story__family-word">Family.</p>
           </div>
         </ScrollReveal>
-        <ScrollReveal className="story__family-actions">
+        <ScrollReveal className="story__family-actions" variant="lift" delay={120}>
           <a className="story__family-btn story__family-btn--primary" href="#book">
             Book their stay
           </a>
