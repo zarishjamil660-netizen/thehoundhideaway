@@ -4,12 +4,26 @@
   width: 100%;
   max-width: 100%;
   overflow-x: clip;
+  overflow-y: visible;
 }
 
 .suites-pricing {
   --sp-forest: var(--thh-forest);
   --sp-mint: var(--thh-mint-soft);
   --sp-text: var(--thh-forest-deep);
+  /* Figma 554×568.357 — scaled down slightly for layout fit */
+  --sp-card-w: min(100%, clamp(9.5rem, 42vw, 470px));
+  --sp-card-h: calc(var(--sp-card-w) * (568.356689453125 / 554));
+  --sp-card-r: calc(var(--sp-card-w) * (80 / 554));
+  --sp-label-size: calc(var(--sp-card-w) * (55.25 / 554));
+  --sp-unit-size: calc(var(--sp-card-w) * (41.73 / 554));
+  --sp-price-size: calc(var(--sp-card-w) * (102.16 / 554));
+  --sp-cols-gap: clamp(1.25rem, 3.5vw, 2.5rem);
+  --sp-col-stack-gap: clamp(2rem, 4.5vw, 3.25rem);
+  --sp-card-fetch-gap: 0.875rem;
+  --sp-col-stagger: calc(var(--sp-card-h) * 0.5127);
+  /* ~1× suite line height between text blocks (Figma) */
+  --sp-card-text-gap: max(1.25rem, calc(var(--sp-label-size) * 0.85));
   min-height: 100%;
   background: var(--sp-forest);
   color: var(--sp-mint);
@@ -17,147 +31,244 @@
 
 .suites-pricing__hero {
   position: relative;
-  overflow-x: clip;
-  padding-bottom: clamp(1.5rem, 5vw, 2.5rem);
+  overflow: visible;
+  padding-bottom: clamp(0.5rem, 2vw, 1rem);
 }
 
-.suites-pricing__hero-row {
+.suites-pricing__hero .site-header {
+  --header-pad-top: 0.15rem;
+}
+
+.suites-pricing__hero .site-header__inner {
+  margin-bottom: -8.5rem;
+  padding-top: 0;
+}
+
+.suites-pricing__hero .site-header--hero .site-header__logo {
+  transform: scale(1.28);
+  transform-origin: left center;
+}
+
+/* Hero — dogs + title grouped tight under nav */
+.suites-pricing__hero-stage {
+  --sp-dog-left: clamp(10rem, 60vw, 950px);
+  --sp-dog-right: clamp(11rem, 70vw, 1500px);
+  --sp-hero-gap: clamp(-1.5rem, -3vw, 0.35rem);
+  --sp-dog-inset: clamp(-2rem, -5vw, -0.5rem);
+  position: relative;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.35rem, 2.5vw, 1.5rem);
-  max-width: min(100%, 40rem);
+  gap: var(--sp-hero-gap);
+  width: 100%;
+  max-width: 1440px;
+  min-height: 0;
+  margin-top: -6.5rem;
   margin-inline: auto;
-  padding-inline: clamp(0.75rem, 4vw, 1.25rem);
+  padding: 0 0 clamp(0.35rem, 1.5vw, 0.75rem);
+  box-sizing: border-box;
+  overflow: visible;
 }
 
 .suites-pricing__hero-dog {
-  flex: 0 1 clamp(3.5rem, 20vw, 7.5rem);
-  width: auto;
   height: auto;
-  max-height: clamp(6rem, 28vw, 11rem);
   object-fit: contain;
   object-position: center bottom;
   user-select: none;
   pointer-events: none;
 }
 
+.suites-pricing__hero-dog--left {
+  flex: 0 0 auto;
+  align-self: center;
+  width: var(--sp-dog-left);
+  max-width: none;
+  margin-right: var(--sp-dog-inset);
+  z-index: 3;
+  transform: translate(clamp(5.5rem, 17vw, 14rem), clamp(1.5rem, 4vw, 3.5rem));
+}
+
+.suites-pricing__hero-dog--right {
+  flex: 0 0 auto;
+  align-self: center;
+  width: var(--sp-dog-right);
+  max-width: none;
+  margin-left: var(--sp-dog-inset);
+  z-index: 3;
+  transform: translate(clamp(-16.5rem, -21vw, -9rem), clamp(1.5rem, 4vw, 3.5rem));
+}
+
 .suites-pricing__title {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
   margin: 0;
-  flex: 0 1 auto;
+  transform: translate(clamp(1.25rem, 4vw, 4rem), clamp(0.5rem, 1.5vw, 1.25rem));
+  width: max-content;
   max-width: min(100%, 1004px);
   font-family: var(--font-serif);
   font-weight: 400;
   font-style: normal;
-  font-size: clamp(2rem, 10.8vw, 155.56px);
-  line-height: 1.189;
+  font-size: clamp(2.75rem, 15.5vw, 7.5rem);
+  line-height: 1.12;
   letter-spacing: -0.16px;
   text-align: center;
   text-transform: capitalize;
   color: var(--sp-mint);
-  opacity: 1;
+}
+
+.suites-pricing__title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.suites-pricing__title-line:last-child {
+  margin-left: -0.06em;
 }
 
 .suites-pricing__tiers {
-  padding: clamp(0.5rem, 3vw, 1.5rem) 0 clamp(2rem, 8vw, 4rem);
+  position: relative;
+  z-index: 2;
+  margin-top: clamp(-6.5rem, -12vw, -2.5rem);
+  padding: clamp(0.15rem, 1.5vw, 0.75rem) 0 clamp(2rem, 8vw, 4rem);
 }
 
 .suites-pricing__cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(0.85rem, 4vw, 2rem);
-  max-width: min(22rem, calc(100% - 2rem));
+  grid-template-columns: repeat(2, minmax(0, var(--sp-card-w)));
+  justify-content: center;
+  column-gap: var(--sp-cols-gap);
+  row-gap: 0;
+  width: 100%;
+  max-width: min(calc(100% - 1.5rem), calc(var(--sp-card-w) * 2 + var(--sp-cols-gap)));
   margin-inline: auto;
-  padding-inline: 1rem;
+  padding-inline: clamp(0.5rem, 2vw, 1rem);
 }
 
 .suites-pricing__col {
   display: flex;
   flex-direction: column;
-  gap: clamp(2.25rem, 12vw, 6rem);
+  align-items: stretch;
+  gap: var(--sp-col-stack-gap);
 }
 
+/* Figma: right column ~51% of card height lower */
 .suites-pricing__col--right {
-  padding-top: clamp(2.5rem, 11vw, 6.25rem);
+  padding-top: var(--sp-col-stagger);
 }
 
 .suites-pricing__card-wrap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
-  max-width: 554px;
+  gap: var(--sp-card-fetch-gap);
+  width: var(--sp-card-w);
+  max-width: 100%;
   margin-inline: auto;
 }
 
+/* Rectangle 28 (left col): round top-right + bottom-left */
 .suites-pricing__card {
   box-sizing: border-box;
   margin: 0;
-  width: 100%;
-  max-width: 554px;
-  aspect-ratio: 554 / 568.356689453125;
-  min-height: 0;
-  padding: clamp(1.2rem, 5vw, 1.85rem) clamp(1rem, 4vw, 1.5rem);
+  width: var(--sp-card-w);
+  height: var(--sp-card-h);
+  min-height: var(--sp-card-h);
+  padding: calc(var(--sp-card-h) * 0.14) calc(var(--sp-card-w) * 0.036);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: var(--sp-card-text-gap);
   background: var(--sp-mint);
   color: var(--sp-text);
   text-align: center;
-  border-top-left-radius: clamp(1.35rem, 7vw, 5rem);
-  border-bottom-right-radius: clamp(1.35rem, 7vw, 5rem);
+  overflow: hidden;
+  border-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: var(--sp-card-r);
+  border-bottom-left-radius: var(--sp-card-r);
+  border-bottom-right-radius: 0;
+}
+
+/* Rectangle 32 (right col): mirror corners */
+.suites-pricing__col--right .suites-pricing__card {
+  border-top-left-radius: var(--sp-card-r);
   border-top-right-radius: 0;
   border-bottom-left-radius: 0;
-  box-shadow: 0 10px 32px rgb(0 0 0 / 0.18);
+  border-bottom-right-radius: var(--sp-card-r);
 }
 
 .suites-pricing__card-name {
-  margin: 0 0 clamp(0.85rem, 3vw, 1.15rem);
-  font-family: var(--font-sans);
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.08em;
+  font-family: 'Franie', 'Franie Label', sans-serif;
   font-weight: 700;
-  font-size: clamp(0.65rem, 2.8vw, 0.78rem);
-  letter-spacing: 0.1em;
+  font-style: normal;
+  font-synthesis: none;
+  font-size: var(--sp-label-size);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 1.2;
+  line-height: 1;
   color: var(--sp-text);
 }
 
+.suites-pricing__card-name-line {
+  display: block;
+  white-space: nowrap;
+}
+
 .suites-pricing__card-price {
-  margin: 0 0 clamp(0.65rem, 2.5vw, 0.95rem);
-  font-family: Franie, var(--font-sans);
-  font-weight: 600;
-  font-size: clamp(2rem, 9vw, 2.85rem);
-  line-height: 1;
+  margin: 0;
+  font-family: 'The New Elegance', var(--font-serif);
+  font-weight: 400;
+  font-style: normal;
+  font-size: var(--sp-price-size);
+  line-height: 0.88;
   letter-spacing: -0.02em;
+  text-transform: capitalize;
+  white-space: nowrap;
   color: var(--sp-text);
 }
 
 .suites-pricing__card-unit {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: 'Franie', 'Franie Label', sans-serif;
   font-weight: 700;
-  font-size: clamp(0.58rem, 2.4vw, 0.68rem);
-  letter-spacing: 0.1em;
+  font-style: normal;
+  font-synthesis: none;
+  font-size: var(--sp-unit-size);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  line-height: 1.35;
+  line-height: 1;
+  white-space: nowrap;
   color: var(--sp-text);
 }
 
 .suites-pricing__fetch {
   box-sizing: border-box;
-  margin-top: clamp(0.65rem, 2.5vw, 0.95rem);
+  margin-top: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: fit-content;
   max-width: 100%;
   min-height: 1.5em;
-  font-family: Franie, var(--font-sans);
-  font-weight: 700;
+  font-family: 'Franie Label', 'Franie', sans-serif;
+  font-weight: normal;
   font-style: normal;
+  font-synthesis: none;
   font-size: clamp(0.75rem, 2.4vw, 28.63px);
   line-height: 1.34;
   letter-spacing: 0.12em;
@@ -190,12 +301,13 @@
 }
 
 .suites-pricing__trio {
-  width: min(100%, 1240px);
+  width: min(100%, 96vw);
+  max-width: 1400px;
   height: auto;
+  margin-inline: auto;
   aspect-ratio: 1 / 1;
-  max-height: min(70vw, 1240px);
   object-fit: contain;
-  object-position: left bottom;
+  object-position: center bottom;
   opacity: 1;
 }
 
@@ -231,99 +343,156 @@
 }
 
 @media (min-width: 640px) {
-  .suites-pricing__cols {
-    max-width: min(32rem, calc(100% - 2.5rem));
-    gap: clamp(1.25rem, 3vw, 2.5rem);
+  .suites-pricing__trio {
+    width: min(100%, 92vw);
+    max-width: 1240px;
+  }
+}
+
+@media (min-width: 768px) {
+  .suites-pricing__hero-stage {
+    --sp-dog-left: clamp(12rem, 54vw, 950px);
+    --sp-dog-right: clamp(12rem, 62vw, 1400px);
+    --sp-hero-gap: clamp(-2rem, -4vw, 0.25rem);
+    --sp-dog-inset: clamp(-2.5rem, -6vw, -0.75rem);
   }
 
-  .suites-pricing__trio {
-    max-height: min(55vw, 40rem);
+  .suites-pricing__title {
+    font-size: clamp(3.75rem, 11vw, 9rem);
+    line-height: 1.1;
   }
 }
 
 @media (min-width: 900px) {
-  .suites-pricing__hero-row {
-    max-width: min(100%, 56rem);
-    gap: clamp(1.25rem, 3vw, 2.5rem);
+  .suites-pricing__hero-stage {
+    --sp-dog-left: clamp(16rem, 42vw, 950px);
+    --sp-dog-right: clamp(16rem, 52vw, 1600px);
   }
 
-  .suites-pricing__hero-dog {
-    flex-basis: clamp(6rem, 12vw, 9rem);
-    max-height: clamp(10rem, 18vw, 14rem);
-  }
-
-  .suites-pricing__cols {
-    max-width: min(40rem, calc(100% - 3rem));
+  .suites-pricing__trio {
+    width: min(100%, 88vw);
+    max-width: 1320px;
   }
 }
 
-/* Comp: “Suites Pricing” ~1004×516 frame; The New Elegance 155.56 / 185.11 */
+@media (min-width: 1100px) {
+  .suites-pricing {
+    --sp-card-w: min(470px, calc((100vw - 4rem - 1.75rem) / 2));
+  }
+}
+
+/* Comp @ 1440 — dogs 825×825 & 1020×1020 (full asset size) */
 @media (min-width: 1440px) {
-  .suites-pricing__hero-row {
-    z-index: 1;
-    max-width: min(100%, calc(1004px + 14rem));
-    gap: clamp(1.5rem, 2.5vw, 2.75rem);
+  .suites-pricing__hero {
+    padding-bottom: 0;
+  }
+
+  .suites-pricing__hero-stage {
+    --sp-dog-left: 950px;
+    --sp-dog-right: 2800px;
+    --sp-hero-lift: 24.5rem;
+    display: block;
+    width: 100%;
+    max-width: 1440px;
+    height: 900px;
+    min-height: 900px;
+    margin-top: -20rem;
+    overflow: visible;
+    margin-inline: auto;
+    padding: 0;
   }
 
   .suites-pricing__title {
-    max-width: 1004px;
+    position: absolute;
+    z-index: 2;
+    top: calc(250px - var(--sp-hero-lift));
+    left: 50%;
+    transform: translate(calc(-50% + 4rem), 0);
+    width: 1004px;
+    max-width: calc(100% - 2rem);
     font-size: 155.56px;
-    line-height: 185.11px;
+    line-height: 1.189;
     letter-spacing: -0.16px;
   }
 
-  /* Comp: dog 1 — 825×825, top 170, left -153 @ 1440 */
+  .suites-pricing__title-line {
+    line-height: 1.189;
+  }
+
+  .suites-pricing__title-line:last-child {
+    margin-left: -0.08em;
+  }
+
+  /* Left pitbull — over title */
   .suites-pricing__hero-dog--left {
     position: absolute;
-    z-index: 0;
-    top: 170px;
-    left: max(0px, calc((100vw - 1440px) / 2 + (-153px)));
-    width: 825px;
-    height: 825px;
+    z-index: 3;
+    top: calc(250px - var(--sp-hero-lift));
+    bottom: auto;
+    left: max(0px, calc((100vw - 1440px) / 2 + 365px));
+    width: 950px;
+    height: 950px;
     max-width: none;
-    max-height: none;
-    flex: none;
-    object-fit: contain;
-    object-position: left bottom;
-    opacity: 1;
-  }
-
-  /* Comp: dog 2 — 1020×1020, top 102, left 587 @ 1440 */
-  .suites-pricing__hero-dog--right {
-    position: absolute;
-    z-index: 0;
-    top: 102px;
-    left: max(0px, calc((100vw - 1440px) / 2 + 587px));
-    width: 1020px;
-    height: 1020px;
-    max-width: none;
-    max-height: none;
-    flex: none;
+    margin-right: 0;
+    transform: translate(15.5rem, 4rem);
     object-fit: contain;
     object-position: right bottom;
-    opacity: 1;
   }
 
-  /* Comp: price cards — 554×568.357 */
+  /* Right beagle — large, over title */
+  .suites-pricing__hero-dog--right {
+    position: absolute;
+    z-index: 3;
+    top: calc(240px - var(--sp-hero-lift));
+    bottom: auto;
+    left: max(0px, calc((100vw - 1440px) / 2 - 380px));
+    right: auto;
+    width: 2800px;
+    height: 2800px;
+    max-width: none;
+    margin-left: 0;
+    transform: translate(-27rem, 8rem);
+    object-fit: contain;
+    object-position: left bottom;
+  }
+
+  /* Comp: rectangles 28 / 32 — proportional @ 470px card width */
+  .suites-pricing {
+    --sp-card-w: 470px;
+    --sp-label-size: 55.25px;
+    --sp-unit-size: 41.73px;
+    --sp-cols-gap: 2.5rem;
+    --sp-col-stack-gap: 3.25rem;
+    --sp-card-fetch-gap: 0.875rem;
+    --sp-card-text-gap: 3.25rem;
+  }
+
   .suites-pricing__cols {
-    grid-template-columns: 554px 554px;
-    justify-content: center;
-    gap: clamp(1.25rem, 3vw, 2.5rem);
-    max-width: min(100%, calc(554px * 2 + 2.5rem));
+    column-gap: var(--sp-cols-gap);
+    max-width: min(100%, calc(470px * 2 + var(--sp-cols-gap)));
     padding-inline: clamp(1rem, 4vw, 2rem);
   }
 
-  .suites-pricing__card-wrap {
-    width: 554px;
-    max-width: none;
-    margin-inline: 0;
+  .suites-pricing__col {
+    gap: var(--sp-col-stack-gap);
   }
 
   .suites-pricing__card {
-    width: 554px;
-    height: 568.356689453125px;
-    max-width: none;
-    aspect-ratio: auto;
+    padding-block: calc(var(--sp-card-h) * 0.15);
+  }
+
+  .suites-pricing__card-name {
+    font-size: 55.25px;
+    letter-spacing: 0.04em;
+  }
+
+  .suites-pricing__card-unit {
+    font-size: 41.73px;
+    letter-spacing: 0.04em;
+  }
+
+  .suites-pricing__card-wrap {
+    margin-inline: 0;
   }
 
   /* Comp: “Go fetch” — 271×38.34, Franie 700 28.63px */
@@ -334,22 +503,20 @@
     line-height: 38.34416961669922px;
   }
 
-  /* Comp: “make them look happy” trio — 1240×1240, left 99 @ 1440 (top 2508 = page Y) */
+  /* Comp: “make them look happy” trio — 1240×1240, centered in section */
   .suites-pricing__closing {
-    align-items: stretch;
+    align-items: center;
   }
 
   .suites-pricing__trio {
-    width: 1240px;
-    height: 1240px;
-    max-width: none;
-    max-height: none;
-    aspect-ratio: auto;
-    align-self: flex-start;
-    margin-left: max(0px, calc((100vw - 1440px) / 2 + 99px));
-    margin-right: auto;
+    width: min(1400px, calc(100vw - 2rem));
+    height: auto;
+    max-width: 1400px;
+    aspect-ratio: 1 / 1;
+    align-self: center;
+    margin-inline: auto;
     object-fit: contain;
-    object-position: left bottom;
+    object-position: center bottom;
     opacity: 1;
   }
 

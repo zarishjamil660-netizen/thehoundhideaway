@@ -1,4 +1,4 @@
-import groomingPaw from '../../assets/famicons_paw.png'
+import groomingPaw from '../../assets/experience/famicons_paw.png'
 import './ExperienceGroomingHighlight.css'
 
 function Paw() {
@@ -7,8 +7,8 @@ function Paw() {
       src={groomingPaw}
       alt=""
       className="experience-grooming__paw"
-      width={32}
-      height={32}
+      width={53}
+      height={53}
       decoding="async"
       aria-hidden
     />

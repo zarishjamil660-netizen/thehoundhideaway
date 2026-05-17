@@ -29,15 +29,21 @@ export function ContactPage() {
         <div className="contact-page__hero-circle" aria-hidden />
         <Header surface="mint" />
         <h1 id="contact-page-heading" className="contact-page__title">
-          <span className="contact-page__title-text">Get In Touch</span>
-          <img
-            src={tennisBall}
-            alt=""
-            className="contact-page__title-ball"
-            width={86}
-            height={86}
-            decoding="async"
-          />
+          Get In{' '}
+          <span className="contact-page__title-touch">
+            Touc
+            <span className="contact-page__title-h">
+              h
+              <img
+                src={tennisBall}
+                alt=""
+                className="contact-page__title-ball"
+                width={86}
+                height={86}
+                decoding="async"
+              />
+            </span>
+          </span>
         </h1>
       </section>
 
@@ -47,15 +53,17 @@ export function ContactPage() {
             Follow us on social media
           </h2>
           <div className="contact-page__follow-inner">
-            <img
-              src={dogWithPhone}
-              alt="Dog in a hat using a smartphone"
-              className="contact-page__dog"
-              width={1053}
-              height={1215}
-              loading="lazy"
-              decoding="async"
-            />
+            <div className="contact-page__dog-wrap">
+              <img
+                src={dogWithPhone}
+                alt="Dog in a hat using a smartphone"
+                className="contact-page__dog"
+                width={1053}
+                height={1215}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
             <figure className="contact-page__paw">
               <img
                 src={followUsPaw}
@@ -94,36 +102,25 @@ export function ContactPage() {
 
         <section className="contact-page__form-section" aria-labelledby="contact-form-heading">
           <h2 id="contact-form-heading" className="contact-page__form-heading">
-            Any Questions?
+            <span className="contact-page__form-heading-line">Any</span>
+            <span className="contact-page__form-heading-line">Questions?</span>
           </h2>
           <form className="contact-page__form" onSubmit={handleSubmit} noValidate>
             <label className="contact-page__field">
-              <span className="sr-only">Full name</span>
-              <input
-                type="text"
-                name="name"
-                placeholder="Full name"
-                autoComplete="name"
-                required
-              />
+              <span className="contact-page__field-label">Full name</span>
+              <input type="text" name="name" autoComplete="name" required />
             </label>
             <label className="contact-page__field">
-              <span className="sr-only">Email</span>
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                autoComplete="email"
-                required
-              />
+              <span className="contact-page__field-label">Email</span>
+              <input type="email" name="email" autoComplete="email" required />
             </label>
             <label className="contact-page__field">
-              <span className="sr-only">Phone</span>
-              <input type="tel" name="phone" placeholder="Phone" autoComplete="tel" />
+              <span className="contact-page__field-label">Phone</span>
+              <input type="tel" name="phone" autoComplete="tel" />
             </label>
             <label className="contact-page__field contact-page__field--message">
-              <span className="sr-only">Message</span>
-              <textarea name="message" placeholder="Message" rows={6} required />
+              <span className="contact-page__field-label">Message</span>
+              <textarea name="message" rows={6} required />
             </label>
             <button type="submit" className="contact-page__submit">
               Submit

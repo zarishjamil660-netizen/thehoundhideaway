@@ -651,7 +651,7 @@
   }
 
   .story__about-copy {
-    margin-top: clamp(1rem, 4vw, 1.85rem);
+    margin-top: clamp(0.35rem, 1.5vw, 0.65rem);
     gap: clamp(0.7rem, 2.8vw, 1.1rem);
     font-size: clamp(1rem, 4.7vw, 1.35rem);
     line-height: 1.2;

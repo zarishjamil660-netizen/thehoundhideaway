@@ -4,6 +4,12 @@ import heroDogRight from '../assets/Dog 2 1.png'
 import dogsTrio from '../assets/Make_them_look_happy_2K_202605160043 1.png'
 import './SuitesPricingPage.css'
 
+function splitSuiteName(name) {
+  const space = name.indexOf(' ')
+  if (space === -1) return [name]
+  return [name.slice(0, space), name.slice(space + 1)]
+}
+
 const TIERS = [
   {
     name: 'Country Suites',
@@ -35,7 +41,7 @@ export function SuitesPricingPage() {
     <main className="suites-pricing thh-page--suites-pricing">
       <section className="suites-pricing__hero" aria-labelledby="suites-pricing-heading">
         <Header />
-        <div className="suites-pricing__hero-row">
+        <div className="suites-pricing__hero-stage">
           <img
             src={heroDogLeft}
             alt=""
@@ -45,7 +51,8 @@ export function SuitesPricingPage() {
             decoding="async"
           />
           <h1 id="suites-pricing-heading" className="suites-pricing__title">
-            Suites Pricing
+            <span className="suites-pricing__title-line">Suites</span>
+            <span className="suites-pricing__title-line">Pricing</span>
           </h1>
           <img
             src={heroDogRight}
@@ -64,7 +71,13 @@ export function SuitesPricingPage() {
             {columnLeft.map((tier) => (
               <div key={tier.name} className="suites-pricing__card-wrap">
                 <article className="suites-pricing__card">
-                  <h2 className="suites-pricing__card-name">{tier.name}</h2>
+                  <h2 className="suites-pricing__card-name">
+                    {splitSuiteName(tier.name).map((line) => (
+                      <span key={line} className="suites-pricing__card-name-line">
+                        {line}
+                      </span>
+                    ))}
+                  </h2>
                   <p className="suites-pricing__card-price" aria-label={tier.priceLabel}>
                     {tier.price}
                   </p>
@@ -80,7 +93,13 @@ export function SuitesPricingPage() {
             {columnRight.map((tier) => (
               <div key={tier.name} className="suites-pricing__card-wrap">
                 <article className="suites-pricing__card">
-                  <h2 className="suites-pricing__card-name">{tier.name}</h2>
+                  <h2 className="suites-pricing__card-name">
+                    {splitSuiteName(tier.name).map((line) => (
+                      <span key={line} className="suites-pricing__card-name-line">
+                        {line}
+                      </span>
+                    ))}
+                  </h2>
                   <p className="suites-pricing__card-price" aria-label={tier.priceLabel}>
                     {tier.price}
                   </p>

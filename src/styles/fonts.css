@@ -21,3 +21,12 @@
   font-style: normal;
   font-display: swap;
 }
+
+/* Pricing cards — always use Bold file (avoids synthetic / fallback mismatch) */
+@font-face {
+  font-family: 'Franie Label';
+  src: url('../../Exports/TTF/Franie-Bold.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
