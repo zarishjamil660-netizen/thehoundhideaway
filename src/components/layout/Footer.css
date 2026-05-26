@@ -43,6 +43,17 @@
   text-transform: uppercase;
 }
 
+@media (max-width: 1023.98px) {
+  .site-footer__nav a {
+    font-size: clamp(0.5rem, 2vw, 0.58rem);
+    letter-spacing: 0.1em;
+  }
+
+  .site-footer__copy {
+    font-size: clamp(0.5rem, 2vw, 0.58rem);
+  }
+}
+
 .site-footer__nav a:hover,
 .site-footer__nav a:focus-visible {
   text-decoration: underline;

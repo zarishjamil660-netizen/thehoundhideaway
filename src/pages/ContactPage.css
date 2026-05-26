@@ -416,6 +416,20 @@ main.thh-page--contact + .site-footer {
   border-radius: 50%;
 }
 
+@media (max-width: 1023.98px) {
+  .contact-page__book {
+    display: none;
+  }
+
+  .contact-page__body {
+    padding-bottom: clamp(3rem, 10vw, 5rem);
+  }
+
+  main.thh-page--contact + .site-footer {
+    padding-top: clamp(2rem, 6vw, 3.5rem);
+  }
+}
+
 @media (min-width: 768px) {
   .contact-page__follow-inner {
     flex-direction: row;
