@@ -222,7 +222,7 @@
   }
 
   .private-suites__luxury {
-    overflow-x: clip;
+    overflow-x: visible;
     overflow-y: visible;
     padding-top: clamp(5.5rem, 14vw, 7.5rem);
   }
@@ -279,7 +279,7 @@
     z-index: 4;
     margin-top: 0;
     padding-top: clamp(6.5rem, 15vw, 9rem);
-    overflow-x: clip;
+    overflow-x: visible;
     overflow-y: visible;
   }
 
@@ -603,12 +603,12 @@
 }
 
 .private-suites__carousel {
-  --ps-card-w: clamp(11.5rem, 31vw, 756.9212646484375px);
+  --ps-card-w: clamp(14rem, 65vw, 756.9212646484375px);
   --ps-card-h: calc(var(--ps-card-w) * (881 / 756.9212646484375));
   --ps-card-body-ratio: 0.3333;
-  --ps-card-gap: clamp(0.5rem, 2vw, 1.25rem);
+  --ps-card-gap: clamp(0.5rem, 1.5vw, 1.5rem);
   --ps-center-lift: clamp(-1.25rem, -4vw, -3.75rem);
-  --ps-side-scale: 0.9;
+  --ps-side-scale: 0.92;
   --ps-slide-w: var(--ps-card-w);
   --ps-shift: 0;
   /* Center the middle of three slides (prev | current | next) */
@@ -623,7 +623,7 @@
 /* Three-card cover flow: prev + current + next always in view */
 .private-suites__viewport {
   width: 100%;
-  max-width: min(100%, 56rem);
+  max-width: 100%;
   margin-inline: auto;
   overflow: hidden;
   padding-inline: 0;
@@ -958,6 +958,13 @@
   }
 }
 
+@media (min-width: 1024px) and (max-width: 1439.98px) {
+  .private-suites__carousel {
+    --ps-card-w: clamp(18rem, 52vw, 756.9212646484375px);
+    --ps-side-scale: 0.92;
+  }
+}
+
 @media (min-width: 1024px) {
   .private-suites__luxury {
     --ps-foot-max: min(100%, 1008.352294921875px);
@@ -973,18 +980,6 @@
     border-radius: 43.41px;
     padding-inline: clamp(0.85rem, 1.25vw, 1.75rem);
     font-size: clamp(0.85rem, 1.8vw, 1rem);
-  }
-}
-
-@media (min-width: 900px) {
-  .private-suites__carousel {
-    --ps-card-w: clamp(14.5rem, 26vw, 756.9212646484375px);
-    --ps-card-gap: clamp(0.65rem, 1.5vw, 1.25rem);
-    --ps-side-scale: 0.92;
-  }
-
-  .private-suites__viewport {
-    max-width: min(100%, 56rem);
   }
 }
 
