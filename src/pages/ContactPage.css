@@ -422,6 +422,26 @@ main.thh-page--contact + .site-footer {
   main.thh-page--contact + .site-footer {
     padding-top: clamp(2rem, 6vw, 3.5rem);
   }
+
+  .contact-page__book img {
+    width: clamp(10.5rem, 46vw, 14.5rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .contact-page__book {
+    margin-top: clamp(1.75rem, 6vw, 2.75rem);
+  }
+
+  .contact-page__book img {
+    width: clamp(11.5rem, 52vw, 15.5rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .contact-page__book img {
+    width: clamp(12rem, 42vw, 16rem);
+  }
 }
 
 @media (min-width: 1024px) {
