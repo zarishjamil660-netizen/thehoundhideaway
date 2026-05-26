@@ -115,8 +115,10 @@ body:has(main.thh-page--contact),
 .contact-page__body {
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
   margin-top: 0;
-  padding: 0 clamp(1rem, 4vw, 2rem) clamp(10rem, 26vw, 18rem);
+  padding: 0 clamp(1rem, 4vw, 2rem) clamp(2.5rem, 8vw, 4rem);
 }
 
 /* Space above footer — padding (forest) not margin (would show mint body) */
@@ -389,10 +391,10 @@ main.thh-page--contact + .site-footer {
 
 /* Book stay tennis ball */
 .contact-page__book {
-  position: absolute;
+  position: relative;
   z-index: 3;
-  bottom: clamp(-16rem, -25vw, -18rem);
-  left: clamp(-4.4rem, -5.5vw, -2.75rem);
+  align-self: flex-start;
+  margin: clamp(1.5rem, 5vw, 2.5rem) 0 0;
   display: block;
   line-height: 0;
   text-decoration: none;
@@ -400,7 +402,7 @@ main.thh-page--contact + .site-footer {
 }
 
 .contact-page__book img {
-  width: clamp(10.5rem, 43vw, 1280px);
+  width: clamp(7.5rem, 34vw, 10.5rem);
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
@@ -417,16 +419,25 @@ main.thh-page--contact + .site-footer {
 }
 
 @media (max-width: 1023.98px) {
-  .contact-page__book {
-    display: none;
-  }
-
-  .contact-page__body {
-    padding-bottom: clamp(3rem, 10vw, 5rem);
-  }
-
   main.thh-page--contact + .site-footer {
     padding-top: clamp(2rem, 6vw, 3.5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact-page__body {
+    padding-bottom: clamp(10rem, 26vw, 18rem);
+  }
+
+  .contact-page__book {
+    position: absolute;
+    bottom: clamp(-16rem, -25vw, -18rem);
+    left: clamp(-4.4rem, -5.5vw, -2.75rem);
+    margin: 0;
+  }
+
+  .contact-page__book img {
+    width: clamp(10.5rem, 43vw, 1280px);
   }
 }
 

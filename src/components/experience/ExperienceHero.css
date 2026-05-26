@@ -250,9 +250,10 @@
   }
 
   .experience-hero__lede {
-    padding-right: clamp(2.25rem, 16vw, 4.25rem);
+    padding-right: clamp(1.5rem, 10vw, 3rem);
     font-size: clamp(0.95rem, 4.6vw, 1.35rem);
     margin-bottom: clamp(0.25rem, 1.2vw, 0.5rem);
+    transform: translateX(clamp(-0.85rem, -4vw, -0.35rem));
   }
 
   .experience-hero__title {

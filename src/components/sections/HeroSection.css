@@ -345,7 +345,7 @@
   .hero__where {
     font-size: clamp(1.35rem, 4.6vw, 1.85rem);
     letter-spacing: 0.02em;
-    transform: translateX(clamp(1.25rem, 7.5vw, 2.25rem));
+    transform: translate(clamp(1.25rem, 7.5vw, 2.25rem), clamp(-0.85rem, -3vw, -0.4rem));
   }
 
   .hero__cluster {
