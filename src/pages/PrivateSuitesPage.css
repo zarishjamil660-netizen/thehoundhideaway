@@ -116,6 +116,97 @@
   display: block;
 }
 
+/* Mobile + tablet: dog on mint/forest seam (body up, paws on forest) */
+@media (max-width: 767px) {
+  .private-suites {
+    --ps-forest-lift: 0;
+  }
+
+  .private-suites__hero {
+    position: relative;
+    z-index: 3;
+    padding-bottom: clamp(2.5rem, 6.5vw, 4rem);
+    isolation: auto;
+  }
+
+  .private-suites__hero .site-header {
+    z-index: 50;
+  }
+
+  .private-suites__hero-kicker {
+    position: relative;
+    z-index: 5;
+    margin-top: clamp(2.5rem, 7.5vw, 4.5rem);
+  }
+
+  .private-suites__hero-inner {
+    position: relative;
+    z-index: 5;
+    padding-bottom: clamp(3.5rem, 8.5vw, 5rem);
+    margin-bottom: 0;
+  }
+
+  .private-suites__hero .private-suites__hero-art-wrap {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    z-index: 2;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    transform: translate(-50%, 22%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .private-suites__hero .private-suites__hero-art {
+    width: min(42vw, 200px);
+    max-width: 100%;
+    margin-inline: auto;
+    object-position: center bottom;
+  }
+
+  .private-suites__luxury {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+    padding-top: clamp(5.75rem, 15vw, 8rem);
+    overflow: visible;
+  }
+
+  .private-suites__luxury-label {
+    position: relative;
+    z-index: 1;
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .private-suites__hero-title-calm {
+    font-size: clamp(1.75rem, 7vw, 2.35rem);
+  }
+
+  .private-suites__hero-title-quiet {
+    font-size: clamp(2rem, 8.5vw, 2.85rem);
+    margin-left: clamp(0.5rem, 2.5vw, 1rem);
+  }
+
+  .private-suites__hero .private-suites__hero-art {
+    width: min(40vw, 175px);
+  }
+
+  .private-suites__hero .private-suites__hero-art-wrap {
+    transform: translate(-50%, 24%);
+  }
+
+  .private-suites__luxury {
+    overflow-x: clip;
+    overflow-y: visible;
+    padding-top: clamp(5.5rem, 14vw, 7.5rem);
+  }
+}
+
 .private-suites__hero-tennis {
   display: none;
   position: absolute;

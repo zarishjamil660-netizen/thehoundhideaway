@@ -392,4 +392,12 @@
   .site-header--mint .site-header__menu-btn:focus-visible {
     outline-color: var(--thh-forest-deep);
   }
+
+  .site-header--mint .site-header__nav a {
+    color: var(--thh-mint-soft);
+  }
+
+  .site-header--mint .site-header__nav a:focus-visible {
+    outline-color: var(--thh-mint-soft);
+  }
 }

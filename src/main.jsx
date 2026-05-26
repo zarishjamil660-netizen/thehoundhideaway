@@ -4,7 +4,6 @@ import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import PawCursor from './PawCursor'
-import { ExperiencePage } from './pages/ExperiencePage.jsx'
 import { PrivateSuitesPage } from './pages/PrivateSuitesPage.jsx'
 import { SuitesPricingPage } from './pages/SuitesPricingPage.jsx'
 import { ContactPage } from './pages/ContactPage.jsx'
@@ -30,7 +29,6 @@ createRoot(document.getElementById('root')).render(
           <Routes>
             <Route element={<SiteLayoutRoute />}>
               <Route path="/" element={<App />} />
-              <Route path="/reference2" element={<ExperiencePage />} />
               <Route path="/private-suites" element={<PrivateSuitesPage />} />
               <Route path="/pricing" element={<SuitesPricingPage />} />
               <Route path="/experience" element={<ExperienceCodePage />} />

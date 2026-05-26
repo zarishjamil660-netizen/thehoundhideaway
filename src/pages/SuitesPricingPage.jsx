@@ -1,4 +1,5 @@
 import Header from '../components/layout/Header'
+import { ScrollReveal } from '../components/motion/ScrollReveal'
 import heroDogLeft from '../assets/Dog 1 1.png'
 import heroDogRight from '../assets/Dog 2 1.png'
 import dogsTrio from '../assets/Make_them_look_happy_2K_202605160043 1.png'
@@ -33,6 +34,29 @@ const TIERS = [
   },
 ]
 
+function PricingTierCard({ tier, variant, delay }) {
+  return (
+    <ScrollReveal className="suites-pricing__card-wrap" variant={variant} delay={delay} distance={32}>
+      <article className="suites-pricing__card">
+        <h2 className="suites-pricing__card-name">
+          {splitSuiteName(tier.name).map((line) => (
+            <span key={line} className="suites-pricing__card-name-line">
+              {line}
+            </span>
+          ))}
+        </h2>
+        <p className="suites-pricing__card-price" aria-label={tier.priceLabel}>
+          {tier.price}
+        </p>
+        <p className="suites-pricing__card-unit">Per dog/night</p>
+      </article>
+      <a href="/#book" className="suites-pricing__fetch">
+        Go fetch
+      </a>
+    </ScrollReveal>
+  )
+}
+
 export function SuitesPricingPage() {
   const columnLeft = [TIERS[0], TIERS[2]]
   const columnRight = [TIERS[1], TIERS[3]]
@@ -40,7 +64,7 @@ export function SuitesPricingPage() {
   return (
     <main className="suites-pricing thh-page--suites-pricing">
       <section className="suites-pricing__hero" aria-labelledby="suites-pricing-heading">
-        <Header />
+        <Header surface="hero" />
         <div className="suites-pricing__hero-stage">
           <img
             src={heroDogLeft}
@@ -68,47 +92,23 @@ export function SuitesPricingPage() {
       <section className="suites-pricing__tiers" aria-label="Suite rates">
         <div className="suites-pricing__cols">
           <div className="suites-pricing__col suites-pricing__col--left">
-            {columnLeft.map((tier) => (
-              <div key={tier.name} className="suites-pricing__card-wrap">
-                <article className="suites-pricing__card">
-                  <h2 className="suites-pricing__card-name">
-                    {splitSuiteName(tier.name).map((line) => (
-                      <span key={line} className="suites-pricing__card-name-line">
-                        {line}
-                      </span>
-                    ))}
-                  </h2>
-                  <p className="suites-pricing__card-price" aria-label={tier.priceLabel}>
-                    {tier.price}
-                  </p>
-                  <p className="suites-pricing__card-unit">Per dog/night</p>
-                </article>
-                <a href="/#book" className="suites-pricing__fetch">
-                  Go fetch
-                </a>
-              </div>
+            {columnLeft.map((tier, index) => (
+              <PricingTierCard
+                key={tier.name}
+                tier={tier}
+                variant="fade-left"
+                delay={120 + index * 160}
+              />
             ))}
           </div>
           <div className="suites-pricing__col suites-pricing__col--right">
-            {columnRight.map((tier) => (
-              <div key={tier.name} className="suites-pricing__card-wrap">
-                <article className="suites-pricing__card">
-                  <h2 className="suites-pricing__card-name">
-                    {splitSuiteName(tier.name).map((line) => (
-                      <span key={line} className="suites-pricing__card-name-line">
-                        {line}
-                      </span>
-                    ))}
-                  </h2>
-                  <p className="suites-pricing__card-price" aria-label={tier.priceLabel}>
-                    {tier.price}
-                  </p>
-                  <p className="suites-pricing__card-unit">Per dog/night</p>
-                </article>
-                <a href="/#book" className="suites-pricing__fetch">
-                  Go fetch
-                </a>
-              </div>
+            {columnRight.map((tier, index) => (
+              <PricingTierCard
+                key={tier.name}
+                tier={tier}
+                variant="fade-right"
+                delay={200 + index * 160}
+              />
             ))}
           </div>
         </div>

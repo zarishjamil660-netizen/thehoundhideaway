@@ -61,7 +61,8 @@ export function StorySections() {
           </div>
           <p className="story__about-kicker">Built from experience</p>
         </ScrollReveal>
-        <ScrollReveal className="story__about-row" variant="fade-right" delay={120}>
+        <ScrollReveal variant="fade-right" delay={120}>
+          <div className="story__about-row">
           <div className="story__about-copy">
             <p className="story__about-copy-lede">This started with our own dogs.</p>
             <p className="story__about-copy-rest">
@@ -70,6 +71,7 @@ export function StorySections() {
           </div>
           <div className="story__about-visual">
             <img src={dogsTeamImg} alt="Dogs of different breeds together" className="story__about-img" />
+          </div>
           </div>
         </ScrollReveal>
       </section>

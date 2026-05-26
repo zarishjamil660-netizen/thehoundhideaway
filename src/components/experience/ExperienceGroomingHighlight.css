@@ -201,3 +201,67 @@
     line-height: 12.875rem;
   }
 }
+
+/* Mobile + tablet: keep slogan readable — less dog overlap on mint band */
+@media (max-width: 1023.98px) {
+  .experience-grooming__grid {
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 4.5vw, 2.25rem);
+  }
+
+  .experience-grooming__figure {
+    margin-bottom: clamp(-5rem, -11vw, -7rem);
+    transform: translateY(clamp(0.5rem, 1.75vw, 1.25rem));
+    z-index: 2;
+  }
+
+  .experience-grooming__asset {
+    max-width: min(82vw, 360px);
+    object-position: center bottom;
+  }
+
+  .experience-grooming__lower {
+    margin-top: clamp(-5.5rem, -12vw, -8rem);
+    padding-top: clamp(11.5rem, 30vw, 16rem);
+    z-index: 1;
+  }
+
+  .experience-grooming__slogan {
+    position: relative;
+    z-index: 3;
+    margin-top: clamp(2rem, 6vw, 3.25rem);
+    font-size: clamp(0.8rem, 3.8vw, 2.25rem);
+  }
+
+  .experience-grooming__slogan-line:first-child {
+    white-space: normal;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .experience-grooming__figure {
+    margin-bottom: clamp(-4rem, -10vw, -5.75rem);
+    transform: translateY(clamp(0.35rem, 1.25vw, 0.85rem));
+  }
+
+  .experience-grooming__asset {
+    max-width: min(74vw, 280px);
+  }
+
+  .experience-grooming__lower {
+    margin-top: clamp(-4.5rem, -11vw, -6.5rem);
+    padding-top: clamp(10rem, 28vw, 13rem);
+  }
+
+  .experience-grooming__slogan {
+    margin-top: clamp(2.25rem, 7vw, 3.5rem);
+    font-size: clamp(0.72rem, 4.2vw, 1.35rem);
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 1023.98px) {
+  .experience-grooming__asset {
+    max-width: min(78vw, 320px);
+  }
+}
