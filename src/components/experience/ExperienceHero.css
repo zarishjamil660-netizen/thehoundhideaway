@@ -195,7 +195,7 @@
 
   .experience-hero__title {
     margin-top: 0;
-    font-size: clamp(5.5rem, 22vw, 9.5rem);
+    font-size: clamp(6rem, 24vw, 10.5rem);
     line-height: 0.84;
   }
 
@@ -256,7 +256,7 @@
   }
 
   .experience-hero__title {
-    font-size: clamp(4.75rem, 24vw, 7.5rem);
+    font-size: clamp(5.25rem, 26vw, 8.25rem);
   }
 
   .experience-hero__circle-layout {
@@ -291,6 +291,6 @@
   }
 
   .experience-hero__title {
-    font-size: clamp(6.5rem, 18vw, 10.5rem);
+    font-size: clamp(7rem, 20vw, 11.5rem);
   }
 }

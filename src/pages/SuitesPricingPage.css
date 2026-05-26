@@ -465,52 +465,53 @@
   }
 
   .suites-pricing__hero-stage {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto;
-    align-items: end;
-    justify-items: center;
-    gap: 0 clamp(0.25rem, 2vw, 1rem);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(-3.5rem, -9vw, -1.25rem);
     width: 100%;
-    max-width: min(100%, 22rem);
-    min-height: auto;
+    max-width: 100%;
+    min-height: clamp(10rem, 34vw, 14rem);
     margin-top: clamp(0.5rem, 2vw, 1.25rem);
     margin-inline: auto;
-    padding: 0 clamp(0.75rem, 3vw, 1.25rem) clamp(1rem, 3vw, 1.5rem);
+    padding: 0 clamp(0.35rem, 2vw, 0.75rem) clamp(1rem, 3vw, 1.5rem);
+    overflow: visible;
   }
 
   .suites-pricing__title {
-    grid-column: 1 / -1;
-    grid-row: 1;
+    flex: 0 0 auto;
+    order: 0;
     z-index: 5;
-    width: 100%;
-    max-width: 100%;
-    margin: 0 0 clamp(0.35rem, 1.5vw, 0.75rem);
-    transform: none;
-    font-size: clamp(2.5rem, 11vw, 4.25rem);
+    width: max-content;
+    max-width: min(100%, 12rem);
+    margin: 0;
+    transform: translateY(clamp(0.15rem, 0.8vw, 0.45rem));
+    font-size: clamp(2.25rem, 10vw, 3.75rem);
     line-height: 1.08;
   }
 
   .suites-pricing__hero-dog--left {
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: end;
-    align-self: end;
-    width: min(40vw, 150px);
-    max-width: 150px;
+    flex: 0 0 auto;
+    order: -1;
+    align-self: flex-end;
+    width: clamp(5.75rem, 24vw, 8.5rem);
+    max-width: none;
     margin: 0;
-    transform: none;
+    z-index: 3;
+    transform: translate(clamp(1.25rem, 5vw, 2.5rem), clamp(0.35rem, 1.5vw, 0.85rem));
   }
 
   .suites-pricing__hero-dog--right {
-    grid-column: 2;
-    grid-row: 2;
-    justify-self: start;
-    align-self: end;
-    width: min(40vw, 150px);
-    max-width: 150px;
+    flex: 0 0 auto;
+    order: 1;
+    align-self: flex-end;
+    width: clamp(6.25rem, 28vw, 9.5rem);
+    max-width: none;
     margin: 0;
-    transform: none;
+    z-index: 3;
+    transform: translate(clamp(-3.25rem, -10vw, -1.75rem), clamp(0.5rem, 2vw, 1rem));
   }
 
   .suites-pricing__tiers {
@@ -568,17 +569,25 @@
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .suites-pricing__hero-stage {
-    max-width: min(100%, 28rem);
+    gap: clamp(-4.5rem, -11vw, -2rem);
+    min-height: clamp(12rem, 30vw, 16rem);
+    padding-inline: clamp(0.5rem, 2.5vw, 1rem);
   }
 
   .suites-pricing__title {
-    font-size: clamp(3.25rem, 8vw, 4.75rem);
+    max-width: min(100%, 16rem);
+    font-size: clamp(3rem, 7.5vw, 4.75rem);
+    transform: translateY(clamp(0.25rem, 1vw, 0.6rem));
   }
 
-  .suites-pricing__hero-dog--left,
+  .suites-pricing__hero-dog--left {
+    width: clamp(7.5rem, 20vw, 10.5rem);
+    transform: translate(clamp(2rem, 6vw, 3.5rem), clamp(0.5rem, 1.8vw, 1.1rem));
+  }
+
   .suites-pricing__hero-dog--right {
-    width: min(32vw, 180px);
-    max-width: 180px;
+    width: clamp(8.25rem, 23vw, 11.5rem);
+    transform: translate(clamp(-5rem, -12vw, -3rem), clamp(0.75rem, 2.2vw, 1.35rem));
   }
 
   .suites-pricing {
@@ -606,7 +615,7 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .suites-pricing__hero-stage {
     --sp-dog-left: clamp(12rem, 54vw, 950px);
     --sp-dog-right: clamp(12rem, 62vw, 1400px);
