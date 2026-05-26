@@ -485,11 +485,11 @@
     order: 0;
     z-index: 5;
     width: max-content;
-    max-width: min(100%, 12rem);
+    max-width: min(100%, 14rem);
     margin: 0;
     transform: translateY(clamp(0.15rem, 0.8vw, 0.45rem));
-    font-size: clamp(2.25rem, 10vw, 3.75rem);
-    line-height: 1.08;
+    font-size: clamp(2.75rem, 12vw, 4.5rem);
+    line-height: 1.06;
   }
 
   .suites-pricing__hero-dog--left {
@@ -575,8 +575,8 @@
   }
 
   .suites-pricing__title {
-    max-width: min(100%, 16rem);
-    font-size: clamp(3rem, 7.5vw, 4.75rem);
+    max-width: min(100%, 18rem);
+    font-size: clamp(3.75rem, 9vw, 5.5rem);
     transform: translateY(clamp(0.25rem, 1vw, 0.6rem));
   }
 

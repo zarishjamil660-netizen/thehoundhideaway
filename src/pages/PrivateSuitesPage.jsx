@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Header from '../components/layout/Header'
-import suiteOutdoor from '../assets/experience/Mask group.png'
-import suiteGarden from '../assets/experience/Mask group (1).png'
+import suiteCardArt from '../assets/Gemini_Generated_Image_9hv6jc9hv6jc9hv6 1.png'
 import heroDog from '../assets/This_dog_resting_looking_happy_202605152211 1.png'
 import tennisBall from '../assets/fxemoji_tennisball.png'
 import './PrivateSuitesPage.css'
@@ -19,7 +18,7 @@ function getVisibleSlides(activeIndex, slides) {
 
 const SLIDES = [
   {
-    src: suiteOutdoor,
+    src: suiteCardArt,
     alt: 'Outdoor countryside dog suites with fenced runs under open sky',
     titleLine1: 'Countryside',
     titleLine2: 'Suites',
@@ -27,7 +26,7 @@ const SLIDES = [
     captionSub: '(Room with a view, more stimulation)',
   },
   {
-    src: suiteGarden,
+    src: suiteCardArt,
     alt: 'Spacious garden-facing suite accommodation for dogs',
     titleLine1: 'Garden',
     titleLine2: 'Suites',
@@ -35,7 +34,7 @@ const SLIDES = [
     captionSub: '(Soft routines, gentle sensory load)',
   },
   {
-    src: suiteOutdoor,
+    src: suiteCardArt,
     alt: 'Premium private suite with dedicated space',
     titleLine1: 'Signature',
     titleLine2: 'Suite',
