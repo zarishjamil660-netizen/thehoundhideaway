@@ -15,7 +15,7 @@ function Paw() {
   )
 }
 
-export function ExperienceTrust({ imageSrc, imageAlt }) {
+export function ExperienceTrust({ desktopImageSrc, mobileImageSrc, imageAlt }) {
   const items = [
     'How we handle nervous dogs',
     "Why we don't rush",
@@ -35,7 +35,18 @@ export function ExperienceTrust({ imageSrc, imageAlt }) {
             data-experience-reveal="image"
             style={{ '--experience-delay': '120ms' }}
           >
-            <img src={imageSrc} alt={imageAlt} className="experience-trust__img" decoding="async" />
+            <img
+              src={desktopImageSrc}
+              alt={imageAlt}
+              className="experience-trust__img experience-trust__img--desktop"
+              decoding="async"
+            />
+            <img
+              src={mobileImageSrc}
+              alt={imageAlt}
+              className="experience-trust__img experience-trust__img--mobile"
+              decoding="async"
+            />
           </div>
           <div className="experience-trust__text-col">
             <h2

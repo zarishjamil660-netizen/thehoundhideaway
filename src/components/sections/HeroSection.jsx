@@ -1,7 +1,7 @@
 import Header from '../layout/Header'
 import { AnimatedText } from '../motion/AnimatedText'
 import heroBg from '../../assets/Bgg for site 1.png'
-import dogImg from '../../assets/THH Dog Illustration II.png'
+import { HeroDog } from './HeroDog'
 import { ScrollReveal } from '../motion/ScrollReveal'
 import './HeroSection.css'
 
@@ -28,17 +28,7 @@ export function HeroSection() {
             <AnimatedText as="span" className="hero__trust" effect="burst" split="words" delay={240}>
               Trust
             </AnimatedText>
-            <div className="hero__dog-wrap">
-              <img
-                src={dogImg}
-                alt="Illustration of a grey dog in a fedora, mascot for The Hound Hideaway"
-                className="hero__dog"
-                width={520}
-                height={640}
-                loading="eager"
-                decoding="async"
-              />
-            </div>
+            <HeroDog />
             <AnimatedText as="p" className="hero__begins" effect="skate" split="words" delay={340}>
               BEGINS!
             </AnimatedText>

@@ -5,7 +5,7 @@
   flex: 1 0 auto;
   position: relative;
   isolation: isolate;
-  overflow: hidden;
+  overflow: visible;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -112,6 +112,7 @@
   margin-inline: auto;
   min-height: clamp(52rem, 92vw, 76rem);
   margin-top: clamp(-0.65rem, -1vw, -0.2rem);
+  overflow: visible;
 }
 
 .hero__trust {
@@ -133,19 +134,87 @@
 .hero__dog-wrap {
   position: relative;
   z-index: 2;
-  width: min(96%, 86rem);
+  width: min(88%, 79rem);
   margin: clamp(6.25rem, 14vw, 12.5rem) auto 0;
   margin-left: clamp(-2.5rem, -6vw, -1.25rem);
-  transform: none;
   filter: drop-shadow(0 16px 22px rgb(0 0 0 / 0.22));
-  transform-origin: 52% 58%;
-  animation: hero-dog-breathe 6.8s ease-in-out infinite;
+  pointer-events: none;
+  overflow: visible;
+  transform-origin: 50% 42%;
+  will-change: transform;
+}
+
+.hero__dog-stack {
+  position: relative;
+  width: 100%;
+  transform-origin: 50% 58%;
+  perspective: 900px;
+  pointer-events: auto;
+  overflow: visible;
+  padding-top: clamp(0.85rem, 2.2vw, 1.75rem);
+  padding-inline: clamp(0.35rem, 1.2vw, 0.85rem);
+  margin-inline: clamp(-0.35rem, -1.2vw, -0.85rem);
+  will-change: transform;
 }
 
 .hero__dog {
   width: 100%;
   height: auto;
   display: block;
+}
+
+.hero__dog-figure-wrap {
+  position: relative;
+}
+
+.hero__dog-figure {
+  position: relative;
+  transform-origin: 50% 14%;
+  will-change: transform;
+}
+
+.hero__dog--base {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__dog-hat {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  will-change: transform;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.hero__dog--hat {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 14px rgb(0 0 0 / 0.2));
+}
+
+.hero__dog-sparkles {
+  position: absolute;
+  top: 2.5%;
+  left: 50%;
+  width: 38%;
+  height: 12%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.hero__dog-sparkle {
+  position: absolute;
+  width: clamp(3px, 0.42vw, 5px);
+  height: clamp(3px, 0.42vw, 5px);
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, #e8fff0 42%, transparent 72%);
+  box-shadow: 0 0 7px 1px rgb(255 255 255 / 0.55);
+  opacity: 0;
+  left: calc(12% + (var(--sparkle-i) * 10.5%));
+  top: calc(18% + ((var(--sparkle-i) % 3) * 22%));
 }
 
 .hero__begins {
@@ -245,8 +314,12 @@
 
 @media (prefers-reduced-motion: reduce) {
   .hero__dog-wrap,
-  .hero__dog {
+  .hero__dog-stack,
+  .hero__dog-figure,
+  .hero__dog-hat,
+  .hero__dog-sparkle {
     animation: none !important;
+    transform: none !important;
   }
 }
 
@@ -291,7 +364,7 @@
   }
 
   .hero__dog-wrap {
-    width: min(98%, 48rem);
+    width: min(90%, 44rem);
     margin-top: clamp(6rem, 16vw, 10rem);
     margin-left: auto;
     margin-right: auto;
@@ -358,14 +431,14 @@
   }
 
   .hero__dog-wrap {
-    width: min(116%, 38rem);
+    width: min(104%, 35rem);
     margin-top: clamp(2rem, 7vw, 4rem);
     margin-left: clamp(-3.35rem, -11.5vw, -1.85rem);
     margin-right: auto;
   }
 
-  .hero__dog {
-    transform: scale(1.12);
+  .hero__dog-stack {
+    transform: scale(1.02);
     transform-origin: top center;
   }
 
@@ -439,7 +512,7 @@
   }
 
   .hero__dog-wrap {
-    width: min(88%, 90rem);
+    width: min(81%, 83rem);
     margin-top: clamp(8.5rem, 10.5vw, 12.5rem);
   }
 

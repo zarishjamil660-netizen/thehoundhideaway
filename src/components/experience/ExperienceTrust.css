@@ -26,7 +26,7 @@
   gap: clamp(1.75rem, 4vw, 2.5rem);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .experience-trust__lift {
     grid-template-columns: max-content minmax(0, 1fr);
     align-items: start;
@@ -52,19 +52,12 @@
   align-self: start;
 }
 
-@media (min-width: 768px) {
-  .experience-trust__figure-wrap {
-    margin-left: -2rem;
-  }
+/* Desktop: original chest-up asset */
+.experience-trust__img--mobile {
+  display: none;
 }
 
-@media (min-width: 1024px) {
-  .experience-trust__figure-wrap {
-    margin-left: -3rem;
-  }
-}
-
-.experience-trust__img {
+.experience-trust__img--desktop {
   display: block;
   width: auto;
   max-width: min(92vw, 500px);
@@ -74,8 +67,12 @@
   transform: translateY(clamp(-6.75rem, -14vw, -12.5rem));
 }
 
-@media (min-width: 768px) {
-  .experience-trust__img {
+@media (min-width: 1024px) {
+  .experience-trust__figure-wrap {
+    margin-left: -3rem;
+  }
+
+  .experience-trust__img--desktop {
     max-width: min(44vw, 480px);
     transform: translateY(clamp(-9.25rem, -17vw, -15.5rem));
   }
@@ -89,7 +86,7 @@
   transform: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .experience-trust__text-col {
     padding-top: clamp(8rem, 12vw, 11.5rem);
     padding-right: clamp(1.25rem, 4.5vw, 3.25rem);
@@ -175,7 +172,7 @@
   text-align: center;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
   .experience-trust__heading {
     font-size: 6rem;
     line-height: 1.08;
@@ -211,7 +208,7 @@
   }
 }
 
-/* Mobile + tablet: stop tagline from overlapping the trust list */
+/* Mobile + tablet: full-body asset */
 @media (max-width: 1023.98px) {
   .experience-trust {
     margin-top: clamp(-8rem, -16vw, -12rem);
@@ -225,19 +222,11 @@
     gap: clamp(1.25rem, 4vw, 2rem);
   }
 
-  .experience-trust__figure-wrap {
-    align-self: flex-start;
-    /* Cancel section px-4 so the dog sits on the viewport left edge */
-    margin-left: -1rem;
-    margin-right: auto;
-    margin-top: clamp(-5rem, -10vw, -7rem);
-    width: calc(100% + 1rem);
-    max-width: none;
-    display: flex;
-    justify-content: flex-start;
+  .experience-trust__img--desktop {
+    display: none;
   }
 
-  .experience-trust__img {
+  .experience-trust__img--mobile {
     display: block;
     width: min(78vw, 300px);
     max-width: min(78vw, 300px);
@@ -245,8 +234,19 @@
     margin: 0;
     margin-right: auto;
     object-fit: contain;
-    object-position: left center;
-    transform: translateY(clamp(-2.5rem, -6vw, -4rem)) translateX(-4%);
+    object-position: center top;
+    transform: translateY(clamp(-2.5rem, -6vw, -4rem));
+  }
+
+  .experience-trust__figure-wrap {
+    align-self: flex-start;
+    margin-left: -1rem;
+    margin-right: auto;
+    margin-top: clamp(-5rem, -10vw, -7rem);
+    width: calc(100% + 1rem);
+    max-width: none;
+    display: flex;
+    justify-content: flex-start;
   }
 
   .experience-trust__text-col {
@@ -285,6 +285,20 @@
   }
 }
 
+@media (max-width: 767.98px) {
+  .experience-trust__figure-wrap {
+    align-self: center;
+    margin-left: 0;
+    margin-right: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .experience-trust__img--mobile {
+    margin-inline: auto;
+  }
+}
+
 @media (max-width: 639.98px) {
   .experience-trust__tagline {
     margin-top: clamp(3.25rem, 11vw, 5rem);
@@ -292,27 +306,25 @@
   }
 
   .experience-trust__figure-wrap {
-    margin-left: -1rem;
     margin-top: clamp(-3.5rem, -8vw, -5rem);
   }
 
-  .experience-trust__img {
+  .experience-trust__img--mobile {
     width: min(72vw, 260px);
     max-width: min(72vw, 260px);
-    transform: translateY(clamp(-1.5rem, -4vw, -2.5rem)) translateX(-5%);
+    transform: translateY(clamp(-1.5rem, -4vw, -2.5rem));
   }
 }
 
-/* Tablet only: cancel md:px-8 (2rem) */
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .experience-trust__figure-wrap {
     margin-left: -2rem;
     width: calc(100% + 2rem);
   }
 
-  .experience-trust__img {
+  .experience-trust__img--mobile {
     width: min(74vw, 320px);
     max-width: min(74vw, 320px);
-    transform: translateY(clamp(-2.5rem, -6vw, -4rem)) translateX(-3%);
+    transform: translateY(clamp(-2.5rem, -6vw, -4rem));
   }
 }
