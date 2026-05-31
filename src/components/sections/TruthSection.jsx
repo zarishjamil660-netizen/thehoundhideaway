@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { ScrollReveal } from '../motion/ScrollReveal'
 import './TruthSection.css'
 
 const cards = [
@@ -7,9 +8,17 @@ const cards = [
   { n: '3', line1: 'Did I choose the right', line2: 'Place?', midCompact: true },
 ]
 
+const DESKTOP_MIN = 1024
+const MOBILE_CARD_VARIANTS = ['fade-right', 'fade-left', 'fade-up']
+
 export function TruthSection() {
   const sectionRef = useRef(null)
+  const cardRefs = useRef([])
   const [activeCard, setActiveCard] = useState(-1)
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== 'undefined' && window.innerWidth < DESKTOP_MIN,
+  )
+  const [mobileRevealed, setMobileRevealed] = useState(() => new Set())
 
   useEffect(() => {
     const el = sectionRef.current
@@ -42,7 +51,7 @@ export function TruthSection() {
     }
 
     const onWheel = e => {
-      if (window.innerWidth <= 1023) return
+      if (window.innerWidth < DESKTOP_MIN) return
 
       const rect = el.getBoundingClientRect()
       const vh = window.innerHeight || 1
@@ -98,9 +107,7 @@ export function TruthSection() {
     }
 
     const onResize = () => {
-      if (window.innerWidth <= 1023) {
-        syncState(cards.length - 1)
-      } else {
+      if (window.innerWidth >= DESKTOP_MIN) {
         syncState(-1)
       }
       scrollBucket = 0
@@ -111,7 +118,10 @@ export function TruthSection() {
       if (unlockTimer) window.clearTimeout(unlockTimer)
     }
 
-    onResize()
+    if (window.innerWidth >= DESKTOP_MIN) {
+      syncState(-1)
+    }
+
     window.addEventListener('wheel', onWheel, { passive: false })
     window.addEventListener('resize', onResize)
 
@@ -123,9 +133,94 @@ export function TruthSection() {
     }
   }, [])
 
+  useEffect(() => {
+    const mobileMq = window.matchMedia(`(max-width: ${DESKTOP_MIN - 1}px)`)
+    const reducedMq = window.matchMedia('(prefers-reduced-motion: reduce)')
+
+    const revealAllMobile = () => {
+      setMobileRevealed(new Set(cards.map((_, i) => i)))
+    }
+
+    const clearMobileReveal = () => {
+      setMobileRevealed(new Set())
+    }
+
+    const syncBreakpoint = () => {
+      setIsMobile(mobileMq.matches)
+    }
+
+    const setupMobileReveal = () => {
+      syncBreakpoint()
+
+      if (!mobileMq.matches) {
+        clearMobileReveal()
+        return () => {}
+      }
+
+      if (reducedMq.matches) {
+        revealAllMobile()
+        return () => {}
+      }
+
+      clearMobileReveal()
+
+      const observers = cardRefs.current
+        .map((node, index) => {
+          if (!node) return null
+
+          const observer = new IntersectionObserver(
+            ([entry]) => {
+              if (!entry?.isIntersecting) return
+              setMobileRevealed(prev => {
+                if (prev.has(index)) return prev
+                const next = new Set(prev)
+                next.add(index)
+                return next
+              })
+              observer.disconnect()
+            },
+            { threshold: 0.42, rootMargin: '0px 0px -6% 0px' },
+          )
+
+          observer.observe(node)
+          return observer
+        })
+        .filter(Boolean)
+
+      return () => observers.forEach(observer => observer.disconnect())
+    }
+
+    let teardown = setupMobileReveal()
+
+    const onBreakpointChange = () => {
+      teardown()
+      if (!mobileMq.matches) {
+        setActiveCard(-1)
+      }
+      teardown = setupMobileReveal()
+    }
+
+    mobileMq.addEventListener('change', onBreakpointChange)
+    reducedMq.addEventListener('change', onBreakpointChange)
+
+    return () => {
+      teardown()
+      mobileMq.removeEventListener('change', onBreakpointChange)
+      reducedMq.removeEventListener('change', onBreakpointChange)
+    }
+  }, [])
+
+  const cardVisible = i => (isMobile ? mobileRevealed.has(i) : i <= activeCard)
+
   return (
     <section className="truth-ref" id="truth" aria-labelledby="truth-ref-heading" ref={sectionRef}>
-      <div className="truth-ref__head">
+      <div className="truth-ref__mobile-title">
+        <p className="truth-ref__mobile-the">The</p>
+        <p className="truth-ref__mobile-word">Truth</p>
+        <p className="truth-ref__mobile-sub">We know how it feels</p>
+      </div>
+
+      <ScrollReveal className="truth-ref__head" variant="fade-up" delay={0} distance={28}>
         <h2 id="truth-ref-heading" className="sr-only">
           The truth
         </h2>
@@ -134,14 +229,23 @@ export function TruthSection() {
           <span className="truth-ref__sub-line">And the whole way home,</span>
           <span className="truth-ref__sub-line">you&apos;re thinking about them.</span>
         </p>
-      </div>
+      </ScrollReveal>
 
       <ul className="truth-ref__cards">
         {cards.map((c, i) => (
           <li
             key={c.n}
-            className={`truth-ref__card-wrap ${i <= activeCard ? 'is-visible' : 'is-hidden'}`}
-            style={{ '--card-delay': `${i * 160}ms` }}
+            ref={node => {
+              cardRefs.current[i] = node
+            }}
+            className={[
+              'truth-ref__card-wrap',
+              cardVisible(i) ? 'is-visible' : 'is-hidden',
+              isMobile ? `truth-ref__card-wrap--${MOBILE_CARD_VARIANTS[i]}` : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            style={{ '--card-delay': `${i * 120}ms` }}
           >
             <div className="truth-ref__card">
               <span className="truth-ref__card-n">{c.n}</span>

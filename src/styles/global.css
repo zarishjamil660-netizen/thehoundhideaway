@@ -9,6 +9,7 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* Layout comps target ~1280px (150% zoom on 1920). 1440px comps apply at 1921+ only. */
 }
 
 body {

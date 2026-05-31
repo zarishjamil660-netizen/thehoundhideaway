@@ -143,6 +143,15 @@
   font-weight: 800;
 }
 
+.story__close-copy-settle--mobile {
+  display: none;
+  font-weight: 800;
+}
+
+.story__close-copy-settle--desktop {
+  display: block;
+}
+
 .story__close-pane--mint {
   align-self: end;
   color: var(--thh-forest-deep);
@@ -538,6 +547,7 @@
     margin-top: clamp(1.25rem, 3.4vw, 2.1rem);
     font-size: clamp(1.65rem, 4.3vw, 3rem);
     letter-spacing: 0.03em;
+    white-space: nowrap;
   }
 
   .story__about-row {
@@ -575,21 +585,26 @@
     max-width: none;
   }
 
-  .story__close-pane--dark,
-  .story__close-pane--mint {
-    text-align: center;
-  }
-
   .story__close-pane--dark {
     order: 1;
+    width: 100%;
+    align-self: stretch;
+    margin-top: clamp(0.35rem, 2vw, 1rem);
+    text-align: left;
+  }
+
+  .story__close-dark-inner {
+    transform: none;
+    text-align: left;
   }
 
   .story__close-copy-line {
-    text-align: center;
+    text-align: left;
   }
 
   .story__close-pane--mint {
     order: 3;
+    text-align: center;
   }
 
   .story__about-img {
@@ -605,11 +620,12 @@
     width: 100%;
     margin-inline: auto;
     justify-self: center;
+    margin-top: clamp(-2.75rem, -6vw, -1.5rem);
     margin-bottom: clamp(-4.75rem, -12vw, -2.5rem);
   }
 
   .story__about-intro {
-    margin-top: clamp(1.35rem, 6vw, 2.85rem);
+    margin-top: clamp(2.85rem, 12vw, 5.6rem);
     margin-bottom: 0;
     transform: none;
   }
@@ -636,7 +652,9 @@
   .story__about-kicker {
     margin-top: clamp(0.45rem, 2vw, 0.75rem);
     margin-bottom: clamp(0.85rem, 3.5vw, 1.35rem);
-    font-size: clamp(1.3rem, 5.7vw, 1.95rem);
+    font-size: clamp(1.15rem, 5.2vw, 1.95rem);
+    white-space: nowrap;
+    letter-spacing: 0.03em;
   }
 
   .story__about-row {
@@ -663,11 +681,6 @@
     justify-self: center;
     position: relative;
     transform: none;
-  }
-
-  .story__about-visual {
-    width: 100%;
-    margin-inline: auto;
   }
 
   .story__about-copy-lede,
@@ -700,44 +713,53 @@
     max-width: min(100%, 46rem);
     padding-inline: clamp(1rem, 4.5vw, 1.5rem);
     box-sizing: border-box;
+    margin-bottom: clamp(0.35rem, 1.8vw, 0.85rem);
   }
 
   .story__close-heading {
     white-space: nowrap;
-    font-size: clamp(2rem, 7.4vw, 3.35rem);
-    line-height: 1.08;
+    font-size: clamp(2.85rem, 11.5vw, 4.35rem);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
     overflow-wrap: normal;
+    max-width: 100%;
   }
 
   .story__close-kicker {
-    font-size: clamp(1.15rem, 4.8vw, 1.85rem);
+    margin-top: clamp(0.85rem, 3.2vw, 1.35rem);
+    font-size: clamp(1.05rem, 4.2vw, 1.65rem);
     line-height: 1.2;
     overflow-wrap: break-word;
   }
 
-  .story__close-split {
-    margin-top: clamp(2rem, 7vw, 3.25rem);
-    padding-inline: clamp(1rem, 4.5vw, 1.35rem);
-    box-sizing: border-box;
+  .story__close-copy-settle--mobile {
+    display: inline;
+    font-weight: 800;
   }
 
-  .story__close-pane--dark {
-    margin-top: clamp(0.35rem, 2vw, 1rem);
+  .story__close-copy-settle--desktop {
+    display: none;
+  }
+
+  .story__close-split {
+    margin-top: clamp(2.35rem, 8vw, 3.75rem);
+    padding-inline: clamp(1rem, 4.5vw, 1.35rem);
+    box-sizing: border-box;
   }
 
   .story__close-title-stack {
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: baseline;
-    justify-content: center;
-    gap: clamp(0.22rem, 1.2vw, 0.45rem);
+    justify-content: flex-start;
+    gap: clamp(0.28rem, 1.4vw, 0.65rem);
   }
 
   .story__close-title-pre,
   .story__close-title-main {
-    font-size: clamp(1.5rem, 5.5vw, 2.65rem);
+    font-size: clamp(1.85rem, 6.1vw, 3.9rem);
     white-space: nowrap;
-    text-align: center;
+    text-align: left;
     line-height: 1.05;
   }
 
@@ -782,6 +804,23 @@
 }
 
 @media (min-width: 1024px) {
+  .story__close-heading {
+    font-size: clamp(6.85rem, 7.5vw, 8.48rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+
+  .story__close-kicker {
+    font-size: clamp(2rem, 2.65vw, 2.65rem);
+    line-height: 1.1;
+  }
+
+  .story__close-title-pre,
+  .story__close-title-main {
+    font-size: clamp(3rem, 3.35vw, 4.75rem);
+    line-height: 1.02;
+  }
+
   .story__close-phone {
     width: min(128%, 40rem);
     max-width: none;

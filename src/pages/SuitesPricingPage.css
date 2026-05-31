@@ -5,6 +5,7 @@
   max-width: 100%;
   overflow-x: clip;
   overflow-y: visible;
+  overflow-clip-margin: 22rem 0 0 0;
 }
 
 .suites-pricing {
@@ -611,21 +612,9 @@
 }
 
 @media (min-width: 1024px) {
-  .suites-pricing__hero {
-    position: relative;
-    z-index: 1;
-    isolation: isolate;
-  }
-
-  .suites-pricing__tiers {
-    position: relative;
-    z-index: 2;
-    background: var(--sp-forest);
-  }
-
   .suites-pricing__hero-stage {
-    --sp-dog-left: min(950px, 52vw);
-    --sp-dog-right: min(1020px, 58vw);
+    --sp-dog-left: clamp(12rem, 54vw, 950px);
+    --sp-dog-right: clamp(12rem, 62vw, 1400px);
     --sp-hero-gap: clamp(-2rem, -4vw, 0.25rem);
     --sp-dog-inset: clamp(-2.5rem, -6vw, -0.75rem);
   }
@@ -637,6 +626,11 @@
 }
 
 @media (min-width: 900px) {
+  .suites-pricing__hero-stage {
+    --sp-dog-left: clamp(16rem, 42vw, 950px);
+    --sp-dog-right: clamp(16rem, 52vw, 1600px);
+  }
+
   .suites-pricing__trio {
     width: min(100%, 88vw);
     max-width: 1320px;
@@ -649,37 +643,31 @@
   }
 }
 
-/* Comp @ 1440 — dogs 825×825 & 1020×1020 (full asset size) */
-@media (min-width: 1440px) {
+/* Comp @ 1440 — dogs 825×825 & 1020×1020 (full asset size); 1921+ = ultrawide / zoomed-out */
+@media (min-width: 1921px) {
   .suites-pricing__hero {
     padding-bottom: 0;
-    overflow-x: clip;
-    isolation: isolate;
-    z-index: 1;
+    overflow: visible;
   }
 
   .suites-pricing__tiers {
-    z-index: 2;
+    position: relative;
+    z-index: 4;
     margin-top: -6.5rem;
-    background: var(--sp-forest);
-  }
-
-  .suites-pricing__hero .site-header {
-    width: 100%;
-    max-width: 100%;
   }
 
   .suites-pricing__hero-stage {
     --sp-dog-left: 950px;
     --sp-dog-right: 2800px;
     --sp-hero-lift: 24.5rem;
-    position: relative;
+    /* Nudge layers down inside stage while pulling stage up — same viewport position, title no longer above stage (avoids vertical clip) */
+    --sp-hero-nudge: calc(var(--sp-hero-lift) - 250px);
     display: block;
-    width: 1440px;
-    max-width: 100%;
+    width: 100%;
+    max-width: 1440px;
     height: 900px;
     min-height: 900px;
-    margin-top: -20rem;
+    margin-top: calc(-20rem - var(--sp-hero-nudge));
     overflow: visible;
     margin-inline: auto;
     padding: 0;
@@ -688,12 +676,11 @@
   .suites-pricing__title {
     position: absolute;
     z-index: 2;
-    top: calc(250px - var(--sp-hero-lift));
+    top: calc(250px - var(--sp-hero-lift) + var(--sp-hero-nudge));
     left: 50%;
     transform: translate(calc(-50% + 4rem), 0);
     width: 1004px;
     max-width: calc(100% - 2rem);
-    margin: 0;
     font-size: 155.56px;
     line-height: 1.189;
     letter-spacing: -0.16px;
@@ -707,36 +694,38 @@
     margin-left: -0.08em;
   }
 
-  /* Left pitbull — fixed to 1440 comp (same on all viewports ≥1440) */
+  /* Left pitbull — over title */
   .suites-pricing__hero-dog--left {
     position: absolute;
     z-index: 3;
-    top: calc(250px - var(--sp-hero-lift));
+    flex: none;
+    margin: 0;
+    top: calc(250px - var(--sp-hero-lift) + var(--sp-hero-nudge));
     bottom: auto;
     left: 365px;
     width: 950px;
     height: 950px;
     max-width: none;
-    margin: 0;
-    flex: none;
+    margin-right: 0;
     transform: translate(15.5rem, 4rem);
     object-fit: contain;
     object-position: right bottom;
   }
 
-  /* Right beagle — fixed to 1440 comp (same on all viewports ≥1440) */
+  /* Right beagle — large, over title */
   .suites-pricing__hero-dog--right {
     position: absolute;
     z-index: 3;
-    top: calc(240px - var(--sp-hero-lift));
+    flex: none;
+    margin: 0;
+    top: max(0px, calc(240px - var(--sp-hero-lift) + var(--sp-hero-nudge)));
     bottom: auto;
     left: 0;
     right: auto;
     width: 2800px;
     height: 2800px;
     max-width: none;
-    margin: 0;
-    flex: none;
+    margin-left: 0;
     transform: translate(-27rem, 8rem);
     object-fit: contain;
     object-position: left bottom;

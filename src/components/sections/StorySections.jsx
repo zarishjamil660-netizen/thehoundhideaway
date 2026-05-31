@@ -31,8 +31,12 @@ export function StorySections() {
                   Open the app, and they&apos;re
                   <br />
                   right there. <strong>Sleeping. Playing.</strong>
+                  <strong className="story__close-copy-settle story__close-copy-settle--mobile">
+                    {' '}
+                    Settling in.
+                  </strong>
                 </p>
-                <p className="story__close-copy-line story__close-copy-line--emphasis">
+                <p className="story__close-copy-line story__close-copy-line--emphasis story__close-copy-settle--desktop">
                   <strong>Settling in.</strong>
                 </p>
               </div>

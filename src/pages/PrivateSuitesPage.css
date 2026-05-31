@@ -455,8 +455,109 @@
   }
 }
 
-/* Desktop comp: 1440px frame */
-@media (min-width: 1440px) {
+/* Zoomed-out / sub-80% browser (~1440–1919 CSS px) — 100% browser @ 1920+ comp stays below */
+@media (min-width: 1440px) and (max-width: 1919.98px) {
+  .private-suites {
+    --ps-forest-lift: clamp(-44rem, -46vw, -40rem);
+    --ps-ball-above-forest: clamp(4rem, 6vw, 5.5rem);
+  }
+
+  .private-suites__hero {
+    position: relative;
+    z-index: 2;
+    isolation: isolate;
+    min-height: clamp(32rem, 46vh, 40rem);
+    padding-bottom: clamp(4rem, 8vw, 6.5rem);
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+
+  .private-suites__hero-inner {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: min(58%, 900px);
+    margin-left: clamp(1.5rem, 4vw, 5rem);
+    margin-right: auto;
+    padding-inline: clamp(1rem, 4vw, 1.5rem);
+    padding-top: clamp(1rem, 2vw, 1.5rem);
+    padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+    text-align: left;
+  }
+
+  .private-suites__hero-kicker {
+    position: relative;
+    z-index: 5;
+    text-align: center;
+    margin-top: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  .private-suites__hero-title-calm {
+    font-size: clamp(3.5rem, 8.5vw, 148.74px);
+  }
+
+  .private-suites__hero-title-quiet {
+    font-size: clamp(4rem, 10vw, 181.15px);
+    margin-left: clamp(0.5rem, 2vw, 1.75rem);
+  }
+
+  .private-suites__hero-art-wrap {
+    position: absolute;
+    z-index: 4;
+    top: auto;
+    right: clamp(0.5rem, 3vw, 2.5rem);
+    bottom: clamp(-3rem, -5vw, -1.5rem);
+    left: auto;
+    width: min(36vw, 620px);
+    height: auto;
+    margin: 0;
+    transform: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    pointer-events: none;
+  }
+
+  .private-suites__hero-art {
+    width: 100%;
+    max-width: 620px;
+    height: auto;
+    aspect-ratio: auto;
+    object-fit: contain;
+    object-position: right bottom;
+  }
+
+  .private-suites__hero-tennis {
+    z-index: 6;
+    bottom: var(--ps-ball-above-forest);
+    left: clamp(55%, 62vw, 68%);
+    transform: translateX(-50%) rotate(42.8deg);
+  }
+
+  .private-suites__luxury {
+    position: relative;
+    z-index: 3;
+    margin-top: 0;
+    padding-top: clamp(7rem, 12vw, 10rem);
+  }
+
+  .private-suites__luxury-label {
+    font-size: clamp(3.5rem, 8vw, 107.29px);
+  }
+
+  .private-suites__luxury-inner {
+    max-width: min(100%, 1200px);
+    overflow-x: visible;
+  }
+
+  .private-suites__carousel {
+    --ps-card-w: clamp(18rem, 52vw, 756.9212646484375px);
+    --ps-side-scale: 0.92;
+  }
+}
+
+/* Desktop comp: 1440px frame — 100% browser on standard desktop (1920+ CSS px) */
+@media (min-width: 1920px) {
   .private-suites__hero {
     min-height: 0;
     padding-bottom: 0;
@@ -566,7 +667,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1920px) {
   .private-suites {
     --ps-forest-lift: -62rem;
   }
@@ -596,7 +697,7 @@
   color: var(--ps-mint);
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1920px) {
   .private-suites__luxury-label {
     font-size: 107.29px;
   }
@@ -993,7 +1094,7 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1920px) {
   .private-suites__luxury {
     --ps-gap-card-foot: 2rem;
     --ps-gap-caption-controls: 3.5rem;

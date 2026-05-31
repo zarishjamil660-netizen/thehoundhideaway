@@ -488,40 +488,64 @@ main.thh-page--contact + .site-footer {
   color: var(--cp-mint);
 }
 
-/* Book stay tennis ball */
+/* Book stay ball — fixed slot; gentle circular drift */
+@keyframes contact-book-orbit {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  25% {
+    transform: translate3d(0.55rem, -0.45rem, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -0.85rem, 0);
+  }
+
+  75% {
+    transform: translate3d(-0.55rem, -0.45rem, 0);
+  }
+}
+
 .contact-page__book {
+  --book-size: clamp(7.5rem, 34vw, 10.5rem);
   position: relative;
   z-index: 3;
   align-self: flex-start;
   margin: clamp(1.5rem, 5vw, 2.5rem) 0 0;
   display: block;
+  width: var(--book-size);
   line-height: 0;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  overflow: visible;
 }
 
 .contact-page__book img {
-  width: clamp(7.5rem, 34vw, 10.5rem);
+  display: block;
+  width: 100%;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
-}
-
-.contact-page__book:hover {
-  transform: scale(1.03);
+  transform-origin: center center;
+  animation: contact-book-orbit 20s ease-in-out infinite;
+  will-change: transform;
 }
 
 .contact-page__book:hover img {
-  filter: none;
+  animation-play-state: paused;
+  filter: brightness(1.05);
+  transform: scale(1.03);
 }
 
-@media (max-width: 1023.98px) {
-  .contact-page__book:hover {
-    transform: none;
+@media (prefers-reduced-motion: reduce) {
+  .contact-page__book img {
+    animation: none;
+    will-change: auto;
   }
 
   .contact-page__book:hover img {
-    filter: brightness(1.05);
+    transform: none;
   }
 }
 
@@ -547,40 +571,24 @@ main.thh-page--contact + .site-footer {
   }
 
   .contact-page__book {
+    --book-size: clamp(8.5rem, 36vw, 11rem);
     align-self: flex-start;
     margin-left: 0;
     margin-right: auto;
     overflow: visible;
-    width: auto;
-    height: auto;
-  }
-
-  .contact-page__book img {
-    display: block;
-    width: clamp(8.5rem, 36vw, 11rem);
-    height: auto;
-    max-width: none;
-    margin: 0;
-    aspect-ratio: 1 / 1;
-    object-fit: contain;
-    object-position: left top;
-    transform: none;
   }
 }
 
 @media (max-width: 767px) {
   .contact-page__book {
     margin-top: clamp(1.75rem, 6vw, 2.75rem);
-  }
-
-  .contact-page__book img {
-    width: clamp(7.75rem, 34vw, 10rem);
+    --book-size: clamp(7.75rem, 34vw, 10rem);
   }
 }
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
-  .contact-page__book img {
-    width: clamp(9rem, 32vw, 12rem);
+  .contact-page__book {
+    --book-size: clamp(9rem, 32vw, 12rem);
   }
 }
 
@@ -594,10 +602,7 @@ main.thh-page--contact + .site-footer {
     bottom: clamp(-16rem, -25vw, -18rem);
     left: clamp(-4.4rem, -5.5vw, -2.75rem);
     margin: 0;
-  }
-
-  .contact-page__book img {
-    width: clamp(10.5rem, 43vw, 1280px);
+    --book-size: clamp(10.5rem, 43vw, 1280px);
   }
 }
 
@@ -656,7 +661,7 @@ main.thh-page--contact + .site-footer {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1921px) {
   .contact-page__title {
     font-size: 232.04px;
     line-height: 1.05;
@@ -743,9 +748,7 @@ main.thh-page--contact + .site-footer {
   }
 
   /* Comp: book their stay ball — scaled up from 927×927 */
-  .contact-page__book img {
-    width: 1280px;
-    height: 1280px;
-    max-width: min(1280px, calc(100vw - 2rem));
+  .contact-page__book {
+    --book-size: min(1280px, calc(100vw - 2rem));
   }
 }
