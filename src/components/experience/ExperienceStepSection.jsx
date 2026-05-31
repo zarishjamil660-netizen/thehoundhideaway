@@ -56,7 +56,7 @@ export function ExperienceStepSection({
     <section
       className={`experience-step-section bg-[var(--thh-mint-soft)] text-[var(--thh-forest-deep)] ${
         curveTop
-          ? 'experience-step-section--curve-top -mt-1 rounded-t-[clamp(2.5rem,8vw,5rem)] md:rounded-t-[clamp(3.5rem,10vw,6.5rem)]'
+          ? 'experience-step-section--curve-top'
           : 'pt-20 md:pt-28'
       } ${reverse ? 'experience-step-section--reverse' : ''}`}
       id={id}

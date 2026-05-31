@@ -11,20 +11,21 @@
   padding-right: clamp(1rem, 2.5vw, 3rem);
 }
 
-/* Core Experience (curveTop): mint under scalloped edge — generous but avoids pushing type off-screen. */
+/* Core Experience (curveTop): mint below boarding scallop — no overlap gap. */
 .experience-step-section--curve-top {
-  padding-top: clamp(9rem, 11vw, 13rem);
+  margin-top: 0;
+  padding-top: clamp(7rem, 10vw, 11rem);
 }
 
 @media (min-width: 768px) {
   .experience-step-section--curve-top {
-    padding-top: clamp(11rem, 13vw, 16rem);
+    padding-top: clamp(9rem, 11vw, 13rem);
   }
 }
 
 @media (min-width: 1200px) {
   .experience-step-section--curve-top {
-    padding-top: clamp(12rem, 14vw, 18rem);
+    padding-top: clamp(10rem, 12vw, 15rem);
   }
 }
 
@@ -310,7 +311,7 @@
   }
 
   .experience-step-section--curve-top {
-    padding-top: clamp(6.5rem, 14vw, 9rem);
+    padding-top: clamp(5.5rem, 9vw, 7rem);
   }
 
   .experience-step-section__title-band {
@@ -361,7 +362,7 @@
 
 @media (max-width: 639.98px) {
   .experience-step-section--curve-top {
-    padding-top: clamp(5.5rem, 13vw, 7.5rem);
+    padding-top: clamp(4.75rem, 8vw, 6.25rem);
   }
 
   .experience-step-section__title-band .experience-step-section__display-title,

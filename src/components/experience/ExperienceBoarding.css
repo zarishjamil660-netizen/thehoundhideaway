@@ -1,3 +1,17 @@
+.experience-boarding {
+  position: relative;
+  z-index: 1;
+  border-bottom-left-radius: clamp(2.5rem, 8vw, 5rem);
+  border-bottom-right-radius: clamp(2.5rem, 8vw, 5rem);
+}
+
+@media (min-width: 768px) {
+  .experience-boarding {
+    border-bottom-left-radius: clamp(3.5rem, 10vw, 6.5rem);
+    border-bottom-right-radius: clamp(3.5rem, 10vw, 6.5rem);
+  }
+}
+
 .experience-boarding__eyebrow {
   margin: 0;
   font-family: Franie, var(--font-sans);
