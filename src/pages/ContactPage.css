@@ -65,9 +65,31 @@ body:has(main.thh-page--contact),
   text-align: center;
   text-transform: none;
   color: var(--cp-text);
+  perspective: 900px;
 }
 
-.contact-page__title-touch {
+.contact-page__title-3d {
+  display: inline-block;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.contact-page__title-word {
+  display: inline-block;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.contact-page__title-word--get {
+  transform: translateZ(50px);
+}
+
+.contact-page__title-word--in {
+  transform: translateZ(80px);
+}
+
+.contact-page__title-word--touch {
+  transform: translateZ(30px);
   white-space: nowrap;
   text-transform: none;
 }
@@ -114,11 +136,12 @@ body:has(main.thh-page--contact),
 /* —— Forest body —— */
 .contact-page__body {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   margin-top: 0;
   padding: 0 clamp(1rem, 4vw, 2rem) clamp(2.5rem, 8vw, 4rem);
+  background: var(--cp-forest);
 }
 
 /* Space above footer — padding (forest) not margin (would show mint body) */
@@ -129,7 +152,9 @@ main.thh-page--contact + .site-footer {
 
 /* Follow: dog + paw (composite art includes labels/icons) */
 .contact-page__follow {
-  margin-top: clamp(-2.5rem, -8vw, -5.5rem);
+  position: relative;
+  z-index: 3;
+  margin-top: clamp(-1.5rem, -5vw, -3.5rem);
   margin-bottom: clamp(2rem, 8vw, 4rem);
   overflow: visible;
 }
@@ -148,14 +173,21 @@ main.thh-page--contact + .site-footer {
   overflow: visible;
 }
 
-.contact-page__dog-wrap {
+.contact-page__dog-parallax {
   position: relative;
-  top: clamp(-0.5rem, -2vw, -1.5rem);
-  z-index: 2;
+  z-index: 4;
   flex-shrink: 0;
   width: min(100%, 96vw, 1040px);
   max-width: 1040px;
   align-self: center;
+  will-change: transform;
+}
+
+.contact-page__dog-wrap {
+  position: relative;
+  width: 100%;
+  transform-origin: 52% 42%;
+  will-change: transform;
 }
 
 .contact-page__dog {
@@ -166,6 +198,21 @@ main.thh-page--contact + .site-footer {
   aspect-ratio: 1053 / 1215;
   object-fit: contain;
   object-position: left bottom;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-page__dog-shadow {
+  position: absolute;
+  z-index: 0;
+  left: 8%;
+  right: 12%;
+  bottom: -2%;
+  height: clamp(1.5rem, 4vw, 2.75rem);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgb(0 0 0 / 0.35) 0%, transparent 72%);
+  transform-origin: center center;
+  pointer-events: none;
 }
 
 .contact-page__paw {
@@ -178,6 +225,9 @@ main.thh-page--contact + .site-footer {
   flex-shrink: 0;
   align-self: flex-end;
   overflow: visible;
+  transform-style: preserve-3d;
+  perspective: 900px;
+  will-change: transform;
 }
 
 .contact-page__paw-art {
@@ -213,6 +263,32 @@ main.thh-page--contact + .site-footer {
   text-decoration: none;
   pointer-events: auto;
   transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.contact-page__social-bubble {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  background: rgb(255 255 255 / 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgb(0 0 0 / 0.2);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    background 0.35s ease;
+}
+
+.contact-page__social-link:hover .contact-page__social-bubble,
+.contact-page__social-link:focus-visible .contact-page__social-bubble {
+  transform: translateZ(40px) scale(1.08);
+  box-shadow: 0 16px 40px rgb(0 0 0 / 0.28);
+  background: rgb(255 255 255 / 0.2);
 }
 
 .contact-page__social-icon {
@@ -277,7 +353,9 @@ main.thh-page--contact + .site-footer {
   text-align: center;
   text-transform: capitalize;
   color: var(--cp-mint);
-  opacity: 1;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  will-change: transform, opacity;
 }
 
 .contact-page__form-heading-line {
@@ -321,7 +399,7 @@ main.thh-page--contact + .site-footer {
   width: 100%;
   padding: clamp(1.85rem, 5vw, 2.35rem) clamp(1.1rem, 4vw, 1.5rem)
     clamp(0.85rem, 2.5vw, 1.1rem);
-  border: 4px solid var(--cp-mint);
+  border: 1px solid #b9dca9;
   border-radius: 999px;
   background: transparent;
   color: var(--cp-mint);
@@ -330,7 +408,15 @@ main.thh-page--contact + .site-footer {
   font-size: clamp(0.875rem, 2.5vw, 1rem);
   line-height: 1.4;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.15s ease;
+}
+
+.contact-page__field input:active,
+.contact-page__field textarea:active {
+  transform: scale(0.98);
 }
 
 .contact-page__field input {
@@ -345,11 +431,13 @@ main.thh-page--contact + .site-footer {
 
 .contact-page__field input:focus,
 .contact-page__field textarea:focus {
-  border-color: var(--cp-mint);
-  box-shadow: 0 0 0 2px rgb(190 237 185 / 0.2);
+  border-color: #b9dca9;
+  box-shadow: 0 0 20px rgb(185 220 169 / 0.4);
 }
 
 .contact-page__submit {
+  position: relative;
+  overflow: hidden;
   box-sizing: border-box;
   align-self: stretch;
   margin-top: clamp(0.35rem, 1.5vw, 0.65rem);
@@ -368,7 +456,18 @@ main.thh-page--contact + .site-footer {
   text-transform: uppercase;
   cursor: pointer;
   opacity: 1;
-  transition: filter 0.2s ease, transform 0.2s ease;
+  will-change: transform;
+  transition: filter 0.2s ease;
+}
+
+.contact-page__submit-ripple {
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  margin: -1rem 0 0 -1rem;
+  border-radius: 50%;
+  background: rgb(27 70 50 / 0.25);
+  pointer-events: none;
 }
 
 .contact-page__submit:hover {
@@ -510,12 +609,11 @@ main.thh-page--contact + .site-footer {
     gap: clamp(0.5rem, 2vw, 1.5rem);
   }
 
-  .contact-page__dog-wrap {
+  .contact-page__dog-parallax {
     flex: 0 1 52%;
     width: min(52%, 960px);
     max-width: 960px;
     align-self: flex-start;
-    top: clamp(-0.75rem, -2.5vw, -2rem);
   }
 
   .contact-page__paw {
@@ -531,7 +629,7 @@ main.thh-page--contact + .site-footer {
 }
 
 @media (min-width: 1024px) {
-  .contact-page__dog-wrap {
+  .contact-page__dog-parallax {
     width: min(54%, 1040px);
     max-width: 1040px;
   }
@@ -539,6 +637,22 @@ main.thh-page--contact + .site-footer {
   .contact-page__paw {
     width: min(50%, 600px);
     max-width: 600px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-page {
+    background: var(--cp-forest);
+  }
+
+  .contact-page__social-link:hover .contact-page__social-bubble,
+  .contact-page__social-link:focus-visible .contact-page__social-bubble {
+    transform: none;
+  }
+
+  .contact-page__field input:active,
+  .contact-page__field textarea:active {
+    transform: none;
   }
 }
 
@@ -561,7 +675,7 @@ main.thh-page--contact + .site-footer {
 
   /* Follow row: comp proportions, scaled to fit ~1440 frame */
   .contact-page__follow {
-    margin-top: -5.5rem;
+    margin-top: -3.5rem;
   }
 
   .contact-page__follow-inner {
@@ -569,12 +683,11 @@ main.thh-page--contact + .site-footer {
     gap: clamp(0.25rem, 1.5vw, 1rem);
   }
 
-  .contact-page__dog-wrap {
+  .contact-page__dog-parallax {
     flex: 0 1 54%;
     width: min(54%, 1040px);
     max-width: 1040px;
     align-self: flex-start;
-    top: -2rem;
   }
 
   .contact-page__social-link {

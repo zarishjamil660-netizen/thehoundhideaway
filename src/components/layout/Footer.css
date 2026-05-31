@@ -77,6 +77,12 @@ main.thh-page--contact + .site-footer {
   color: var(--thh-mint-soft);
 }
 
+main.thh-page--experience + .site-footer .site-footer__logo,
+main.thh-page--suites-pricing + .site-footer .site-footer__logo,
+main.thh-page--contact + .site-footer .site-footer__logo {
+  height: clamp(4rem, 12vw, 6rem);
+}
+
 main.thh-page--experience + .site-footer .site-footer__nav a,
 main.thh-page--suites-pricing + .site-footer .site-footer__nav a,
 main.thh-page--contact + .site-footer .site-footer__nav a {

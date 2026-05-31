@@ -907,7 +907,7 @@
   box-sizing: border-box;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 641px) {
   .private-suites__cta-wrap {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -951,7 +951,7 @@
   outline-offset: 3px;
 }
 
-@media (min-width: 480px) {
+@media (min-width: 641px) {
   .private-suites__cta {
     flex: 1 1 0;
     min-height: 3.05rem;

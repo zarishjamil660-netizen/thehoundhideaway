@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import Header from '../components/layout/Header'
 import dogWithPhone from '../assets/Same_dog_with_a_phone_202605160324 1.png'
 import followUsPaw from '../assets/followus.png'
@@ -7,6 +7,7 @@ import tennisBall from '../assets/fxemoji_tennisball.png'
 import iconFacebook from '../assets/ic_baseline-facebook.png'
 import iconInstagram from '../assets/mdi_instagram.png'
 import iconTiktok from '../assets/ic_outline-tiktok.png'
+import { useContactPageMotion } from './useContactPageMotion'
 import './ContactPage.css'
 
 const SOCIAL = [
@@ -18,30 +19,74 @@ const SOCIAL = [
 export function ContactPage() {
   const [sent, setSent] = useState(false)
 
-  const handleSubmit = useCallback((e) => {
+  const pageRef = useRef(null)
+  const heroCircleRef = useRef(null)
+  const title3dRef = useRef(null)
+  const titleGetRef = useRef(null)
+  const titleInRef = useRef(null)
+  const titleTouchRef = useRef(null)
+  const dogParallaxRef = useRef(null)
+  const dogWrapRef = useRef(null)
+  const dogShadowRef = useRef(null)
+  const pawRef = useRef(null)
+  const socialRefs = useRef([])
+  const formHeadingRef = useRef(null)
+  const formSectionRef = useRef(null)
+  const submitRef = useRef(null)
+
+  const motionRefs = useMemo(
+    () => ({
+      page: pageRef,
+      heroCircle: heroCircleRef,
+      title3d: title3dRef,
+      titleGet: titleGetRef,
+      titleIn: titleInRef,
+      titleTouch: titleTouchRef,
+      dogParallax: dogParallaxRef,
+      dogWrap: dogWrapRef,
+      dogShadow: dogShadowRef,
+      paw: pawRef,
+      socialLinks: socialRefs,
+      formHeading: formHeadingRef,
+      formSection: formSectionRef,
+      submitBtn: submitRef,
+    }),
+    [],
+  )
+
+  useContactPageMotion(motionRefs)
+
+  const handleSubmit = useCallback(e => {
     e.preventDefault()
     setSent(true)
   }, [])
 
   return (
-    <main className="contact-page thh-page--contact">
+    <main ref={pageRef} className="contact-page thh-page--contact">
       <section className="contact-page__hero" aria-labelledby="contact-page-heading">
-        <div className="contact-page__hero-circle" aria-hidden />
+        <div ref={heroCircleRef} className="contact-page__hero-circle" aria-hidden />
         <Header surface="mint" />
         <h1 id="contact-page-heading" className="contact-page__title">
-          Get In{' '}
-          <span className="contact-page__title-touch">
-            Touc
-            <span className="contact-page__title-h">
-              h
-              <img
-                src={tennisBall}
-                alt=""
-                className="contact-page__title-ball"
-                width={86}
-                height={86}
-                decoding="async"
-              />
+          <span ref={title3dRef} className="contact-page__title-3d">
+            <span ref={titleGetRef} className="contact-page__title-word contact-page__title-word--get">
+              Get
+            </span>{' '}
+            <span ref={titleInRef} className="contact-page__title-word contact-page__title-word--in">
+              In
+            </span>{' '}
+            <span ref={titleTouchRef} className="contact-page__title-word contact-page__title-word--touch">
+              Touc
+              <span className="contact-page__title-h">
+                h
+                <img
+                  src={tennisBall}
+                  alt=""
+                  className="contact-page__title-ball"
+                  width={86}
+                  height={86}
+                  decoding="async"
+                />
+              </span>
             </span>
           </span>
         </h1>
@@ -53,18 +98,21 @@ export function ContactPage() {
             Follow us on social media
           </h2>
           <div className="contact-page__follow-inner">
-            <div className="contact-page__dog-wrap">
-              <img
-                src={dogWithPhone}
-                alt="Dog in a hat using a smartphone"
-                className="contact-page__dog"
-                width={1053}
-                height={1215}
-                loading="lazy"
-                decoding="async"
-              />
+            <div ref={dogParallaxRef} className="contact-page__dog-parallax">
+              <div ref={dogWrapRef} className="contact-page__dog-wrap">
+                <img
+                  src={dogWithPhone}
+                  alt="Dog in a hat using a smartphone"
+                  className="contact-page__dog"
+                  width={1053}
+                  height={1215}
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div ref={dogShadowRef} className="contact-page__dog-shadow" aria-hidden />
+              </div>
             </div>
-            <figure className="contact-page__paw">
+            <figure ref={pawRef} className="contact-page__paw">
               <img
                 src={followUsPaw}
                 alt=""
@@ -75,23 +123,28 @@ export function ContactPage() {
                 decoding="async"
               />
               <nav className="contact-page__social" aria-label="Social media">
-                {SOCIAL.map(({ label, href, icon }) => (
+                {SOCIAL.map(({ label, href, icon }, index) => (
                   <a
                     key={label}
+                    ref={el => {
+                      socialRefs.current[index] = el
+                    }}
                     href={href}
                     className="contact-page__social-link"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <img
-                      src={icon}
-                      alt=""
-                      className="contact-page__social-icon"
-                      width={101}
-                      height={101}
-                      loading="lazy"
-                      decoding="async"
-                    />
+                    <span className="contact-page__social-bubble">
+                      <img
+                        src={icon}
+                        alt=""
+                        className="contact-page__social-icon"
+                        width={101}
+                        height={101}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </span>
                     <span className="sr-only">{label}</span>
                   </a>
                 ))}
@@ -100,8 +153,12 @@ export function ContactPage() {
           </div>
         </section>
 
-        <section className="contact-page__form-section" aria-labelledby="contact-form-heading">
-          <h2 id="contact-form-heading" className="contact-page__form-heading">
+        <section
+          ref={formSectionRef}
+          className="contact-page__form-section"
+          aria-labelledby="contact-form-heading"
+        >
+          <h2 ref={formHeadingRef} id="contact-form-heading" className="contact-page__form-heading">
             <span className="contact-page__form-heading-line">Any</span>
             <span className="contact-page__form-heading-line">Questions?</span>
           </h2>
@@ -122,7 +179,7 @@ export function ContactPage() {
               <span className="contact-page__field-label">Message</span>
               <textarea name="message" rows={6} required />
             </label>
-            <button type="submit" className="contact-page__submit">
+            <button ref={submitRef} type="submit" className="contact-page__submit">
               Submit
             </button>
             {sent ? (

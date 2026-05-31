@@ -20,11 +20,6 @@
   white-space: nowrap;
 }
 
-/* Reference: moderate space after lede; more space before CTAs. */
-.experience-hero__forest-band {
-  box-sizing: border-box;
-}
-
 .experience-hero__forest-headline {
   box-sizing: border-box;
   width: 100%;
@@ -91,14 +86,9 @@
   color: var(--thh-mint-soft);
 }
 
-@media (max-width: 639px) {
+@media (max-width: 640px) {
   .experience-hero__cta-row {
-    flex-direction: column;
-  }
-
-  .experience-hero__cta-btn {
-    flex: none;
-    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -108,11 +98,18 @@
   background: var(--thh-forest);
 }
 
+.experience-hero__stage {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
 .experience-hero__copy {
   padding-bottom: 0;
 }
 
-/* Hero headline stack — desktop uses Tailwind lg: utilities on __lede */
 .experience-hero__lede {
   margin: 0;
 }
@@ -123,20 +120,24 @@
 
 .experience-hero__circle-layout {
   position: absolute;
+  z-index: 0;
   width: 2010px;
   height: 2010px;
   top: -804px;
   left: 50%;
   transform: translate3d(-50%, 0, 0);
-  opacity: 1;
   border-radius: 50%;
   background: var(--thh-mint-soft);
-  z-index: 0;
+  pointer-events: none;
 }
 
 .experience-hero__media {
   position: relative;
+  z-index: 2;
   isolation: isolate;
+  width: 100%;
+  max-width: 42rem;
+  margin-inline: auto;
   margin-top: -75rem;
 }
 
@@ -146,27 +147,123 @@
   max-width: none;
   height: auto;
   object-fit: cover;
-  object-position: center;
-  margin-inline: 0;
+  object-position: center bottom;
   margin-left: -44%;
-  transform: translateY(0);
 }
 
-@media (max-width: 1279px) {
+.experience-hero__forest {
+  position: relative;
+  z-index: 1;
+}
+
+.experience-hero__forest-band {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: min(100%, 1440px);
+  margin-inline: auto;
+  padding: clamp(6rem, 12vw, 9rem) clamp(1rem, 4vw, 3rem) clamp(4rem, 8vw, 5rem);
+}
+
+.experience-hero__forest-inner {
+  width: 100%;
+  max-width: 66rem;
+  margin-inline: 0;
+}
+
+/* Desktop — locked 1440px comp (80–100% zoom on laptops + zoomed-out ultrawide) */
+@media (min-width: 1024px) {
+  .experience-hero__top {
+    --eh-header: clamp(4.5rem, 6vw, 5.75rem);
+    --eh-art-base: min(1440px, calc(100vw - 2rem));
+    --eh-art-scale: 1.04;
+    --eh-art-width: calc(var(--eh-art-base) * var(--eh-art-scale));
+    --eh-art-height: calc(var(--eh-art-width) * 1305 / 1440);
+    --eh-circle-scale: 1.27;
+    --eh-circle-size: calc(var(--eh-art-base) * var(--eh-circle-scale));
+    --eh-circle-top: calc(var(--eh-art-height) - var(--eh-circle-size));
+    --eh-art-lift: clamp(1.75rem, 2.75vw, 3rem);
+    --eh-arch-bottom: var(--eh-art-height);
+    min-height: calc(var(--eh-header) + var(--eh-arch-bottom));
+    overflow: hidden;
+  }
+
   .experience-hero__circle-layout {
-    width: 162vw;
-    height: 162vw;
-    top: -80vw;
+    width: var(--eh-circle-size);
+    height: var(--eh-circle-size);
+    top: calc(var(--eh-header) + var(--eh-circle-top));
     left: 50%;
     transform: translate3d(-50%, 0, 0);
   }
 
+  .experience-hero__stage {
+    position: relative;
+    min-height: var(--eh-arch-bottom);
+    max-width: min(100%, 1440px);
+    padding-bottom: 0;
+  }
+
+  .experience-hero__copy {
+    position: relative;
+    z-index: 3;
+  }
+
   .experience-hero__media {
-    margin-top: -36rem;
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    bottom: var(--eh-art-lift);
+    width: var(--eh-art-width);
+    max-width: none;
+    margin: 0;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .experience-hero__art {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    object-fit: unset;
+    object-position: center bottom;
+  }
+
+  .experience-hero__forest {
+    margin-top: 0;
+  }
+
+  .experience-hero__forest-band {
+    padding-top: clamp(3.5rem, 5vw, 4.5rem);
+    padding-inline: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  .experience-hero__forest-inner {
+    max-width: 66rem;
+  }
+
+  .experience-hero__forest-lede {
+    max-width: 66rem;
+    font-size: 2.625rem;
+    line-height: 3.2575rem;
+  }
+
+  .experience-hero__forest-headline {
+    max-width: 787px;
+    margin-top: 2.25rem;
+    font-size: 73.96px;
+    line-height: 82.83px;
+  }
+
+  .experience-hero__cta-row {
+    max-width: 63.022rem;
+    margin-top: 5.75rem;
   }
 }
 
-/* Mobile + tablet: left-aligned hero art, no forest headline clipping */
+/* Mobile + tablet */
 @media (max-width: 1023.98px) {
   .experience-hero__circle-layout {
     width: 220vw;
@@ -214,7 +311,6 @@
     width: 162%;
     max-width: none;
     margin-left: -32%;
-    margin-right: 0;
     object-fit: cover;
     object-position: center bottom;
   }
@@ -301,7 +397,6 @@
   }
 }
 
-/* Final override — beat Tailwind text-end on mobile/tablet */
 @media (max-width: 1023.98px) {
   .experience-hero__top .experience-hero__copy .experience-hero__lede {
     display: block;

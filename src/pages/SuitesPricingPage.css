@@ -560,11 +560,6 @@
     width: min(100%, 85vw);
     max-width: 28rem;
   }
-
-  .suites-pricing__cta {
-    font-size: clamp(0.7rem, 2.2vw, 0.85rem);
-    min-height: clamp(3.25rem, 11vw, 4rem);
-  }
 }
 
 @media (min-width: 768px) and (max-width: 1023.98px) {

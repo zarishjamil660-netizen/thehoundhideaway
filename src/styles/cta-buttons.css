@@ -1,0 +1,62 @@
+/* Mobile CTAs — match home Family section (#book) stacked pill buttons */
+@media (max-width: 640px) {
+  .hero__actions,
+  .experience-hero__cta-row,
+  .private-suites__cta-wrap,
+  .story__family-actions {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: clamp(0.5rem, 2.15vw, 0.72rem);
+    width: 100%;
+    max-width: min(20rem, 100%);
+    margin-inline: auto;
+  }
+
+  .hero__actions {
+    margin-top: clamp(0.8rem, 3.2vw, 1.25rem);
+  }
+
+  .experience-hero__cta-row {
+    margin-top: clamp(2rem, 6vw, 3.5rem);
+  }
+
+  .hero__btn,
+  .experience-hero__cta-btn,
+  .private-suites__cta,
+  .story__family-btn,
+  .suites-pricing__cta {
+    flex: none;
+    width: 100%;
+    min-height: 2.72rem;
+    padding: 0.4rem clamp(0.58rem, 3.45vw, 0.92rem);
+    border-radius: 38.3px;
+    font-family: var(--font-sans);
+    font-size: clamp(0.6rem, 2.85vw, 0.76rem);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    text-transform: uppercase;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .experience-hero__cta-btn {
+    border: 2px solid transparent;
+  }
+
+  .experience-hero__cta-btn--outline {
+    border-color: var(--thh-mint-soft);
+  }
+
+  .suites-pricing__cta {
+    width: 100%;
+    max-width: min(20rem, 100%);
+    margin-inline: auto;
+    border: 2px solid var(--thh-mint-soft);
+    background: var(--thh-mint-soft);
+    color: var(--thh-forest-deep);
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+}

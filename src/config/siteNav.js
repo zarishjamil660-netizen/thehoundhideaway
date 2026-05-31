@@ -4,6 +4,5 @@ export const siteNav = [
   { label: 'Experience', href: '/experience' },
   { label: 'Private suites', href: '/private-suites' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'About', href: '/#about' },
   { label: 'Contact', href: '/contact' },
 ]
