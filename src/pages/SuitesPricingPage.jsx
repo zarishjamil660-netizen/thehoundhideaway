@@ -1,5 +1,6 @@
 import Header from '../components/layout/Header'
 import { ScrollReveal } from '../components/motion/ScrollReveal'
+import { BookStayBall } from '../components/shared/BookStayBall'
 import heroDogLeft from '../assets/Dog 1 1.png'
 import heroDogRight from '../assets/Dog 2 1.png'
 import dogsTrio from '../assets/Make_them_look_happy_2K_202605160043 1.png'
@@ -112,6 +113,12 @@ export function SuitesPricingPage() {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="suites-pricing__book-ball" aria-label="Book their stay">
+        <ScrollReveal variant="fade-up" delay={120} distance={28}>
+          <BookStayBall />
+        </ScrollReveal>
       </section>
 
       <section className="suites-pricing__closing" aria-label="Book a stay">

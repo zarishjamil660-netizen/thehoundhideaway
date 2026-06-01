@@ -10,6 +10,7 @@ import { ExperienceGroomingHighlight } from '../components/experience/Experience
 import { ExperienceHero } from '../components/experience/ExperienceHero'
 import { ExperienceMission } from '../components/experience/ExperienceMission'
 import { ExperienceStepSection } from '../components/experience/ExperienceStepSection'
+import { ExperienceTennisBalls } from '../components/experience/ExperienceTennisBalls'
 import { ExperienceTrust } from '../components/experience/ExperienceTrust'
 import './ExperienceCodePage.css'
 
@@ -64,6 +65,7 @@ export function ExperienceCodePage() {
         imageSrc={maskGroup}
         imageAlt="Illustration of dogs relaxing together in a cozy home scene"
       />
+      <ExperienceTennisBalls />
       <ExperienceBoarding />
       <ExperienceStepSection
         id="countryside"

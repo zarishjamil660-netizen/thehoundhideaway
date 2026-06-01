@@ -1,0 +1,127 @@
+.book-stay-ball__art {
+  max-width: none !important;
+  min-width: 0;
+}
+
+.book-stay-ball {
+  --book-ball-rotate: 58deg;
+  --book-text-left: 44%;
+  --book-text-top: 65%;
+  --book-text-rotate: 0deg;
+
+  position: relative;
+  display: block;
+  width: min(clamp(28rem, 95vw, 102rem), 100%);
+  margin-inline: auto;
+  overflow: visible;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.book-stay-ball__inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 50%;
+  transform: rotate(var(--book-ball-rotate));
+  transform-origin: 50% 50%;
+}
+
+.book-stay-ball__art {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.book-stay-ball__text {
+  position: absolute;
+  z-index: 2;
+  left: var(--book-text-left);
+  top: var(--book-text-top);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.12em;
+  width: max-content;
+  max-width: 18%;
+  transform: translate(-50%, -50%) rotate(var(--book-text-rotate));
+  font-family: var(--font-serif);
+  font-weight: 400;
+  color: var(--thh-forest-deep);
+  text-align: center;
+  line-height: 0.78;
+  pointer-events: none;
+  font-size: clamp(2rem, 5vw, 4.25rem);
+}
+
+.book-stay-ball__line {
+  display: block;
+  font-size: 1em;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.book-stay-ball__line--mid {
+  font-size: 0.44em;
+  margin-block: 0.06em;
+}
+
+.book-stay-ball:focus-visible .book-stay-ball__inner {
+  outline: 2px solid var(--thh-mint-soft);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+.book-stay-ball:hover .book-stay-ball__art {
+  filter: brightness(1.04);
+}
+
+@media (max-width: 767.98px) {
+  .book-stay-ball {
+    width: min(100vw, 40rem);
+    flex-shrink: 0;
+    --book-text-top: 66%;
+    --book-text-rotate: -14deg;
+    transform: scale(2);
+    transform-origin: center center;
+  }
+
+  .book-stay-ball__text {
+    font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+    max-width: 22%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .book-stay-ball {
+    --book-text-rotate: 4deg;
+  }
+}
+
+@media (min-width: 1024px) {
+  .book-stay-ball {
+    width: min(102rem, 100%);
+    --book-ball-rotate: 62deg;
+    --book-text-left: 43%;
+    --book-text-top: 64%;
+    --book-text-rotate: -6deg;
+  }
+
+  .book-stay-ball__text {
+    max-width: 16%;
+    font-size: 4.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-stay-ball:hover .book-stay-ball__art {
+    filter: none;
+  }
+}

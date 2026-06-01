@@ -374,7 +374,7 @@
   .hero__begins {
     left: 50%;
     right: auto;
-    top: clamp(10rem, 23vw, 13.5rem);
+    top: clamp(9.25rem, 21vw, 12.5rem);
     font-size: clamp(2rem, 6vw, 3.6rem);
     max-width: min(10em, 100% - 1rem);
     text-align: center;
@@ -443,7 +443,7 @@
   }
 
   .hero__begins {
-    top: clamp(7.85rem, 25.5vw, 10.85rem);
+    top: clamp(7rem, 23vw, 10rem);
     right: clamp(-0.35rem, -1.2vw, 0.2rem);
     left: auto;
     transform: none;

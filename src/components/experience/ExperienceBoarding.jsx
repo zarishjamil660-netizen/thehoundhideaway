@@ -3,7 +3,7 @@ import './ExperienceBoarding.css'
 export function ExperienceBoarding() {
   return (
     <section
-      className="experience-boarding bg-[var(--thh-forest)] px-4 py-20 text-[var(--thh-mint-soft)] md:px-8 md:py-28 lg:px-12"
+      className="experience-boarding bg-[var(--thh-forest)] px-4 text-[var(--thh-mint-soft)] md:px-8 lg:px-12"
       id="boarding"
       aria-labelledby="boarding-heading"
     >

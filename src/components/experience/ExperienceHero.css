@@ -237,7 +237,7 @@
   .experience-hero__forest-band {
     padding-top: clamp(3.5rem, 5vw, 4.5rem);
     padding-inline: 3rem;
-    padding-bottom: 5rem;
+    padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
   }
 
   .experience-hero__forest-inner {
