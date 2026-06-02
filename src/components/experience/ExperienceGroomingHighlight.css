@@ -206,7 +206,15 @@
 @media (max-width: 1023.98px) {
   .experience-grooming__grid {
     grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 4.5vw, 2.25rem);
+    gap: clamp(0.55rem, 1.6vw, 0.9rem);
+  }
+
+  .experience-grooming__list {
+    margin-top: clamp(0.85rem, 3vw, 1.35rem);
+  }
+
+  .experience-grooming__list li + li {
+    margin-top: clamp(0.55rem, 1.75vw, 0.8rem);
   }
 
   .experience-grooming__figure {
@@ -239,6 +247,14 @@
 }
 
 @media (max-width: 639.98px) {
+  .experience-grooming__list {
+    margin-top: clamp(1rem, 3.5vw, 1.5rem);
+  }
+
+  .experience-grooming__list li + li {
+    margin-top: clamp(0.45rem, 1.5vw, 0.65rem);
+  }
+
   .experience-grooming__figure {
     margin-bottom: clamp(-4rem, -10vw, -5.75rem);
     transform: translateY(clamp(0.35rem, 1.25vw, 0.85rem));

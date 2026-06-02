@@ -100,6 +100,12 @@
   text-align: center;
 }
 
+@media (max-width: 767.98px) {
+  .experience-mission__heading {
+    font-size: clamp(2.95rem, 10.5vw, 4rem);
+  }
+}
+
 @media (min-width: 768px) {
   .experience-mission__body {
     font-size: 40px;

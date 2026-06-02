@@ -351,12 +351,26 @@
 
   .experience-step-section__subtitle {
     font-size: clamp(1.35rem, 5.5vw, 2.25rem);
-    margin-top: clamp(1.5rem, 5vw, 2.5rem);
+    margin-top: clamp(0.65rem, 2.5vw, 1rem);
+    gap: clamp(0.2rem, 1vw, 0.45rem);
   }
 
   .experience-step-section__subtitle-line {
     white-space: normal;
     overflow-wrap: break-word;
+  }
+
+  .experience-step-section__list {
+    margin-top: clamp(1.15rem, 3.5vw, 1.75rem);
+    gap: clamp(0.75rem, 2.2vw, 1.1rem);
+  }
+
+  .experience-step-section__nav {
+    margin-top: clamp(1.75rem, 4.5vw, 2.5rem);
+  }
+
+  #countryside .experience-step-section__copy {
+    margin-top: clamp(0.65rem, 2.5vw, 1.1rem);
   }
 }
 
@@ -372,5 +386,18 @@
 
   .experience-step-section__number {
     font-size: clamp(2.15rem, 14vw, 3.75rem);
+  }
+
+  #countryside .experience-step-section__copy {
+    margin-top: clamp(1rem, 4vw, 1.5rem);
+  }
+
+  .experience-step-section__subtitle {
+    margin-top: clamp(0.45rem, 2vw, 0.75rem);
+  }
+
+  .experience-step-section__list {
+    margin-top: clamp(0.9rem, 3vw, 1.35rem);
+    gap: clamp(0.55rem, 1.8vw, 0.85rem);
   }
 }
