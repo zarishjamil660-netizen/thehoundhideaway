@@ -516,7 +516,7 @@
   }
 
   .hero__begins {
-    top: clamp(7rem, 23vw, 10rem);
+    top: clamp(5.75rem, 19vw, 8.5rem);
     right: clamp(-0.35rem, -1.2vw, 0.2rem);
     left: auto;
     transform: none;
