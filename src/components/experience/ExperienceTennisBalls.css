@@ -1,10 +1,3 @@
-/* Override global img { max-width: 100% } */
-.experience-balls__ball,
-.experience-balls__book-art {
-  max-width: none !important;
-  min-width: 0;
-}
-
 .experience-balls {
   position: relative;
   z-index: 10;
@@ -26,10 +19,6 @@
   --ball-center-nudge-y: clamp(-10.5rem, -13.5vw, -5rem);
   --ball-book-nudge-y: clamp(4.5rem, 9vw, 7.5rem);
   --ball-book-nudge-x: clamp(3.5rem, 6.5vw, 6.5rem);
-  --book-text-left: 36%;
-  --book-text-top: 57%;
-  --book-text-rotate: 33deg;
-  --book-ball-rotate: 84deg;
 
   position: relative;
   box-sizing: border-box;
@@ -39,123 +28,6 @@
   min-height: var(--ball-stage);
   margin-inline: auto;
   overflow: visible;
-}
-
-.experience-balls__ball {
-  position: absolute;
-  display: block;
-  height: auto;
-  object-fit: contain;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Large ball — anchored left, cropped at left + bottom edges */
-.experience-balls__ball--left {
-  left: 0;
-  bottom: calc(var(--ball-left) * -0.12);
-  width: var(--ball-left);
-  z-index: 1;
-  transform: translate(calc(var(--ball-left) * -0.5), var(--ball-left-nudge-y)) rotate(-48deg);
-  transform-origin: 60% 54%;
-}
-
-/* Smallest ball — centered, above left + book */
-.experience-balls__ball--center {
-  left: 50%;
-  top: 0;
-  width: var(--ball-center);
-  z-index: 2;
-  translate: calc(-50% + var(--ball-center-nudge-x)) var(--ball-center-nudge-y);
-}
-
-/* Reference: largest — right, cropped top + right + bottom */
-.experience-balls__book {
-  position: absolute;
-  top: calc(var(--ball-book) * -0.42);
-  right: calc(var(--ball-book) * -0.44);
-  z-index: 3;
-  translate: var(--ball-book-nudge-x) var(--ball-book-nudge-y);
-  display: block;
-  width: var(--ball-book);
-  line-height: 0;
-  text-decoration: none;
-}
-
-.experience-balls__book-inner {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 50%;
-  transform: rotate(var(--book-ball-rotate));
-  transform-origin: 50% 50%;
-}
-
-.experience-balls__book-art {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.experience-balls__book-text {
-  position: absolute;
-  z-index: 4;
-  left: var(--book-text-left);
-  top: var(--book-text-top);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0.04em;
-  width: max-content;
-  max-width: none;
-  padding: 0;
-  transform: translate(-50%, -50%) rotate(var(--book-text-rotate));
-  transform-origin: center center;
-  font-family: var(--font-serif);
-  font-weight: 400;
-  color: var(--thh-forest-deep);
-  text-align: center;
-  line-height: 0.82;
-  pointer-events: none;
-  font-size: clamp(1.4rem, 3.2vw, 3.6rem);
-}
-
-.experience-balls__book-line {
-  display: block;
-  font-size: 1em;
-  letter-spacing: -0.02em;
-  white-space: nowrap;
-}
-
-.experience-balls__book-line--mid {
-  font-size: 0.55em;
-  margin-block: 0.04em;
-}
-
-.experience-balls__book-line:first-child {
-  font-size: 1.35em;
-}
-
-.experience-balls__book-line:last-child {
-  font-size: 2.6em;
-  margin-left: 0.32em;
-}
-
-.experience-balls__book:focus-visible .experience-balls__book-inner {
-  outline: 2px solid var(--thh-mint-soft);
-  outline-offset: 4px;
-  border-radius: 50%;
-}
-
-.experience-balls__book:hover .experience-balls__book-art {
-  filter: brightness(1.04);
 }
 
 @media (min-width: 1024px) {
@@ -169,32 +41,6 @@
     --ball-center-nudge-y: -10.75rem;
     --ball-book-nudge-y: 8rem;
     --ball-book-nudge-x: 9.5rem;
-    --book-text-left: 37%;
-    --book-text-top: 58%;
-    --book-text-rotate: 35deg;
-    --book-ball-rotate: 96deg;
-  }
-
-  .experience-balls__ball--left {
-    left: 0;
-    bottom: -9.5rem;
-    transform: translate(-30.5rem, var(--ball-left-nudge-y)) rotate(-48deg);
-  }
-
-  .experience-balls__ball--center {
-    left: 50%;
-    top: 0;
-    translate: calc(-50% + var(--ball-center-nudge-x)) var(--ball-center-nudge-y);
-  }
-
-  .experience-balls__book {
-    top: -41rem;
-    right: -45.5rem;
-  }
-
-  .experience-balls__book-text {
-    font-size: 3.2rem;
-    line-height: 0.84;
   }
 }
 
@@ -205,12 +51,6 @@
     --ball-left: clamp(26rem, 60vw, 46rem);
     --ball-center: clamp(18rem, 39vw, 28rem);
   }
-
-  .experience-balls__ball--center {
-    left: 50%;
-    top: 0;
-    translate: calc(-50% + var(--ball-center-nudge-x)) var(--ball-center-nudge-y);
-  }
 }
 
 @media (max-width: 639.98px) {
@@ -219,41 +59,5 @@
     --ball-book: clamp(39rem, 120vw, 49rem);
     --ball-left: clamp(25rem, 81vw, 32rem);
     --ball-center: clamp(16rem, 53vw, 21rem);
-  }
-
-  .experience-balls__ball--left {
-    left: 0;
-    bottom: calc(var(--ball-left) * -0.12);
-    transform: translate(calc(var(--ball-left) * -0.54), var(--ball-left-nudge-y)) rotate(-48deg);
-  }
-
-  .experience-balls__ball--center {
-    left: 50%;
-    top: 0;
-    translate: calc(-50% + var(--ball-center-nudge-x)) var(--ball-center-nudge-y);
-  }
-
-  .experience-balls__book {
-    top: calc(var(--ball-book) * -0.38);
-    right: calc(var(--ball-book) * -0.42);
-    translate: clamp(2rem, 5vw, 4rem) var(--ball-book-nudge-y);
-  }
-
-  .experience-balls__book-text {
-    max-width: 24%;
-    font-size: clamp(1.1rem, 4.5vw, 1.9rem);
-  }
-}
-
-@media (max-width: 767.98px) {
-  .experience-balls__stage {
-    --book-text-top: 59%;
-    --book-text-rotate: 16deg;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .experience-balls__book:hover .experience-balls__book-art {
-    filter: none;
   }
 }

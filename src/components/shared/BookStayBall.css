@@ -5,6 +5,11 @@
 
 .book-stay-ball {
   --book-ball-rotate: 58deg;
+  --book-spin-duration: 24s;
+  /* Pivot must sit on the ball disc's visual centre (the disc is off-centre
+     inside the PNG + shifted by --book-ball-rotate), otherwise rotate() makes
+     the disc orbit instead of spinning in place. */
+  --book-spin-origin: 42% 70%;
   --book-text-left: 44%;
   --book-text-top: 65%;
   --book-text-rotate: 0deg;
@@ -12,31 +17,61 @@
   position: relative;
   display: block;
   width: min(clamp(28rem, 95vw, 102rem), 100%);
+  aspect-ratio: 1 / 1;
   margin-inline: auto;
-  overflow: visible;
   line-height: 0;
   text-decoration: none;
 }
 
-.book-stay-ball__inner {
+/* Position slot — never animated, never rotated */
+.book-stay-ball__wrapper {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+/* Only this layer spins — transform is rotate-only via keyframes.
+   transform-origin is the ball disc's visual centre so it spins in place. */
+.book-stay-ball__ball {
   position: relative;
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  border-radius: 50%;
+  height: 100%;
+  animation: book-stay-ball-spin var(--book-spin-duration) linear infinite;
+  transform-origin: var(--book-spin-origin);
+}
+
+@keyframes book-stay-ball-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Static art framing — separate element so it never fights the spin animation */
+.book-stay-ball__art-orient {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   transform: rotate(var(--book-ball-rotate));
-  transform-origin: 50% 50%;
+  transform-origin: center center;
+  pointer-events: none;
 }
 
 .book-stay-ball__art {
   position: absolute;
   inset: 0;
-  z-index: 1;
   display: block;
   width: 100%;
   height: 100%;
   object-fit: contain;
+  pointer-events: none;
 }
 
 .book-stay-ball__text {
@@ -52,6 +87,7 @@
   width: max-content;
   max-width: 18%;
   transform: translate(-50%, -50%) rotate(var(--book-text-rotate));
+  transform-origin: center center;
   font-family: var(--font-serif);
   font-weight: 400;
   color: var(--thh-forest-deep);
@@ -73,7 +109,7 @@
   margin-block: 0.06em;
 }
 
-.book-stay-ball:focus-visible .book-stay-ball__inner {
+.book-stay-ball:focus-visible .book-stay-ball__wrapper {
   outline: 2px solid var(--thh-mint-soft);
   outline-offset: 4px;
   border-radius: 50%;
@@ -84,13 +120,10 @@
 }
 
 @media (max-width: 767.98px) {
-  .book-stay-ball {
-    width: min(100vw, 40rem);
-    flex-shrink: 0;
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center):not(.book-stay-ball--contact) {
+    width: min(100vw, 80rem);
     --book-text-top: 66%;
     --book-text-rotate: -14deg;
-    transform: scale(2);
-    transform-origin: center center;
   }
 
   .book-stay-ball__text {
@@ -100,13 +133,13 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
-  .book-stay-ball {
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center):not(.book-stay-ball--contact) {
     --book-text-rotate: 4deg;
   }
 }
 
 @media (min-width: 1024px) {
-  .book-stay-ball {
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center):not(.book-stay-ball--contact) {
     width: min(102rem, 100%);
     --book-ball-rotate: 62deg;
     --book-text-left: 43%;
@@ -121,7 +154,211 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .book-stay-ball__ball {
+    animation: none;
+    transform: none;
+  }
+
   .book-stay-ball:hover .book-stay-ball__art {
     filter: none;
   }
+}
+
+/* —— Experience page (absolute stage placement) —— */
+.book-stay-ball--experience {
+  position: absolute;
+  top: calc(var(--ball-book) * -0.42);
+  right: calc(var(--ball-book) * -0.44);
+  z-index: 3;
+  width: var(--ball-book);
+  margin: 0;
+  --book-ball-rotate: 84deg;
+  --book-spin-origin: 35% 65%;
+  --book-text-left: 36%;
+  --book-text-top: 57%;
+  --book-text-rotate: 33deg;
+}
+
+.book-stay-ball--experience .book-stay-ball__wrapper {
+  translate: var(--ball-book-nudge-x) var(--ball-book-nudge-y);
+}
+
+.book-stay-ball--experience .book-stay-ball__text {
+  gap: 0.04em;
+  max-width: none;
+  line-height: 0.82;
+  font-size: clamp(1.4rem, 3.2vw, 3.6rem);
+}
+
+.book-stay-ball--experience .book-stay-ball__line--mid {
+  font-size: 0.55em;
+  margin-block: 0.04em;
+}
+
+.book-stay-ball--experience .book-stay-ball__line:first-child {
+  font-size: 1.35em;
+}
+
+.book-stay-ball--experience .book-stay-ball__line:last-child {
+  font-size: 2.6em;
+  margin-left: 0.32em;
+}
+
+@media (min-width: 1024px) {
+  .book-stay-ball--experience {
+    top: -41rem;
+    right: -45.5rem;
+    --book-ball-rotate: 96deg;
+    --book-spin-origin: 32% 61%;
+    --book-text-left: 37%;
+    --book-text-top: 58%;
+    --book-text-rotate: 35deg;
+  }
+
+  .book-stay-ball--experience .book-stay-ball__text {
+    font-size: 3.2rem;
+    line-height: 0.84;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .book-stay-ball--experience {
+    top: calc(var(--ball-book) * -0.38);
+    right: calc(var(--ball-book) * -0.42);
+  }
+
+  .book-stay-ball--experience .book-stay-ball__wrapper {
+    translate: clamp(2rem, 5vw, 4rem) var(--ball-book-nudge-y);
+  }
+
+  .book-stay-ball--experience .book-stay-ball__text {
+    max-width: 24%;
+    font-size: clamp(1.1rem, 4.5vw, 1.9rem);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .book-stay-ball--experience {
+    --book-text-top: 59%;
+    --book-text-rotate: 16deg;
+  }
+}
+
+/* —— Experience decorative balls (no text, same spin as book ball) —— */
+.book-stay-ball--experience-left,
+.book-stay-ball--experience-center {
+  position: absolute;
+  margin: 0;
+  pointer-events: none;
+}
+
+.book-stay-ball--experience-left .book-stay-ball__wrapper,
+.book-stay-ball--experience-center .book-stay-ball__wrapper {
+  overflow: visible;
+  border-radius: 0;
+}
+
+.book-stay-ball--experience-left {
+  left: 0;
+  bottom: calc(var(--ball-left) * -0.12);
+  width: var(--ball-left);
+  z-index: 1;
+  transform: translate(calc(var(--ball-left) * -0.5), var(--ball-left-nudge-y));
+  --book-ball-rotate: -48deg;
+  --book-spin-origin: 71% 52%;
+}
+
+.book-stay-ball--experience-center {
+  left: 50%;
+  top: 0;
+  width: var(--ball-center);
+  z-index: 2;
+  translate: calc(-50% + var(--ball-center-nudge-x)) var(--ball-center-nudge-y);
+  --book-ball-rotate: 0deg;
+  --book-spin-origin: 63% 67%;
+}
+
+@media (min-width: 1024px) {
+  .book-stay-ball--experience-left {
+    left: 0;
+    bottom: -9.5rem;
+    transform: translate(-30.5rem, var(--ball-left-nudge-y));
+  }
+
+  .book-stay-ball--experience-center {
+    left: 50%;
+    top: 0;
+    translate: calc(-50% + var(--ball-center-nudge-x)) var(--ball-center-nudge-y);
+  }
+}
+
+@media (max-width: 639.98px) {
+  .book-stay-ball--experience-left {
+    left: 0;
+    bottom: calc(var(--ball-left) * -0.12);
+    transform: translate(calc(var(--ball-left) * -0.54), var(--ball-left-nudge-y));
+  }
+
+  .book-stay-ball--experience-center {
+    left: 50%;
+    top: 0;
+    translate: calc(-50% + var(--ball-center-nudge-x)) var(--ball-center-nudge-y);
+  }
+}
+
+/* —— Contact page (baked-in text on Group 25 art) —— */
+.book-stay-ball--contact {
+  --book-size: clamp(7.5rem, 34vw, 10.5rem);
+  --book-ball-rotate: 0deg;
+  --book-spin-duration: 20s;
+  /* Group 25 disc (text baked in) sits left-of-centre in the PNG */
+  --book-spin-origin: 31% 50%;
+
+  position: relative;
+  z-index: 3;
+  align-self: flex-start;
+  margin: clamp(1.5rem, 5vw, 2.5rem) 0 0;
+  width: var(--book-size);
+}
+
+@media (max-width: 1023.98px) {
+  .book-stay-ball--contact {
+    --book-size: clamp(8.5rem, 36vw, 11rem);
+    align-self: flex-start;
+    margin-left: 0;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .book-stay-ball--contact {
+    margin-top: clamp(1.75rem, 6vw, 2.75rem);
+    --book-size: clamp(7.75rem, 34vw, 10rem);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023.98px) {
+  .book-stay-ball--contact {
+    --book-size: clamp(9rem, 32vw, 12rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .book-stay-ball--contact {
+    position: absolute;
+    bottom: clamp(-16rem, -25vw, -18rem);
+    left: clamp(-4.4rem, -5.5vw, -2.75rem);
+    margin: 0;
+    --book-size: clamp(10.5rem, 43vw, 1280px);
+  }
+}
+
+@media (min-width: 1921px) {
+  .book-stay-ball--contact {
+    --book-size: min(1280px, calc(100vw - 2rem));
+  }
+}
+
+.contact-page .book-stay-ball--contact:focus-visible .book-stay-ball__wrapper {
+  outline-color: var(--thh-mint-soft);
 }

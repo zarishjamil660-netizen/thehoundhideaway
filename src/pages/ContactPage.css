@@ -488,73 +488,6 @@ main.thh-page--contact + .site-footer {
   color: var(--cp-mint);
 }
 
-/* Book stay ball — fixed slot; gentle circular drift */
-@keyframes contact-book-orbit {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  25% {
-    transform: translate3d(0.55rem, -0.45rem, 0);
-  }
-
-  50% {
-    transform: translate3d(0, -0.85rem, 0);
-  }
-
-  75% {
-    transform: translate3d(-0.55rem, -0.45rem, 0);
-  }
-}
-
-.contact-page__book {
-  --book-size: clamp(7.5rem, 34vw, 10.5rem);
-  position: relative;
-  z-index: 3;
-  align-self: flex-start;
-  margin: clamp(1.5rem, 5vw, 2.5rem) 0 0;
-  display: block;
-  width: var(--book-size);
-  line-height: 0;
-  text-decoration: none;
-  overflow: visible;
-}
-
-.contact-page__book img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  transform-origin: center center;
-  animation: contact-book-orbit 20s ease-in-out infinite;
-  will-change: transform;
-}
-
-.contact-page__book:hover img {
-  animation-play-state: paused;
-  filter: brightness(1.05);
-  transform: scale(1.03);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .contact-page__book img {
-    animation: none;
-    will-change: auto;
-  }
-
-  .contact-page__book:hover img {
-    transform: none;
-  }
-}
-
-.contact-page__book:focus-visible {
-  outline: 2px solid var(--cp-mint);
-  outline-offset: 4px;
-  border-radius: 50%;
-}
-
 @media (max-width: 1023.98px) {
   main.thh-page--contact + .site-footer {
     padding-top: clamp(2rem, 6vw, 3.5rem);
@@ -568,41 +501,6 @@ main.thh-page--contact + .site-footer {
   .contact-page__form-section {
     padding-inline: clamp(1rem, 4vw, 2rem);
     box-sizing: border-box;
-  }
-
-  .contact-page__book {
-    --book-size: clamp(8.5rem, 36vw, 11rem);
-    align-self: flex-start;
-    margin-left: 0;
-    margin-right: auto;
-    overflow: visible;
-  }
-}
-
-@media (max-width: 767px) {
-  .contact-page__book {
-    margin-top: clamp(1.75rem, 6vw, 2.75rem);
-    --book-size: clamp(7.75rem, 34vw, 10rem);
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023.98px) {
-  .contact-page__book {
-    --book-size: clamp(9rem, 32vw, 12rem);
-  }
-}
-
-@media (min-width: 1024px) {
-  .contact-page__body {
-    padding-bottom: clamp(10rem, 26vw, 18rem);
-  }
-
-  .contact-page__book {
-    position: absolute;
-    bottom: clamp(-16rem, -25vw, -18rem);
-    left: clamp(-4.4rem, -5.5vw, -2.75rem);
-    margin: 0;
-    --book-size: clamp(10.5rem, 43vw, 1280px);
   }
 }
 
@@ -634,6 +532,10 @@ main.thh-page--contact + .site-footer {
 }
 
 @media (min-width: 1024px) {
+  .contact-page__body {
+    padding-bottom: clamp(10rem, 26vw, 18rem);
+  }
+
   .contact-page__dog-parallax {
     width: min(54%, 1040px);
     max-width: 1040px;
@@ -745,10 +647,5 @@ main.thh-page--contact + .site-footer {
     height: 117px;
     min-height: 117px;
     max-width: 100%;
-  }
-
-  /* Comp: book their stay ball — scaled up from 927×927 */
-  .contact-page__book {
-    --book-size: min(1280px, calc(100vw - 2rem));
   }
 }

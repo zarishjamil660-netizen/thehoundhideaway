@@ -116,9 +116,7 @@ export function SuitesPricingPage() {
       </section>
 
       <section className="suites-pricing__book-ball" aria-label="Book their stay">
-        <ScrollReveal variant="fade-up" delay={120} distance={28}>
-          <BookStayBall />
-        </ScrollReveal>
+        <BookStayBall />
       </section>
 
       <section className="suites-pricing__closing" aria-label="Book a stay">
