@@ -1,0 +1,88 @@
+/* Match home page 1 dog slot; only the canvas layer differs from PNG stack */
+.hero__dog-wrap--3d {
+  position: relative;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero__dog-wrap--3d .hero__dog-stack {
+  position: relative;
+  width: 100%;
+  transform-origin: 50% 58%;
+  transform-style: preserve-3d;
+  perspective: 900px;
+  overflow: visible;
+  padding-top: clamp(0.85rem, 2.2vw, 1.75rem);
+  padding-inline: clamp(0.35rem, 1.2vw, 0.85rem);
+  margin-inline: clamp(-0.35rem, -1.2vw, -0.85rem);
+  will-change: transform;
+}
+
+.hero__dog-3d-canvas {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 664 / 1428;
+  height: auto;
+  margin-inline: auto;
+  line-height: 0;
+  overflow: visible;
+}
+
+.hero__dog-3d-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero__dog-3d-fallback-wrap {
+  position: relative;
+  width: 100%;
+}
+
+.hero__dog-3d-fallback-head {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+.hero__dog-3d-canvas--loading {
+  aspect-ratio: 664 / 1428;
+  width: 100%;
+  min-height: 0;
+}
+
+/* Home 2: show hero copy immediately (avoid blank mint while reveal waits) */
+.hero--home-2 .hero__content--visible.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__dog-wrap--3d .hero__dog-stack {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+@media (max-width: 1023.98px) {
+  .hero--home-2 .hero__dog-wrap--3d {
+    width: min(90%, 44rem);
+    margin-top: clamp(6rem, 16vw, 10rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero--home-2 .hero__dog-stack {
+    transform: scale(1.02);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 639.98px) {
+  .hero--home-2 .hero__dog-wrap--3d {
+    width: min(104%, 35rem);
+    margin-top: clamp(2rem, 7vw, 4rem);
+    margin-left: clamp(-3.35rem, -11.5vw, -1.85rem);
+    margin-right: auto;
+  }
+}

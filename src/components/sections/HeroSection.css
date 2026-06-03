@@ -172,6 +172,18 @@
   width: 100%;
 }
 
+.hero__dog-figure-wrap--single {
+  transform-origin: 50% 42%;
+  will-change: transform;
+}
+
+.hero__dog--illustration {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 18px rgb(0 0 0 / 0.22));
+}
+
 .hero__dog-body {
   position: relative;
   z-index: 1;
@@ -355,6 +367,8 @@
 @media (prefers-reduced-motion: reduce) {
   .hero__dog-wrap,
   .hero__dog-stack,
+  .hero__dog-figure-wrap,
+  .hero__dog-figure-wrap--single,
   .hero__dog-body,
   .hero__dog-head-container,
   .hero__dog-head,
@@ -592,5 +606,32 @@
 @media (min-width: 1921px) {
   .hero__bg-img {
     max-height: calc(120rem * 0.182);
+  }
+}
+
+/* Home 1 @ 1920×1080, 100% zoom — 150% zoom ≈ 1280px viewport, left unchanged */
+@media (min-width: 1680px) and (max-width: 1920px) {
+  .hero:not(.hero--home-2) .hero__cluster {
+    min-height: clamp(64rem, 70vw, 82rem);
+  }
+
+  .hero:not(.hero--home-2) .hero__dog-wrap {
+    width: min(96%, 94rem);
+    margin-top: clamp(9.5rem, 11.5vw, 13.5rem);
+  }
+
+  .hero:not(.hero--home-2) .hero__dog--illustration {
+    transform: scale(1.14);
+    transform-origin: 50% 42%;
+  }
+
+  .hero:not(.hero--home-2) .hero__sub {
+    margin-top: clamp(5.5rem, 7.5vw, 7rem);
+    transform: translateY(1.25rem);
+  }
+
+  .hero:not(.hero--home-2) .hero__actions {
+    margin-top: clamp(3rem, 4.5vw, 3.75rem);
+    transform: translateY(1.25rem);
   }
 }

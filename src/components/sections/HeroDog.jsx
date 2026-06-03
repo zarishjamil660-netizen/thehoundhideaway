@@ -1,23 +1,22 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
-import thhDogBody from '../../assets/THH dog body.png'
-import thhDogHead from '../../assets/THH dog head.png'
+import thhDogIllustration from '../../assets/THH Dog Illustration II.png'
 
-const NECK_ORIGIN = '50% 22%'
+/** Match home-2 3D sway: sin(t * 0.42) * 0.1 rad ≈ ±5.7deg */
+const SWAY_DEG = 5.7
+const SWAY_DURATION = 7.5
 
 export function HeroDog() {
   const wrapRef = useRef(null)
   const stackRef = useRef(null)
-  const bodyRef = useRef(null)
-  const headMotionRef = useRef(null)
+  const figureRef = useRef(null)
 
   useEffect(() => {
     const wrap = wrapRef.current
     const stack = stackRef.current
-    const body = bodyRef.current
-    const headMotion = headMotionRef.current
+    const figure = figureRef.current
 
-    if (!wrap || !stack || !body || !headMotion) {
+    if (!wrap || !stack || !figure) {
       return undefined
     }
 
@@ -26,13 +25,13 @@ export function HeroDog() {
       return undefined
     }
 
-    gsap.set(body, { force3D: true })
-    gsap.set(headMotion, {
+    gsap.set(wrap, { transformOrigin: '50% 42%', force3D: true })
+    gsap.set(stack, { transformOrigin: '50% 58%', force3D: true })
+    gsap.set(figure, {
       transformPerspective: 1200,
-      transformOrigin: NECK_ORIGIN,
+      transformOrigin: '50% 42%',
       force3D: true,
     })
-    gsap.set(wrap, { transformOrigin: '50% 42%', force3D: true })
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -41,11 +40,7 @@ export function HeroDog() {
         { scale: 1, y: 0, duration: 3.2, ease: 'power2.out' },
       )
 
-      gsap.set(wrap, { scale: 1, y: 0 })
-      gsap.set(stack, { scaleX: 1, scaleY: 1, y: 0 })
-      gsap.set(body, { scaleX: 1, scaleY: 1, y: 0 })
-
-      gsap.to(body, {
+      gsap.to(stack, {
         y: -1.8,
         scaleY: 1.003,
         duration: 5.6,
@@ -55,12 +50,11 @@ export function HeroDog() {
       })
 
       gsap.fromTo(
-        headMotion,
-        { rotationY: -10, x: -2 },
+        figure,
+        { rotationY: -SWAY_DEG },
         {
-          rotationY: 10,
-          x: 2,
-          duration: 6.8,
+          rotationY: SWAY_DEG,
+          duration: SWAY_DURATION,
           ease: 'sine.inOut',
           yoyo: true,
           repeat: -1,
@@ -79,36 +73,19 @@ export function HeroDog() {
         ref={stackRef}
         className="hero__dog-stack"
         role="img"
-        aria-label="Illustration of a grey dog, mascot for The Hound Hideaway"
+        aria-label="Illustration of a grey dog in a fedora, mascot for The Hound Hideaway"
       >
-        <div className="hero__dog-figure-wrap">
-          <div ref={bodyRef} className="hero__dog-body">
-            <img
-              src={thhDogBody}
-              alt=""
-              className="hero__dog hero__dog--body"
-              width={664}
-              height={1428}
-              loading="eager"
-              decoding="async"
-              aria-hidden
-            />
-          </div>
-
-          <div className="hero__dog-head-container">
-            <div ref={headMotionRef} className="hero__dog-head">
-              <img
-                src={thhDogHead}
-                alt=""
-                className="hero__dog hero__dog--head"
-                width={664}
-                height={1428}
-                loading="eager"
-                decoding="async"
-                aria-hidden
-              />
-            </div>
-          </div>
+        <div ref={figureRef} className="hero__dog-figure-wrap hero__dog-figure-wrap--single">
+          <img
+            src={thhDogIllustration}
+            alt=""
+            className="hero__dog hero__dog--illustration"
+            width={664}
+            height={1428}
+            loading="eager"
+            decoding="async"
+            aria-hidden
+          />
         </div>
       </div>
     </div>
