@@ -1,6 +1,7 @@
 import { Component, Suspense, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import gsap from 'gsap'
+import { DOG_BOB_DURATION, DOG_BOB_SCALE_Y, DOG_BOB_Y } from '../../lib/dogHeroMotion'
 import thhDogHead from '../../assets/THH dog head.png'
 import thhDogBody from '../../assets/THH dog body.png'
 import { CartoonDogModel } from '../three/CartoonDogModel'
@@ -105,9 +106,9 @@ export function HeroDog3D() {
       )
 
       gsap.to(canvasWrap, {
-        y: -1.8,
-        scaleY: 1.003,
-        duration: 5.6,
+        y: DOG_BOB_Y,
+        scaleY: DOG_BOB_SCALE_Y,
+        duration: DOG_BOB_DURATION,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,

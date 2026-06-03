@@ -1,22 +1,26 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import thhDogIllustration from '../../assets/THH Dog Illustration II.png'
-
-/** Match home-2 3D sway: sin(t * 0.42) * 0.1 rad ≈ ±5.7deg */
-const SWAY_DEG = 5.7
-const SWAY_DURATION = 7.5
+import {
+  DOG_BOB_DURATION,
+  DOG_BOB_SCALE_Y,
+  DOG_BOB_Y,
+  dogSwayDegrees2D,
+  getDogMotionElapsedSeconds,
+  isMobileHeroDogViewport,
+} from '../../lib/dogHeroMotion'
 
 export function HeroDog() {
   const wrapRef = useRef(null)
   const stackRef = useRef(null)
-  const figureRef = useRef(null)
+  const bobRef = useRef(null)
 
   useEffect(() => {
     const wrap = wrapRef.current
     const stack = stackRef.current
-    const figure = figureRef.current
+    const bob = bobRef.current
 
-    if (!wrap || !stack || !figure) {
+    if (!wrap || !stack || !bob) {
       return undefined
     }
 
@@ -25,11 +29,18 @@ export function HeroDog() {
       return undefined
     }
 
-    gsap.set(wrap, { transformOrigin: '50% 42%', force3D: true })
-    gsap.set(stack, { transformOrigin: '50% 58%', force3D: true })
-    gsap.set(figure, {
-      transformPerspective: 1200,
+    const motionStartMs = performance.now()
+    const mobileLayout = isMobileHeroDogViewport()
+
+    gsap.set(wrap, { transformOrigin: '50% 42%', force3D: true, transformPerspective: 1200 })
+    gsap.set(stack, {
       transformOrigin: '50% 42%',
+      force3D: true,
+      transformPerspective: mobileLayout ? 420 : 700,
+    })
+    gsap.set(bob, {
+      transformOrigin: mobileLayout ? 'top center' : '50% 58%',
+      scale: mobileLayout ? 1.02 : 1,
       force3D: true,
     })
 
@@ -40,26 +51,27 @@ export function HeroDog() {
         { scale: 1, y: 0, duration: 3.2, ease: 'power2.out' },
       )
 
-      gsap.to(stack, {
-        y: -1.8,
-        scaleY: 1.003,
-        duration: 5.6,
+      gsap.to(bob, {
+        y: DOG_BOB_Y,
+        scaleY: DOG_BOB_SCALE_Y,
+        duration: DOG_BOB_DURATION,
         ease: 'sine.inOut',
         yoyo: true,
         repeat: -1,
       })
 
-      gsap.fromTo(
-        figure,
-        { rotationY: -SWAY_DEG },
-        {
-          rotationY: SWAY_DEG,
-          duration: SWAY_DURATION,
-          ease: 'sine.inOut',
-          yoyo: true,
-          repeat: -1,
-        },
-      )
+      const tick = () => {
+        const elapsed = getDogMotionElapsedSeconds(motionStartMs)
+        gsap.set(stack, {
+          rotationY: dogSwayDegrees2D(elapsed, { mobile: isMobileHeroDogViewport() }),
+          force3D: true,
+        })
+      }
+      gsap.ticker.add(tick)
+
+      return () => {
+        gsap.ticker.remove(tick)
+      }
     }, wrap)
 
     return () => {
@@ -68,14 +80,14 @@ export function HeroDog() {
   }, [])
 
   return (
-    <div ref={wrapRef} className="hero__dog-wrap">
+    <div ref={wrapRef} className="hero__dog-wrap hero__dog-wrap--animated">
       <div
         ref={stackRef}
         className="hero__dog-stack"
         role="img"
         aria-label="Illustration of a grey dog in a fedora, mascot for The Hound Hideaway"
       >
-        <div ref={figureRef} className="hero__dog-figure-wrap hero__dog-figure-wrap--single">
+        <div ref={bobRef} className="hero__dog-bob">
           <img
             src={thhDogIllustration}
             alt=""

@@ -144,6 +144,10 @@
   will-change: transform;
 }
 
+.hero__dog-wrap--animated {
+  perspective: 1200px;
+}
+
 .hero__dog-stack {
   position: relative;
   width: 100%;
@@ -167,14 +171,28 @@
 .hero__dog-figure-wrap {
   position: relative;
   transform-style: preserve-3d;
-  perspective: 1200px;
   overflow: visible;
   width: 100%;
 }
 
-.hero__dog-figure-wrap--single {
-  transform-origin: 50% 42%;
+.hero__dog-bob {
+  position: relative;
+  width: 100%;
+  transform-origin: 50% 58%;
+  transform-style: preserve-3d;
   will-change: transform;
+}
+
+.hero__dog-wrap--animated .hero__dog-stack {
+  transform-style: preserve-3d;
+  perspective: 700px;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.hero__dog-wrap--animated .hero__dog--illustration {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 .hero__dog--illustration {
@@ -367,6 +385,7 @@
 @media (prefers-reduced-motion: reduce) {
   .hero__dog-wrap,
   .hero__dog-stack,
+  .hero__dog-bob,
   .hero__dog-figure-wrap,
   .hero__dog-figure-wrap--single,
   .hero__dog-body,
@@ -424,7 +443,6 @@
     margin-top: clamp(6rem, 16vw, 10rem);
     margin-left: auto;
     margin-right: auto;
-    transform: none;
   }
 
   .hero__begins {
@@ -493,9 +511,8 @@
     margin-right: auto;
   }
 
-  .hero__dog-stack {
-    transform: scale(1.02);
-    transform-origin: top center;
+  .hero__dog-wrap--animated .hero__dog-stack {
+    perspective: 420px;
   }
 
   .hero__begins {
@@ -616,13 +633,8 @@
   }
 
   .hero:not(.hero--home-2) .hero__dog-wrap {
-    width: min(96%, 94rem);
+    width: min(98%, 96rem);
     margin-top: clamp(9.5rem, 11.5vw, 13.5rem);
-  }
-
-  .hero:not(.hero--home-2) .hero__dog--illustration {
-    transform: scale(1.14);
-    transform-origin: 50% 42%;
   }
 
   .hero:not(.hero--home-2) .hero__sub {
