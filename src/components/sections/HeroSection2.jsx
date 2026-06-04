@@ -13,7 +13,9 @@ function HeroDog3DPlaceholder() {
   return (
     <div className="hero__dog-wrap hero__dog-wrap--3d" aria-hidden>
       <div className="hero__dog-stack">
-        <div className="hero__dog-3d-canvas hero__dog-3d-canvas--loading" />
+        <div className="hero__dog-bob">
+          <div className="hero__dog-3d-canvas hero__dog-3d-canvas--loading" />
+        </div>
       </div>
     </div>
   )

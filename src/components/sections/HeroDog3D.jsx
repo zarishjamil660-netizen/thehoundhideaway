@@ -1,7 +1,14 @@
 import { Component, Suspense, useEffect, useRef, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
 import gsap from 'gsap'
-import { DOG_BOB_DURATION, DOG_BOB_SCALE_Y, DOG_BOB_Y } from '../../lib/dogHeroMotion'
+import {
+  DOG_BOB_DURATION,
+  DOG_BOB_SCALE_Y,
+  DOG_BOB_Y,
+  getDog3DRenderConfig,
+  getHero3DViewportMode,
+  isMobileHeroDogViewport,
+} from '../../lib/dogHeroMotion'
 import thhDogHead from '../../assets/THH dog head.png'
 import thhDogBody from '../../assets/THH dog body.png'
 import { CartoonDogModel } from '../three/CartoonDogModel'
@@ -47,10 +54,17 @@ class CanvasErrorBoundary extends Component {
   }
 }
 
-function HeroDog3DCanvas({ motionEnabled }) {
+function HeroDog3DCanvas({ motionEnabled, viewport }) {
+  const { camera } = getDog3DRenderConfig(viewport)
+
   return (
     <Canvas
-      camera={{ position: [0, 0.12, 6.8], fov: 26, near: 0.1, far: 100 }}
+      camera={{
+        position: camera.position,
+        fov: camera.fov,
+        near: 0.1,
+        far: 100,
+      }}
       dpr={[1, 1.5]}
       gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
       style={{ width: '100%', height: '100%', display: 'block' }}
@@ -59,7 +73,7 @@ function HeroDog3DCanvas({ motionEnabled }) {
       <directionalLight position={[4, 6, 5]} intensity={1.25} />
       <directionalLight position={[-3, 2, -2]} intensity={0.4} />
       <Suspense fallback={null}>
-        <CartoonDogModel animate={motionEnabled} />
+        <CartoonDogModel animate={motionEnabled} viewport={viewport} />
       </Suspense>
     </Canvas>
   )
@@ -67,9 +81,13 @@ function HeroDog3DCanvas({ motionEnabled }) {
 
 export function HeroDog3D() {
   const wrapRef = useRef(null)
-  const canvasWrapRef = useRef(null)
+  const stackRef = useRef(null)
+  const bobRef = useRef(null)
   const [motionEnabled, setMotionEnabled] = useState(true)
   const [use3d, setUse3d] = useState(true)
+  const [viewportMode, setViewportMode] = useState(() =>
+    typeof window !== 'undefined' ? getHero3DViewportMode() : 'desktop',
+  )
 
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -85,9 +103,25 @@ export function HeroDog3D() {
   }, [])
 
   useEffect(() => {
+    const mobileMq = window.matchMedia('(max-width: 640px)')
+    const desktop1920Mq = window.matchMedia('(min-width: 1900px) and (max-width: 1940px)')
+
+    const onChange = () => setViewportMode(getHero3DViewportMode())
+
+    onChange()
+    mobileMq.addEventListener('change', onChange)
+    desktop1920Mq.addEventListener('change', onChange)
+    return () => {
+      mobileMq.removeEventListener('change', onChange)
+      desktop1920Mq.removeEventListener('change', onChange)
+    }
+  }, [])
+
+  useEffect(() => {
     const wrap = wrapRef.current
-    const canvasWrap = canvasWrapRef.current
-    if (!wrap || !canvasWrap) {
+    const stack = stackRef.current
+    const bob = bobRef.current
+    if (!wrap || !stack || !bob) {
       return undefined
     }
 
@@ -96,7 +130,19 @@ export function HeroDog3D() {
       return undefined
     }
 
-    gsap.set(wrap, { transformOrigin: '50% 42%', force3D: true })
+    const mobile = isMobileHeroDogViewport()
+
+    gsap.set(wrap, { transformOrigin: '50% 42%', force3D: true, transformPerspective: 1200 })
+    gsap.set(stack, {
+      transformOrigin: '50% 42%',
+      force3D: true,
+      transformPerspective: mobile ? 420 : 700,
+    })
+    gsap.set(bob, {
+      transformOrigin: mobile ? 'top center' : '50% 58%',
+      scale: mobile ? 1.02 : 1,
+      force3D: true,
+    })
 
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -105,7 +151,7 @@ export function HeroDog3D() {
         { scale: 1, y: 0, duration: 3.2, ease: 'power2.out' },
       )
 
-      gsap.to(canvasWrap, {
+      gsap.to(bob, {
         y: DOG_BOB_Y,
         scaleY: DOG_BOB_SCALE_Y,
         duration: DOG_BOB_DURATION,
@@ -119,21 +165,23 @@ export function HeroDog3D() {
   }, [])
 
   return (
-    <div ref={wrapRef} className="hero__dog-wrap hero__dog-wrap--3d">
+    <div ref={wrapRef} className="hero__dog-wrap hero__dog-wrap--3d hero__dog-wrap--animated">
       <div
-        ref={canvasWrapRef}
+        ref={stackRef}
         className="hero__dog-stack"
         role="img"
         aria-label="3D cartoon dog mascot for The Hound Hideaway"
       >
-        <div className="hero__dog-3d-canvas">
-          {use3d ? (
-            <CanvasErrorBoundary>
-              <HeroDog3DCanvas motionEnabled={motionEnabled} />
-            </CanvasErrorBoundary>
-          ) : (
-            <HeroDog2DFallback />
-          )}
+        <div ref={bobRef} className="hero__dog-bob">
+          <div className="hero__dog-3d-canvas">
+            {use3d ? (
+              <CanvasErrorBoundary>
+                <HeroDog3DCanvas motionEnabled={motionEnabled} viewport={viewportMode} />
+              </CanvasErrorBoundary>
+            ) : (
+              <HeroDog2DFallback />
+            )}
+          </div>
         </div>
       </div>
     </div>

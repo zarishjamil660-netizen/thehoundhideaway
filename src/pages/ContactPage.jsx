@@ -3,7 +3,6 @@ import Header from '../components/layout/Header'
 import dogWithPhone from '../assets/Same_dog_with_a_phone_202605160324 1.png'
 import followUsPaw from '../assets/followus.png'
 import { BookStayBall } from '../components/shared/BookStayBall'
-import bookStayBallArt from '../assets/Group 25.png'
 import tennisBall from '../assets/fxemoji_tennisball.png'
 import iconFacebook from '../assets/ic_baseline-facebook.png'
 import iconInstagram from '../assets/mdi_instagram.png'
@@ -191,11 +190,7 @@ export function ContactPage() {
           </form>
         </section>
 
-        <BookStayBall
-          className="book-stay-ball--contact"
-          artSrc={bookStayBallArt}
-          showText={false}
-        />
+        <BookStayBall className="book-stay-ball--contact" />
       </div>
     </main>
   )

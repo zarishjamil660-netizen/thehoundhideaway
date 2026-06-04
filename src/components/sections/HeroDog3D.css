@@ -5,17 +5,8 @@
   pointer-events: none;
 }
 
-.hero__dog-wrap--3d .hero__dog-stack {
-  position: relative;
+.hero__dog-wrap--3d .hero__dog-bob {
   width: 100%;
-  transform-origin: 50% 58%;
-  transform-style: preserve-3d;
-  perspective: 900px;
-  overflow: visible;
-  padding-top: clamp(0.85rem, 2.2vw, 1.75rem);
-  padding-inline: clamp(0.35rem, 1.2vw, 0.85rem);
-  margin-inline: clamp(-0.35rem, -1.2vw, -0.85rem);
-  will-change: transform;
 }
 
 .hero__dog-3d-canvas {
@@ -57,32 +48,33 @@
   transform: none;
 }
 
+@media (max-width: 640px) {
+  .hero--home-2 .hero__dog-wrap--3d {
+    margin-top: clamp(-7.25rem, -15.5vw, -5.75rem);
+  }
+}
+
+/* 1920 @ 100% zoom — taller canvas + feet above copy (150% zoom ≈ 1280px, unchanged) */
+@media (min-width: 1900px) and (max-width: 1940px) {
+  .hero--home-2 .hero__dog-3d-canvas {
+    aspect-ratio: 664 / 1540;
+  }
+
+  .hero--home-2 .hero__dog-wrap--3d {
+    z-index: 3;
+  }
+
+  .hero--home-2 .hero__sub {
+    position: relative;
+    z-index: 1;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .hero__dog-wrap--3d .hero__dog-stack {
+  .hero__dog-wrap--3d .hero__dog-stack,
+  .hero__dog-wrap--3d .hero__dog-bob {
     animation: none !important;
     transform: none !important;
   }
 }
 
-@media (max-width: 1023.98px) {
-  .hero--home-2 .hero__dog-wrap--3d {
-    width: min(90%, 44rem);
-    margin-top: clamp(6rem, 16vw, 10rem);
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero--home-2 .hero__dog-stack {
-    transform: scale(1.02);
-    transform-origin: top center;
-  }
-}
-
-@media (max-width: 639.98px) {
-  .hero--home-2 .hero__dog-wrap--3d {
-    width: min(104%, 35rem);
-    margin-top: clamp(2rem, 7vw, 4rem);
-    margin-left: clamp(-3.35rem, -11.5vw, -1.85rem);
-    margin-right: auto;
-  }
-}

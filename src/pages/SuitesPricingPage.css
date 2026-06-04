@@ -321,8 +321,7 @@
   width: 100%;
   padding: clamp(0.25rem, 1vw, 0.75rem) clamp(0.75rem, 4vw, 1.5rem);
   margin-top: clamp(-0.5rem, -1vw, 0.5rem);
-  overflow: hidden;
-  contain: layout;
+  overflow: visible;
 }
 
 .suites-pricing__book-ball .book-stay-ball {
@@ -333,7 +332,7 @@
 @media (max-width: 767.98px) {
   .suites-pricing__book-ball {
     padding: clamp(5rem, 16vw, 7rem) 0 clamp(3.5rem, 11vw, 5rem);
-    overflow: hidden;
+    overflow: visible;
   }
 
   .suites-pricing__book-ball .book-stay-ball {

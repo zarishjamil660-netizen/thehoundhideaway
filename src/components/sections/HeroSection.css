@@ -633,7 +633,7 @@
     min-height: clamp(64rem, 70vw, 82rem);
   }
 
-  .hero:not(.hero--home-2) .hero__dog-wrap {
+  .hero__dog-wrap {
     width: min(98%, 96rem);
     margin-top: clamp(9.5rem, 11.5vw, 13.5rem);
   }
@@ -646,5 +646,22 @@
   .hero:not(.hero--home-2) .hero__actions {
     margin-top: clamp(3rem, 4.5vw, 3.75rem);
     transform: translateY(1.25rem);
+  }
+}
+
+/* Home 2 @ 1920×1080, 100% zoom — copy below dog feet; 150% zoom ≈ 1280px (out of range) */
+@media (min-width: 1900px) and (max-width: 1940px) {
+  .hero--home-2 .hero__cluster {
+    padding-bottom: clamp(2rem, 3vw, 3rem);
+  }
+
+  .hero--home-2 .hero__sub {
+    margin-top: clamp(7.5rem, 9vw, 8.75rem);
+    transform: none;
+  }
+
+  .hero--home-2 .hero__actions {
+    margin-top: clamp(2.35rem, 3vw, 2.85rem);
+    transform: none;
   }
 }

@@ -4,12 +4,12 @@
 }
 
 .book-stay-ball {
-  --book-ball-rotate: 58deg;
+  --book-ball-rotate: 0deg;
   --book-spin-duration: 24s;
-  /* Pivot must sit on the ball disc's visual centre (the disc is off-centre
-     inside the PNG + shifted by --book-ball-rotate), otherwise rotate() makes
-     the disc orbit instead of spinning in place. */
-  --book-spin-origin: 42% 70%;
+  --book-pivot-x: 50%;
+  --book-pivot-y: 50%;
+  --book-plate-w: 100%;
+  --book-plate-h: 100%;
   --book-text-left: 44%;
   --book-text-top: 65%;
   --book-text-rotate: 0deg;
@@ -23,25 +23,44 @@
   text-decoration: none;
 }
 
-/* Position slot — never animated, never rotated */
 .book-stay-ball__wrapper {
   display: block;
   width: 100%;
   height: 100%;
   position: relative;
-  overflow: hidden;
-  border-radius: 50%;
+  overflow: visible;
 }
 
-/* Only this layer spins — transform is rotate-only via keyframes.
-   transform-origin is the ball disc's visual centre so it spins in place. */
 .book-stay-ball__ball {
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
+}
+
+/*
+ * Hub pattern: position layer (translate only) + spin layer (rotate only).
+ * Never combine translate and rotate on one animated element.
+ */
+.book-stay-ball__hub {
+  position: absolute;
+  left: var(--book-pivot-x);
+  top: var(--book-pivot-y);
+  width: 0;
+  height: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.book-stay-ball--ready .book-stay-ball__spin {
   animation: book-stay-ball-spin var(--book-spin-duration) linear infinite;
-  transform-origin: var(--book-spin-origin);
+}
+
+.book-stay-ball__spin {
+  display: block;
+  width: 0;
+  height: 0;
+  transform-origin: center center;
 }
 
 @keyframes book-stay-ball-spin {
@@ -54,14 +73,16 @@
   }
 }
 
-/* Static art framing — separate element so it never fights the spin animation */
-.book-stay-ball__art-orient {
+/* Full artboard; offset so measured disc centre sits on the hub. */
+.book-stay-ball__plate {
   position: absolute;
-  inset: 0;
-  z-index: 1;
+  left: calc(-1 * var(--book-pivot-x));
+  top: calc(-1 * var(--book-pivot-y));
+  width: var(--book-plate-w);
+  height: var(--book-plate-h);
   transform: rotate(var(--book-ball-rotate));
-  transform-origin: center center;
-  pointer-events: none;
+  transform-origin: var(--book-pivot-x) var(--book-pivot-y);
+  clip-path: circle(var(--book-disc-r, 45%) at var(--book-pivot-x) var(--book-pivot-y));
 }
 
 .book-stay-ball__art {
@@ -113,6 +134,7 @@
   outline: 2px solid var(--thh-mint-soft);
   outline-offset: 4px;
   border-radius: 50%;
+  overflow: visible;
 }
 
 .book-stay-ball:hover .book-stay-ball__art {
@@ -122,6 +144,9 @@
 @media (max-width: 767.98px) {
   .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center):not(.book-stay-ball--contact) {
     width: min(100vw, 80rem);
+  }
+
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center) {
     --book-text-top: 66%;
     --book-text-rotate: -14deg;
   }
@@ -133,7 +158,7 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
-  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center):not(.book-stay-ball--contact) {
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center) {
     --book-text-rotate: 4deg;
   }
 }
@@ -141,7 +166,10 @@
 @media (min-width: 1024px) {
   .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center):not(.book-stay-ball--contact) {
     width: min(102rem, 100%);
-    --book-ball-rotate: 62deg;
+    --book-ball-rotate: 0deg;
+  }
+
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center) {
     --book-text-left: 43%;
     --book-text-top: 64%;
     --book-text-rotate: -6deg;
@@ -154,7 +182,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .book-stay-ball__ball {
+  .book-stay-ball__spin {
     animation: none;
     transform: none;
   }
@@ -172,8 +200,7 @@
   z-index: 3;
   width: var(--ball-book);
   margin: 0;
-  --book-ball-rotate: 84deg;
-  --book-spin-origin: 35% 65%;
+  --book-ball-rotate: 0deg;
   --book-text-left: 36%;
   --book-text-top: 57%;
   --book-text-rotate: 33deg;
@@ -208,8 +235,7 @@
   .book-stay-ball--experience {
     top: -41rem;
     right: -45.5rem;
-    --book-ball-rotate: 96deg;
-    --book-spin-origin: 32% 61%;
+    --book-ball-rotate: 0deg;
     --book-text-left: 37%;
     --book-text-top: 58%;
     --book-text-rotate: 35deg;
@@ -244,7 +270,6 @@
   }
 }
 
-/* —— Experience decorative balls (no text, same spin as book ball) —— */
 .book-stay-ball--experience-left,
 .book-stay-ball--experience-center {
   position: absolute;
@@ -264,8 +289,7 @@
   width: var(--ball-left);
   z-index: 1;
   transform: translate(calc(var(--ball-left) * -0.5), var(--ball-left-nudge-y));
-  --book-ball-rotate: -48deg;
-  --book-spin-origin: 71% 52%;
+  --book-ball-rotate: 0deg;
 }
 
 .book-stay-ball--experience-center {
@@ -275,7 +299,6 @@
   z-index: 2;
   translate: calc(-50% + var(--ball-center-nudge-x)) var(--ball-center-nudge-y);
   --book-ball-rotate: 0deg;
-  --book-spin-origin: 63% 67%;
 }
 
 @media (min-width: 1024px) {
@@ -306,19 +329,29 @@
   }
 }
 
-/* —— Contact page (baked-in text on Group 25 art) —— */
 .book-stay-ball--contact {
   --book-size: clamp(7.5rem, 34vw, 10.5rem);
   --book-ball-rotate: 0deg;
   --book-spin-duration: 20s;
-  /* Group 25 disc (text baked in) sits left-of-centre in the PNG */
-  --book-spin-origin: 31% 50%;
 
+  container-type: size;
   position: relative;
   z-index: 3;
   align-self: flex-start;
   margin: clamp(1.5rem, 5vw, 2.5rem) 0 0;
   width: var(--book-size);
+}
+
+/* Match pricing label scale on the disc (pricing ball is much wider on most breakpoints). */
+.book-stay-ball--contact .book-stay-ball__text {
+  font-size: clamp(0.65rem, 3.9cqw, 4.5rem);
+}
+
+@media (max-width: 767.98px) {
+  .book-stay-ball--contact .book-stay-ball__text {
+    font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+    max-width: 22%;
+  }
 }
 
 @media (max-width: 1023.98px) {
@@ -350,6 +383,11 @@
     left: clamp(-4.4rem, -5.5vw, -2.75rem);
     margin: 0;
     --book-size: clamp(10.5rem, 43vw, 1280px);
+  }
+
+  .book-stay-ball--contact .book-stay-ball__text {
+    max-width: 16%;
+    font-size: clamp(0.65rem, 3.9cqw, 4.5rem);
   }
 }
 
