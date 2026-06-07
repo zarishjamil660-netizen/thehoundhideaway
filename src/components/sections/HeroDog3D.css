@@ -48,9 +48,37 @@
   transform: none;
 }
 
+.hero--home-2 .hero__dog-wrap--3d {
+  translate: 0 clamp(-1.25rem, -2.25vw, -2rem);
+}
+
 @media (max-width: 640px) {
   .hero--home-2 .hero__dog-wrap--3d {
-    margin-top: clamp(-7.25rem, -15.5vw, -5.75rem);
+    margin-top: clamp(-8.75rem, -17.5vw, -7rem);
+  }
+}
+
+@media (min-width: 641px) {
+  .hero--home-2 .hero__dog-wrap--3d {
+    translate: 0 clamp(-1.5rem, -2.75vw, -2.75rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero--home-2 .hero__dog-wrap--3d {
+    z-index: 4;
+    margin-top: clamp(6.25rem, 7.75vw, 9.5rem);
+    translate: 0 clamp(-1.75rem, -3vw, -3rem);
+  }
+
+  .hero--home-2 .hero__dog-3d-canvas {
+    aspect-ratio: 664 / 1520;
+  }
+
+  .hero--home-2 .hero__sub,
+  .hero--home-2 .hero__actions {
+    position: relative;
+    z-index: 1;
   }
 }
 
@@ -61,7 +89,7 @@
   }
 
   .hero--home-2 .hero__dog-wrap--3d {
-    z-index: 3;
+    z-index: 4;
   }
 
   .hero--home-2 .hero__sub {

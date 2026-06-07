@@ -51,16 +51,16 @@ export function getHero3DViewportMode() {
 }
 
 /** GLB hero — tuned to fill the same 664×1428 slot as home-1 illustration. */
-export const DOG_3D_MODEL_SCALE = 2.45
+export const DOG_3D_MODEL_SCALE = 2.22
 /** Smaller + farther camera so full body fits like home-1 illustration (bob adds 1.02). */
 export const DOG_3D_MODEL_SCALE_MOBILE = 2.08
 /** 100% zoom @ 1920 — pull back so paws aren’t clipped by the canvas bottom. */
 export const DOG_3D_MODEL_SCALE_DESKTOP_1920 = 2.18
-export const DOG_3D_CENTER_Y = -0.22
-export const DOG_3D_CENTER_Y_MOBILE = -0.24
-export const DOG_3D_CENTER_Y_DESKTOP_1920 = -0.02
+export const DOG_3D_CENTER_Y = 0.06
+export const DOG_3D_CENTER_Y_MOBILE = -0.14
+export const DOG_3D_CENTER_Y_DESKTOP_1920 = 0.08
 export const DOG_3D_CAMERA = {
-  position: [0, 0.12, 5.55],
+  position: [0, 0.26, 6.35],
   fov: 26,
 }
 export const DOG_3D_CAMERA_MOBILE = {
