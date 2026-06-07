@@ -19,7 +19,7 @@ export function ExperienceHero({ imageSrc, imageAlt }) {
                 A stay that feels
               </p>
               <h1
-                className="experience-hero__title mt-4 [font-family:var(--font-serif)] text-[clamp(7.35rem,25vw,19.25rem)] font-medium leading-[0.82] tracking-[-0.01em] text-[var(--thh-forest-deep)]"
+                className="experience-hero__title mt-4 [font-family:var(--font-serif)] text-[clamp(7.35rem,calc(min(100vw,1280px)*0.25),19.25rem)] font-medium leading-[0.82] tracking-[-0.01em] text-[var(--thh-forest-deep)]"
                 data-experience-reveal
                 style={{ '--experience-delay': '180ms' }}
               >

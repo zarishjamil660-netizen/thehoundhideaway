@@ -1,8 +1,7 @@
 import { useLayoutEffect, useRef } from 'react'
 import maskGroup from '../assets/experience/Mask group.png'
 import maskGroup1 from '../assets/experience/Mask group (1).png'
-import trustIllustrationDesktop from '../assets/experience/ChatGPT Image May 6, 2026, 03_49_23 AM 1.png'
-import trustIllustrationMobile from '../assets/ChatGPT Image May 6, 2026, 03_49_23 AM 1.png'
+import trustIllustrationFullBody from '../assets/ChatGPT Image May 6, 2026, 03_49_23 AM 1.png'
 import groomedDogs from '../assets/experience/groomed dogs 1.png'
 import rescueImage from '../assets/experience/Rescue 1.png'
 import { ExperienceBoarding } from '../components/experience/ExperienceBoarding'
@@ -91,8 +90,8 @@ export function ExperienceCodePage() {
         imageAlt="Illustration of a trainer working with dogs in an outdoor training area"
       />
       <ExperienceTrust
-        desktopImageSrc={trustIllustrationDesktop}
-        mobileImageSrc={trustIllustrationMobile}
+        desktopImageSrc={trustIllustrationFullBody}
+        mobileImageSrc={trustIllustrationFullBody}
         imageAlt="Illustration of a golden retriever wearing rescue and kindness tags"
       />
     </main>

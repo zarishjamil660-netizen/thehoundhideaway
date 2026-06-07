@@ -49,6 +49,13 @@ body:has(main.thh-page--contact),
   pointer-events: none;
 }
 
+/* 100% OS scale on 1080p (~1920px viewport): widen circle to fill like 150% scale */
+@media (min-width: 1600px) {
+  .contact-page__hero {
+    --cp-circle-size: min(2130px, 111vw);
+  }
+}
+
 .contact-page__title {
   position: relative;
   z-index: 1;
@@ -218,7 +225,7 @@ main.thh-page--contact + .site-footer {
 .contact-page__paw {
   position: relative;
   top: clamp(-2.5rem, -5vw, -3.5rem);
-  left: clamp(1.75rem, 7vw, 4.75rem);
+  left: auto;
   z-index: 1;
   margin: 0;
   width: min(100%, 92vw, 620px);
@@ -555,8 +562,10 @@ main.thh-page--contact + .site-footer {
   .contact-page__follow-inner {
     flex-direction: row;
     align-items: flex-end;
-    justify-content: center;
+    justify-content: space-between;
     gap: clamp(0.5rem, 2vw, 1.5rem);
+    max-width: 100%;
+    padding-right: 0;
   }
 
   .contact-page__dog-parallax {
@@ -567,10 +576,12 @@ main.thh-page--contact + .site-footer {
   }
 
   .contact-page__paw {
-    flex: 1 1 48%;
-    width: min(52%, 560px);
+    flex: 0 1 auto;
+    width: min(48%, 560px);
     max-width: 560px;
     top: clamp(-3rem, -6vw, -4.5rem);
+    margin-left: auto;
+    margin-right: calc(-1 * clamp(1rem, 4vw, 2rem));
   }
 
   .contact-page__form-section {
@@ -593,8 +604,10 @@ main.thh-page--contact + .site-footer {
   }
 
   .contact-page__paw {
-    width: min(50%, 600px);
+    width: min(46%, 600px);
     max-width: 600px;
+    margin-left: auto;
+    margin-right: calc(-1 * clamp(1rem, 4vw, 2rem));
   }
 }
 
@@ -639,6 +652,7 @@ main.thh-page--contact + .site-footer {
   .contact-page__follow-inner {
     max-width: min(1800px, 100%);
     gap: clamp(0.25rem, 1.5vw, 1rem);
+    padding-right: 0;
   }
 
   .contact-page__dog-parallax {
@@ -673,11 +687,13 @@ main.thh-page--contact + .site-footer {
   }
 
   .contact-page__paw {
-    flex: 0 1 52%;
-    width: min(52%, 600px);
+    flex: 0 1 auto;
+    width: min(46%, 600px);
     max-width: 600px;
     top: -5rem;
-    left: 7rem;
+    left: auto;
+    margin-left: auto;
+    margin-right: calc(-1 * clamp(1rem, 4vw, 2rem));
   }
 
   /* Comp: “Any Questions?” — The New Elegance 182.97px */

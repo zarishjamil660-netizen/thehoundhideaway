@@ -170,18 +170,18 @@
   margin-inline: 0;
 }
 
-/* Desktop — locked 1440px comp (80–100% zoom on laptops + zoomed-out ultrawide) */
+/* Desktop — locked ~1280px comp (150% scale on 1080p + fluid down to tablet) */
 @media (min-width: 1024px) {
   .experience-hero__top {
-    --eh-header: clamp(4.5rem, 6vw, 5.75rem);
-    --eh-art-base: min(1440px, calc(100vw - 2rem));
+    --eh-header: clamp(4.5rem, calc(var(--ex-vw, 100vw) * 0.06), 5.75rem);
+    --eh-art-base: min(1280px, calc(100vw - 2rem));
     --eh-art-scale: 1.04;
     --eh-art-width: calc(var(--eh-art-base) * var(--eh-art-scale));
     --eh-art-height: calc(var(--eh-art-width) * 1305 / 1440);
     --eh-circle-scale: 1.27;
     --eh-circle-size: calc(var(--eh-art-base) * var(--eh-circle-scale));
     --eh-circle-top: calc(var(--eh-art-height) - var(--eh-circle-size));
-    --eh-art-lift: clamp(1.75rem, 2.75vw, 3rem);
+    --eh-art-lift: clamp(1.75rem, calc(var(--ex-vw, 100vw) * 0.0275), 3rem);
     --eh-arch-bottom: var(--eh-art-height);
     min-height: calc(var(--eh-header) + var(--eh-arch-bottom));
     overflow: hidden;
@@ -235,9 +235,9 @@
   }
 
   .experience-hero__forest-band {
-    padding-top: clamp(3.5rem, 5vw, 4.5rem);
+    padding-top: clamp(3.5rem, calc(var(--ex-vw, 100vw) * 0.05), 4.5rem);
     padding-inline: 3rem;
-    padding-bottom: clamp(2.5rem, 4vw, 3.5rem);
+    padding-bottom: clamp(2.5rem, calc(var(--ex-vw, 100vw) * 0.04), 3.5rem);
   }
 
   .experience-hero__forest-inner {

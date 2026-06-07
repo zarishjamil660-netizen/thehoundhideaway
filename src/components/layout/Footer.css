@@ -5,10 +5,12 @@
 }
 
 .site-footer__inner {
-  max-width: 100%;
+  width: 100%;
+  max-width: min(72rem, calc(var(--layout-vw, 100vw) - 2rem));
   margin: 0 auto;
-  padding: clamp(2.25rem, 8vw, 3rem) clamp(1.25rem, 5vw, 2rem)
-    clamp(2rem, 6vw, 2.75rem);
+  padding: clamp(2.25rem, calc(var(--layout-vw, 100vw) * 0.08), 3rem)
+    clamp(1.25rem, calc(var(--layout-vw, 100vw) * 0.05), 2rem)
+    clamp(2rem, calc(var(--layout-vw, 100vw) * 0.06), 2.75rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,7 +19,7 @@
 }
 
 .site-footer__logo {
-  height: clamp(2.65rem, 7vw, 3.5rem);
+  height: clamp(2.65rem, calc(var(--layout-vw, 100vw) * 0.07), 3.5rem);
   width: auto;
   object-fit: contain;
 }
@@ -38,7 +40,7 @@
   text-decoration: none;
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: clamp(0.58rem, 2.4vw, 0.68rem);
+  font-size: clamp(0.58rem, calc(var(--layout-vw, 100vw) * 0.024), 0.68rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -63,7 +65,7 @@
 .site-footer__copy {
   margin: 0;
   font-family: var(--font-sans);
-  font-size: clamp(0.58rem, 2.3vw, 0.65rem);
+  font-size: clamp(0.58rem, calc(var(--layout-vw, 100vw) * 0.023), 0.65rem);
   font-weight: 500;
   color: var(--thh-forest-deep);
   opacity: 0.88;
@@ -80,7 +82,7 @@ main.thh-page--contact + .site-footer {
 main.thh-page--experience + .site-footer .site-footer__logo,
 main.thh-page--suites-pricing + .site-footer .site-footer__logo,
 main.thh-page--contact + .site-footer .site-footer__logo {
-  height: clamp(4rem, 12vw, 6rem);
+  height: clamp(4rem, calc(var(--layout-vw, 100vw) * 0.12), 6rem);
 }
 
 main.thh-page--experience + .site-footer .site-footer__nav a,
@@ -103,4 +105,11 @@ main.thh-page--suites-pricing + .site-footer .site-footer__copy,
 main.thh-page--contact + .site-footer .site-footer__copy {
   color: var(--thh-mint-soft);
   opacity: 0.92;
+}
+
+/* 100% OS scale on 1080p: match header width proportion */
+@media (min-width: 1600px) {
+  .site-footer__inner {
+    max-width: min(108rem, calc(100vw - 3rem));
+  }
 }
