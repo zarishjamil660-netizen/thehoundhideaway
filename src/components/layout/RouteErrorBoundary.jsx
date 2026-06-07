@@ -24,10 +24,6 @@ export class RouteErrorBoundary extends Component {
               <a href="/" style={{ color: 'var(--thh-forest-deep)', fontWeight: 700 }}>
                 Return to home
               </a>
-              {' · '}
-              <a href="/home-2" style={{ color: 'var(--thh-forest-deep)', fontWeight: 700 }}>
-                Try again
-              </a>
             </p>
           </section>
         </main>

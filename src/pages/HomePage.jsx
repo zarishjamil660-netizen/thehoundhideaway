@@ -4,7 +4,7 @@ import { TruthSection } from '../components/sections/TruthSection'
 import { DifferenceSection } from '../components/sections/DifferenceSection'
 import { StorySections } from '../components/sections/StorySections'
 
-export function HomePage2() {
+export function HomePage() {
   return (
     <main className="site-main site-main--stack site-main--home-2">
       <HeroSection2 />
@@ -16,4 +16,4 @@ export function HomePage2() {
   )
 }
 
-export default HomePage2
+export default HomePage

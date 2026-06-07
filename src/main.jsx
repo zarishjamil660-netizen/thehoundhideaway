@@ -1,10 +1,7 @@
 import { StrictMode, lazy, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import './index.css'
-import App from './App.jsx'
-
-const HomePage2 = lazy(() => import('./pages/HomePage2.jsx'))
 import PawCursor from './PawCursor'
 import { PrivateSuitesPage } from './pages/PrivateSuitesPage.jsx'
 import { SuitesPricingPage } from './pages/SuitesPricingPage.jsx'
@@ -15,6 +12,24 @@ import { PageTransitions } from './components/layout/PageTransitions.jsx'
 import { RouteErrorBoundary } from './components/layout/RouteErrorBoundary.jsx'
 import { SiteLayout } from './components/layout/SiteLayout.jsx'
 import './styles/cta-buttons.css'
+
+const HomePage = lazy(() => import('./pages/HomePage.jsx'))
+
+function HomeRoute() {
+  return (
+    <RouteErrorBoundary>
+      <Suspense
+        fallback={
+          <main className="site-main site-main--stack site-main--home-2">
+            <p className="sr-only">Loading home page…</p>
+          </main>
+        }
+      >
+        <HomePage />
+      </Suspense>
+    </RouteErrorBoundary>
+  )
+}
 
 export function SiteLayoutRoute() {
   return (
@@ -32,28 +47,13 @@ createRoot(document.getElementById('root')).render(
         <PageTransitions>
           <Routes>
             <Route element={<SiteLayoutRoute />}>
-              <Route path="/" element={<App />} />
-              <Route
-                path="/home-2"
-                element={
-                  <RouteErrorBoundary>
-                    <Suspense
-                      fallback={
-                        <main className="site-main site-main--stack site-main--home-2">
-                          <p className="sr-only">Loading home page…</p>
-                        </main>
-                      }
-                    >
-                      <HomePage2 />
-                    </Suspense>
-                  </RouteErrorBoundary>
-                }
-              />
+              <Route path="/" element={<HomeRoute />} />
+              <Route path="/home-2" element={<Navigate to="/" replace />} />
               <Route path="/private-suites" element={<PrivateSuitesPage />} />
               <Route path="/pricing" element={<SuitesPricingPage />} />
               <Route path="/experience" element={<ExperienceCodePage />} />
               <Route path="/contact" element={<ContactPage />} />
-              <Route path="*" element={<App />} />
+              <Route path="*" element={<HomeRoute />} />
             </Route>
           </Routes>
         </PageTransitions>

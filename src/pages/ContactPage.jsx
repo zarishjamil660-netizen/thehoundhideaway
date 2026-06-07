@@ -190,7 +190,9 @@ export function ContactPage() {
           </form>
         </section>
 
-        <BookStayBall className="book-stay-ball--contact" />
+        <section className="contact-page__book-ball" aria-label="Book their stay">
+          <BookStayBall />
+        </section>
       </div>
     </main>
   )

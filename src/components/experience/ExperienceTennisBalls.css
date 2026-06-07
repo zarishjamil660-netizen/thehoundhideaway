@@ -14,10 +14,10 @@
   --ball-book: clamp(46rem, 95vw, 88rem);
   --ball-left: clamp(30rem, 63vw, 56rem);
   --ball-center: clamp(19rem, 42vw, 35rem);
-  --ball-left-nudge-y: clamp(3.5rem, 7vw, 6rem);
+  --ball-left-nudge-y: clamp(7.5rem, 11vw, 10.5rem);
   --ball-center-nudge-x: clamp(-5rem, -6.5vw, -2.5rem);
-  --ball-center-nudge-y: clamp(-10.5rem, -13.5vw, -5rem);
-  --ball-book-nudge-y: clamp(4.5rem, 9vw, 7.5rem);
+  --ball-center-nudge-y: clamp(-7.5rem, -10.5vw, -2rem);
+  --ball-book-nudge-y: clamp(7.5rem, 12vw, 10.5rem);
   --ball-book-nudge-x: clamp(3.5rem, 6.5vw, 6.5rem);
 
   position: relative;
@@ -36,11 +36,11 @@
     --ball-book: 98rem;
     --ball-left: 63rem;
     --ball-center: 39rem;
-    --ball-left-nudge-y: 6.5rem;
+    --ball-left-nudge-y: 11rem;
     --ball-center-nudge-x: -8rem;
-    --ball-center-nudge-y: -10.75rem;
-    --ball-book-nudge-y: 8rem;
-    --ball-book-nudge-x: 9.5rem;
+    --ball-center-nudge-y: -5.5rem;
+    --ball-book-nudge-y: 12.5rem;
+    --ball-book-nudge-x: -1rem;
   }
 }
 

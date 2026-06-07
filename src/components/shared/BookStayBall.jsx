@@ -36,6 +36,8 @@ export function BookStayBall({
     root.style.setProperty('--book-plate-w', `${width}px`)
     root.style.setProperty('--book-plate-h', `${height}px`)
     root.style.setProperty('--book-disc-r', `${discR}px`)
+    root.style.setProperty('--book-center-x', `${width / 2 - pivotPxX}px`)
+    root.style.setProperty('--book-center-y', `${height / 2 - pivotPxY}px`)
     setLayoutReady(true)
   }, [])
 
