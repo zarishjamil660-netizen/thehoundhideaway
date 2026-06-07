@@ -57,7 +57,7 @@ export const DOG_3D_MODEL_SCALE_MOBILE = 2.08
 /** 100% zoom @ 1920 — pull back so paws aren’t clipped by the canvas bottom. */
 export const DOG_3D_MODEL_SCALE_DESKTOP_1920 = 2.18
 export const DOG_3D_CENTER_Y = 0.06
-export const DOG_3D_CENTER_Y_MOBILE = -0.14
+export const DOG_3D_CENTER_Y_MOBILE = -0.24
 export const DOG_3D_CENTER_Y_DESKTOP_1920 = 0.08
 export const DOG_3D_CAMERA = {
   position: [0, 0.26, 6.35],

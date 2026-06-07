@@ -315,10 +315,6 @@
   text-align: center;
 }
 
-.hero--home-2 .hero__sub {
-  margin-top: clamp(4.5rem, 9vw, 6.5rem);
-}
-
 .hero__actions {
   display: flex;
   flex-direction: column;
@@ -534,10 +530,6 @@
     font-size: clamp(0.95rem, 3.7vw, 1.28rem);
     line-height: 1.22;
     padding: 0 clamp(0.35rem, 2vw, 0.75rem);
-  }
-
-  .hero--home-2 .hero__sub {
-    margin-top: clamp(3.75rem, 12vw, 5.5rem);
   }
 }
 

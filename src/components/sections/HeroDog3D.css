@@ -48,19 +48,9 @@
   transform: none;
 }
 
-.hero--home-2 .hero__dog-wrap--3d {
-  translate: 0 clamp(-1.25rem, -2.25vw, -2rem);
-}
-
 @media (max-width: 640px) {
   .hero--home-2 .hero__dog-wrap--3d {
-    margin-top: clamp(-8.75rem, -17.5vw, -7rem);
-  }
-}
-
-@media (min-width: 641px) {
-  .hero--home-2 .hero__dog-wrap--3d {
-    translate: 0 clamp(-1.5rem, -2.75vw, -2.75rem);
+    margin-top: clamp(-7.25rem, -15.5vw, -5.75rem);
   }
 }
 
