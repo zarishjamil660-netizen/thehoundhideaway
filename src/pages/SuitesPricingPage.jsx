@@ -35,10 +35,22 @@ const TIERS = [
   },
 ]
 
-function PricingTierCard({ tier, variant, delay }) {
+function tierPriceOrder(tier) {
+  return TIERS.findIndex((t) => t.name === tier.name)
+}
+
+function PricingTierCard({ tier, variant, delay, priceOrder }) {
+  const cornerVariant = priceOrder % 2 === 0 ? 'left' : 'right'
+
   return (
-    <ScrollReveal className="suites-pricing__card-wrap" variant={variant} delay={delay} distance={32}>
-      <article className="suites-pricing__card">
+    <ScrollReveal
+      className="suites-pricing__card-wrap"
+      variant={variant}
+      delay={delay}
+      distance={32}
+      data-price-order={priceOrder}
+    >
+      <article className={`suites-pricing__card suites-pricing__card--corners-${cornerVariant}`}>
         <h2 className="suites-pricing__card-name">
           {splitSuiteName(tier.name).map((line) => (
             <span key={line} className="suites-pricing__card-name-line">
@@ -99,6 +111,7 @@ export function SuitesPricingPage() {
                 tier={tier}
                 variant="fade-left"
                 delay={120 + index * 160}
+                priceOrder={tierPriceOrder(tier)}
               />
             ))}
           </div>
@@ -109,6 +122,7 @@ export function SuitesPricingPage() {
                 tier={tier}
                 variant="fade-right"
                 delay={200 + index * 160}
+                priceOrder={tierPriceOrder(tier)}
               />
             ))}
           </div>

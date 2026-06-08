@@ -213,6 +213,20 @@
   border-bottom-right-radius: var(--sp-card-r);
 }
 
+.suites-pricing__card--corners-right {
+  border-top-left-radius: var(--sp-card-r);
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: var(--sp-card-r);
+}
+
+.suites-pricing__card--corners-left {
+  border-top-left-radius: 0;
+  border-top-right-radius: var(--sp-card-r);
+  border-bottom-left-radius: var(--sp-card-r);
+  border-bottom-right-radius: 0;
+}
+
 .suites-pricing__card-name {
   margin: 0;
   display: flex;
@@ -330,6 +344,37 @@
 }
 
 @media (max-width: 767.98px) {
+  /* Single column: low → high price (Country → Luxury → Riverside → Private) */
+  .suites-pricing__cols {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .suites-pricing__col {
+    display: contents;
+  }
+
+  .suites-pricing__card-wrap[data-price-order='0'] {
+    order: 1;
+    --sp-price-flick-delay: 420ms;
+  }
+
+  .suites-pricing__card-wrap[data-price-order='1'] {
+    order: 2;
+    --sp-price-flick-delay: 580ms;
+  }
+
+  .suites-pricing__card-wrap[data-price-order='2'] {
+    order: 3;
+    --sp-price-flick-delay: 740ms;
+  }
+
+  .suites-pricing__card-wrap[data-price-order='3'] {
+    order: 4;
+    --sp-price-flick-delay: 900ms;
+  }
+
   .suites-pricing__book-ball {
     padding: clamp(5rem, 16vw, 7rem) 0 clamp(3.5rem, 11vw, 5rem);
     overflow: visible;
