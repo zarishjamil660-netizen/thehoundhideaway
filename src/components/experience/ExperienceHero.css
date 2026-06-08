@@ -408,8 +408,8 @@
   }
 
   .experience-hero__forest-headline__line1 {
-    white-space: normal;
-    overflow-wrap: anywhere;
+    display: inline-block;
+    white-space: nowrap;
   }
 
   .experience-hero__cta-row {

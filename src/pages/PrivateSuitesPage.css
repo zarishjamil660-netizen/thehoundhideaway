@@ -206,7 +206,9 @@
   }
 
   .private-suites__hero-title-quiet {
+    display: block;
     font-size: clamp(2.8rem, 11.5vw, 3.95rem);
+    margin-top: clamp(0.5rem, 2.5vw, 1rem);
     margin-left: clamp(0.5rem, 2.5vw, 1rem);
     line-height: 0.9;
   }
