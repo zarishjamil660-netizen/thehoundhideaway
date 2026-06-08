@@ -124,10 +124,25 @@ export function HeroDog3D() {
       hero.style.setProperty('--hero-split', `${Math.round(splitPx)}px`)
 
       if (isMobile()) {
-        const feetRatio = 0.7
-        const collapse = Math.max(0, wrap.offsetHeight * (1 - feetRatio))
-        wrap.style.marginBottom = `${-Math.round(collapse * 0.45)}px`
+        const canvasEl = wrap.querySelector('.hero__dog-3d-canvas')
+        if (canvasEl) {
+          const fullHeight = wrap.offsetWidth * (1428 / 664)
+          const feetRatio = 0.8
+          const cropHeight = Math.round(fullHeight * feetRatio)
+          canvasEl.style.aspectRatio = 'auto'
+          canvasEl.style.height = `${cropHeight}px`
+          canvasEl.style.maxHeight = `${cropHeight}px`
+          canvasEl.style.overflow = 'hidden'
+        }
+        wrap.style.marginBottom = '0'
       } else {
+        const canvasEl = wrap.querySelector('.hero__dog-3d-canvas')
+        if (canvasEl) {
+          canvasEl.style.removeProperty('aspect-ratio')
+          canvasEl.style.removeProperty('height')
+          canvasEl.style.removeProperty('max-height')
+          canvasEl.style.removeProperty('overflow')
+        }
         wrap.style.removeProperty('margin-bottom')
       }
     }

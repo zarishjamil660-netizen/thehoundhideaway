@@ -184,6 +184,10 @@
     font-size: clamp(0.62rem, calc(var(--layout-vw, 100vw) * 0.013), 0.75rem);
   }
 
+  .site-header__book--in-nav {
+    display: none;
+  }
+
   .site-header__menu-btn,
   .site-header__backdrop {
     display: none;
@@ -444,6 +448,19 @@
     background: rgb(255 255 255 / 0.1);
     text-decoration: none;
   }
+
+  .site-header__book--in-bar {
+    display: none;
+  }
+
+  .site-header__book--in-nav {
+    display: inline-flex;
+    width: 100%;
+    min-height: 2.85rem;
+    margin-top: 0.35rem;
+    font-size: 0.8125rem;
+    letter-spacing: 0.08em;
+  }
 }
 
 /* Experience / light mint backgrounds: same layout as hero, forest text */
@@ -491,5 +508,11 @@
 
   .site-header--mint .site-header__nav a:focus-visible {
     outline-color: var(--thh-mint-soft);
+  }
+
+  .site-header--mint .site-header__book--in-nav {
+    border-color: var(--thh-mint-soft);
+    background: var(--thh-mint-soft);
+    color: var(--thh-forest-deep);
   }
 }

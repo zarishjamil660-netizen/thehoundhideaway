@@ -64,10 +64,21 @@ function Header({ surface = 'hero' }) {
               {label}
             </a>
           ))}
+          <a
+            href="/book-now"
+            className="site-header__book site-header__book--in-nav"
+            onClick={closeMenu}
+          >
+            Book now
+          </a>
         </nav>
 
         <div className="site-header__end">
-          <a href="/book-now" className="site-header__book" onClick={closeMenu}>
+          <a
+            href="/book-now"
+            className="site-header__book site-header__book--in-bar"
+            onClick={closeMenu}
+          >
             Book now
           </a>
 

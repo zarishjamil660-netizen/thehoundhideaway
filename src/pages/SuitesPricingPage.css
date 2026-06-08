@@ -344,7 +344,6 @@
 }
 
 @media (max-width: 767.98px) {
-  /* Single column: low → high price (Country → Luxury → Riverside → Private) */
   .suites-pricing__cols {
     display: flex;
     flex-direction: column;
@@ -634,6 +633,40 @@
   .suites-pricing__trio {
     width: min(100%, 85vw);
     max-width: 28rem;
+  }
+}
+
+/* Mobile only — 2× pricing cards (overrides max-width: 1023 rules above) */
+@media (max-width: 767.98px) {
+  .suites-pricing {
+    --sp-card-w: min(100%, calc(100vw - 2.5rem));
+    --sp-card-h: calc(var(--sp-card-w) * (568.356689453125 / 554));
+    --sp-card-r: calc(var(--sp-card-w) * (80 / 554));
+    --sp-label-size: 1.875rem;
+    --sp-unit-size: 1.375rem;
+    --sp-price-size: 3.75rem;
+    --sp-col-stack-gap: clamp(2.5rem, 6vw, 3.5rem);
+    --sp-cols-gap: clamp(1.5rem, 4vw, 2.5rem);
+    --sp-card-text-gap: 1.75rem;
+    --sp-card-fetch-gap: 1.75rem;
+  }
+
+  .suites-pricing__cols {
+    max-width: min(100%, calc(100vw - 2rem));
+    row-gap: var(--sp-col-stack-gap);
+  }
+
+  .suites-pricing__card {
+    width: var(--sp-card-w);
+    height: var(--sp-card-h);
+    min-height: var(--sp-card-h);
+    padding-block: calc(var(--sp-card-h) * 0.14);
+    padding-inline: calc(var(--sp-card-w) * 0.05);
+  }
+
+  .suites-pricing__fetch {
+    font-size: clamp(1.625rem, 4.4vw, 2rem);
+    letter-spacing: 0.1em;
   }
 }
 
