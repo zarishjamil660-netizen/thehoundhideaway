@@ -67,7 +67,7 @@ function Header({ surface = 'hero' }) {
         </nav>
 
         <div className="site-header__end">
-          <a href="/#book" className="site-header__book" onClick={closeMenu}>
+          <a href="/book-now" className="site-header__book" onClick={closeMenu}>
             Book now
           </a>
 

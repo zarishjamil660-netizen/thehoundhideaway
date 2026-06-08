@@ -74,22 +74,22 @@ export function ExperienceHero({ imageSrc, imageAlt }) {
               <span data-experience-reveal style={{ '--experience-delay': '320ms' }}>intentional.</span>
             </h2>
             <div className="experience-hero__cta-row">
-              <button
-                type="button"
+              <a
+                href="/book-now"
                 className="experience-hero__cta-btn experience-hero__cta-btn--primary"
                 data-experience-reveal
                 style={{ '--experience-delay': '420ms' }}
               >
                 Book their stay
-              </button>
-              <button
-                type="button"
+              </a>
+              <a
+                href="/pricing"
                 className="experience-hero__cta-btn experience-hero__cta-btn--outline"
                 data-experience-reveal
                 style={{ '--experience-delay': '500ms' }}
               >
                 Explore pricing
-              </button>
+              </a>
             </div>
           </div>
         </div>

@@ -35,7 +35,7 @@ function computeMeasuredPercent() {
   return Math.min(98, blended)
 }
 
-export function PageLoadScreen({ children }) {
+export function PageLoadScreen({ children, onReady }) {
   const [percent, setPercent] = useState(1)
   const [phase, setPhase] = useState('loading')
 
@@ -91,6 +91,11 @@ export function PageLoadScreen({ children }) {
       document.body.classList.remove('site-is-loaded')
     }
   }, [])
+
+  useEffect(() => {
+    if (phase !== 'gone') return
+    onReady?.()
+  }, [phase, onReady])
 
   return (
     <>

@@ -92,7 +92,7 @@ export function BookStayBall({
   }
 
   return (
-    <a ref={rootRef} href="/#book" className={rootClass}>
+    <a ref={rootRef} href="/book-now" className={rootClass}>
       {ball}
       <span className="sr-only">Book their stay</span>
     </a>

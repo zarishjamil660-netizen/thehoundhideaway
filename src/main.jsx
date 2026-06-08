@@ -1,13 +1,15 @@
-import { StrictMode, lazy, Suspense } from 'react'
+import { StrictMode, lazy, Suspense, useCallback, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Navigate, Outlet, Route, Routes } from 'react-router-dom'
 import './index.css'
 import PawCursor from './PawCursor'
 import { PrivateSuitesPage } from './pages/PrivateSuitesPage.jsx'
 import { SuitesPricingPage } from './pages/SuitesPricingPage.jsx'
+import { BookNowPage } from './pages/BookNowPage.jsx'
 import { ContactPage } from './pages/ContactPage.jsx'
 import { ExperienceCodePage } from './pages/ExperienceCodePage.jsx'
 import { PageLoadScreen } from './components/layout/PageLoadScreen.jsx'
+import { SiteEntryGate } from './components/layout/SiteEntryGate.jsx'
 import { PageTransitions } from './components/layout/PageTransitions.jsx'
 import { RouteErrorBoundary } from './components/layout/RouteErrorBoundary.jsx'
 import { SiteLayout } from './components/layout/SiteLayout.jsx'
@@ -39,25 +41,37 @@ export function SiteLayoutRoute() {
   )
 }
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
+function App() {
+  const [loadReady, setLoadReady] = useState(false)
+  const handleLoadReady = useCallback(() => setLoadReady(true), [])
+
+  return (
     <BrowserRouter>
       <PawCursor />
-      <PageLoadScreen>
-        <PageTransitions>
-          <Routes>
-            <Route element={<SiteLayoutRoute />}>
-              <Route path="/" element={<HomeRoute />} />
-              <Route path="/home-2" element={<Navigate to="/" replace />} />
-              <Route path="/private-suites" element={<PrivateSuitesPage />} />
-              <Route path="/pricing" element={<SuitesPricingPage />} />
-              <Route path="/experience" element={<ExperienceCodePage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="*" element={<HomeRoute />} />
-            </Route>
-          </Routes>
-        </PageTransitions>
+      <PageLoadScreen onReady={handleLoadReady}>
+        <SiteEntryGate loadReady={loadReady}>
+          <PageTransitions>
+            <Routes>
+              <Route path="/book-now" element={<BookNowPage />} />
+              <Route element={<SiteLayoutRoute />}>
+                <Route path="/" element={<HomeRoute />} />
+                <Route path="/home-2" element={<Navigate to="/" replace />} />
+                <Route path="/private-suites" element={<PrivateSuitesPage />} />
+                <Route path="/pricing" element={<SuitesPricingPage />} />
+                <Route path="/experience" element={<ExperienceCodePage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route path="*" element={<HomeRoute />} />
+              </Route>
+            </Routes>
+          </PageTransitions>
+        </SiteEntryGate>
       </PageLoadScreen>
     </BrowserRouter>
+  )
+}
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
   </StrictMode>,
 )

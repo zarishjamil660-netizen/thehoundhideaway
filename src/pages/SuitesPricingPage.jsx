@@ -63,7 +63,7 @@ function PricingTierCard({ tier, variant, delay, priceOrder }) {
         </p>
         <p className="suites-pricing__card-unit">Per dog/night</p>
       </article>
-      <a href="/#book" className="suites-pricing__fetch">
+      <a href="/book-now" className="suites-pricing__fetch">
         Go fetch
       </a>
     </ScrollReveal>
@@ -143,7 +143,7 @@ export function SuitesPricingPage() {
           loading="lazy"
           decoding="async"
         />
-        <a href="/#book" className="suites-pricing__cta">
+        <a href="/book-now" className="suites-pricing__cta">
           Book their stay
         </a>
       </section>

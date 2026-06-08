@@ -232,7 +232,7 @@ export function PrivateSuitesPage() {
               </div>
 
               <div className="private-suites__cta-wrap">
-                <a href="/#book" className="private-suites__cta private-suites__cta--primary">
+                <a href="/book-now" className="private-suites__cta private-suites__cta--primary">
                   Book their stay
                 </a>
                 <a href="/pricing" className="private-suites__cta private-suites__cta--outline">
