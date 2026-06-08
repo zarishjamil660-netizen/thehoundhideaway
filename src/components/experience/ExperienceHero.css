@@ -263,6 +263,29 @@
   }
 }
 
+/* 100% OS scale on 1080p: zoom hero arch to fill viewport like 150% scale */
+@media (min-width: 1600px) {
+  .experience-hero__top {
+    --eh-art-base: min(1920px, calc(100vw - 2rem));
+  }
+
+  .experience-hero__stage {
+    max-width: min(100%, 1920px);
+  }
+
+  .experience-hero__title {
+    font-size: clamp(7.35rem, calc((100vw - 2rem) * 0.25), 19.25rem) !important;
+  }
+
+  .experience-hero__copy .experience-hero__lede {
+    font-size: clamp(3rem, calc((100vw - 2rem) * 0.047), 3.75rem);
+  }
+
+  .experience-hero__copy p.mt-5 {
+    font-size: clamp(2.25rem, calc((100vw - 2rem) * 0.026), 3rem);
+  }
+}
+
 /* Mobile + tablet */
 @media (max-width: 1023.98px) {
   .experience-hero__circle-layout {

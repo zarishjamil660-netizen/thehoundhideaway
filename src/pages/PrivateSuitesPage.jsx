@@ -50,6 +50,7 @@ export function PrivateSuitesPage() {
   const [autoplayPaused, setAutoplayPaused] = useState(false)
   const isAnimatingRef = useRef(false)
   const shiftRef = useRef(0)
+  const transitionFallbackTimeoutRef = useRef(/** @type {number | null} */ (null))
   const len = SLIDES.length
   const slide = SLIDES[index]
   const visibleSlides = getVisibleSlides(index, SLIDES)
@@ -65,8 +66,36 @@ export function PrivateSuitesPage() {
         return
       }
 
+      if (transitionFallbackTimeoutRef.current !== null) {
+        window.clearTimeout(transitionFallbackTimeoutRef.current)
+        transitionFallbackTimeoutRef.current = null
+      }
+
       isAnimatingRef.current = true
       setShift(direction === 'next' ? -1 : 1)
+
+      // Safety net: if CSS transitionend doesn't fire (browser quirks / style overrides),
+      // we still reset state so autoplay keeps working.
+      transitionFallbackTimeoutRef.current = window.setTimeout(() => {
+        if (shiftRef.current === 0) return
+
+        const dir = direction === 'next'
+        setNoTransition(true)
+        setIndex((i) => (dir ? (i + 1) % len : (i - 1 + len) % len))
+        setShift(0)
+        shiftRef.current = 0
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setNoTransition(false)
+            isAnimatingRef.current = false
+            if (transitionFallbackTimeoutRef.current !== null) {
+              window.clearTimeout(transitionFallbackTimeoutRef.current)
+              transitionFallbackTimeoutRef.current = null
+            }
+          })
+        })
+      }, 1050)
     },
     [len],
   )
@@ -74,6 +103,11 @@ export function PrivateSuitesPage() {
   const handleTrackTransitionEnd = useCallback(
     (e) => {
       if (e.target !== e.currentTarget || e.propertyName !== 'transform' || shiftRef.current === 0) return
+
+      if (transitionFallbackTimeoutRef.current !== null) {
+        window.clearTimeout(transitionFallbackTimeoutRef.current)
+        transitionFallbackTimeoutRef.current = null
+      }
 
       const dir = shiftRef.current
       const nextIndex = dir === -1 ? (index + 1) % len : (index - 1 + len) % len
@@ -96,8 +130,6 @@ export function PrivateSuitesPage() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined
-
     const tick = () => {
       if (!autoplayPaused && !isAnimatingRef.current && shiftRef.current === 0) {
         go('next')
@@ -119,7 +151,6 @@ export function PrivateSuitesPage() {
         <div className="private-suites__hero-inner">
           <h1 id="private-suites-hero-heading" className="private-suites__hero-title">
             <span className="private-suites__hero-title-calm">Calm. Safety.</span>
-            <br />
             <span className="private-suites__hero-title-quiet">Quiet.</span>
           </h1>
         </div>
@@ -142,7 +173,7 @@ export function PrivateSuitesPage() {
       <section className="private-suites__luxury" aria-labelledby="private-suites-luxury-heading">
         <div className="private-suites__luxury-inner">
           <h2 id="private-suites-luxury-heading" className="private-suites__luxury-label">
-            Luxury stays
+            Luxury&nbsp;stays
           </h2>
 
           <div
@@ -158,7 +189,7 @@ export function PrivateSuitesPage() {
           >
             <div className="private-suites__viewport">
               <ul
-                className={`private-suites__track${noTransition ? ' private-suites__track--instant' : ''}`}
+                className={`private-suites__track${noTransition ? ' private-suites__track--instant' : ''}${shift !== 0 ? ' private-suites__track--shifting' : ''}`}
                 data-shift={shift === 0 ? undefined : String(shift)}
                 style={{ '--ps-shift': String(shift) }}
                 onTransitionEnd={handleTrackTransitionEnd}

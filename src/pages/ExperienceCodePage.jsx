@@ -29,9 +29,15 @@ export function ExperienceCodePage() {
       return undefined
     }
 
+    // Mint arch hero is always in view on load — IO can miss it after motion-ready sets opacity 0
+    const heroItems = root.querySelectorAll('.experience-hero__top [data-experience-reveal]')
+    heroItems.forEach((item) => item.classList.add('is-visible'))
+
+    const scrollItems = items.filter((item) => !item.closest('.experience-hero__top'))
+
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     if (reducedMotion || typeof IntersectionObserver === 'undefined') {
-      items.forEach((item) => item.classList.add('is-visible'))
+      scrollItems.forEach((item) => item.classList.add('is-visible'))
       return undefined
     }
 
@@ -50,7 +56,7 @@ export function ExperienceCodePage() {
       },
     )
 
-    items.forEach((item) => observer.observe(item))
+    scrollItems.forEach((item) => observer.observe(item))
 
     return () => observer.disconnect()
   }, [])

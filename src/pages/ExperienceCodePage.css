@@ -9,6 +9,11 @@ main.thh-page--experience.experience-motion-ready [data-experience-reveal].is-vi
   opacity: 1;
 }
 
+/* Hero mint arch is always above the fold — never hide copy behind scroll reveal */
+main.thh-page--experience.experience-motion-ready .experience-hero__top [data-experience-reveal] {
+  opacity: 1;
+}
+
 /* Cap fluid desktop scaling at ~1280px (matches 150% OS zoom on 1080p laptops). */
 @media (min-width: 1024px) {
   main.thh-page--experience {
