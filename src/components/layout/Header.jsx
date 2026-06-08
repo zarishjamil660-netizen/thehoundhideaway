@@ -58,27 +58,6 @@ function Header({ surface = 'hero' }) {
           />
         </a>
 
-        <button
-          type="button"
-          className="site-header__menu-btn"
-          aria-expanded={menuOpen}
-          aria-controls={panelId}
-          aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-          onClick={() => setMenuOpen(o => !o)}
-        >
-          <span className="site-header__menu-lines" aria-hidden>
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
-
-        <div
-          className="site-header__backdrop"
-          aria-hidden="true"
-          onClick={closeMenu}
-        />
-
         <nav id={panelId} className="site-header__nav" aria-label="Primary">
           {NAV_LINKS.map(({ href, label }) => (
             <a key={`${href}-${label}`} href={href} onClick={closeMenu}>
@@ -86,6 +65,33 @@ function Header({ surface = 'hero' }) {
             </a>
           ))}
         </nav>
+
+        <div className="site-header__end">
+          <a href="/#book" className="site-header__book" onClick={closeMenu}>
+            Book now
+          </a>
+
+          <button
+            type="button"
+            className="site-header__menu-btn"
+            aria-expanded={menuOpen}
+            aria-controls={panelId}
+            aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            onClick={() => setMenuOpen(o => !o)}
+          >
+            <span className="site-header__menu-lines" aria-hidden>
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
+        </div>
+
+        <div
+          className="site-header__backdrop"
+          aria-hidden="true"
+          onClick={closeMenu}
+        />
       </div>
     </header>
   )

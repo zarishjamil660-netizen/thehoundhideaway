@@ -10,16 +10,16 @@ export function ExperienceHero({ imageSrc, imageAlt }) {
 
         <div className="experience-hero__stage">
           <div className="experience-hero__copy relative z-10 mx-auto max-w-6xl px-4 pt-6 md:px-8 md:pt-10 lg:px-12">
-            <div className="mx-auto max-w-4xl text-center">
+            <div className="experience-hero__copy-inner mx-auto max-w-4xl text-center">
               <p
-                className="experience-hero__lede text-end font-normal leading-snug [font-family:Franie,var(--font-sans)] tracking-[-0.01em] text-[var(--thh-forest-deep)] lg:translate-y-20 lg:pr-28 lg:text-6xl"
+                className="experience-hero__lede font-normal leading-snug [font-family:Franie,var(--font-sans)] tracking-[-0.01em] text-[var(--thh-forest-deep)] lg:text-6xl"
                 data-experience-reveal
                 style={{ '--experience-delay': '80ms' }}
               >
                 A stay that feels
               </p>
               <h1
-                className="experience-hero__title mt-4 [font-family:var(--font-serif)] text-[clamp(7.35rem,calc(min(100vw,1280px)*0.25),19.25rem)] font-medium leading-[0.82] tracking-[-0.01em] text-[var(--thh-forest-deep)]"
+                className="experience-hero__title mt-4 [font-family:var(--font-serif)] font-medium leading-[0.82] tracking-[-0.01em] text-[var(--thh-forest-deep)]"
                 data-experience-reveal
                 style={{ '--experience-delay': '180ms' }}
               >

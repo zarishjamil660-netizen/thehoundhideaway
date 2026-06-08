@@ -112,10 +112,14 @@
 
 .experience-hero__lede {
   margin: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .experience-hero__title {
   margin-top: 1rem;
+  width: 100%;
+  text-align: center;
 }
 
 .experience-hero__circle-layout {
@@ -204,7 +208,38 @@
 
   .experience-hero__copy {
     position: relative;
+    z-index: auto;
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0;
+  }
+
+  .experience-hero__copy-inner {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .experience-hero__lede {
+    position: relative;
     z-index: 3;
+    text-align: center;
+    padding-inline: 0;
+    transform: translateY(clamp(2rem, 4vw, 5rem));
+  }
+
+  .experience-hero__copy p.mt-5 {
+    position: relative;
+    z-index: 3;
+    margin-top: clamp(2.25rem, 4vw, 3.75rem);
+  }
+
+  .experience-hero__title {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
   }
 
   .experience-hero__media {
@@ -263,7 +298,22 @@
   }
 }
 
-/* 100% OS scale on 1080p: zoom hero arch to fill viewport like 150% scale */
+/* 150% OS scale on 1080p (~1280px viewport) — fit copy inside mint arch */
+@media (min-width: 1024px) and (max-width: 1599.98px) {
+  .experience-hero__title {
+    font-size: clamp(7.35rem, calc(var(--ex-vw, 100vw) * 0.36), 25rem);
+  }
+
+  .experience-hero__lede {
+    font-size: clamp(1.5rem, calc(var(--ex-vw, 100vw) * 0.047), 3.75rem);
+  }
+
+  .experience-hero__copy p.mt-5 {
+    font-size: clamp(1.25rem, calc(var(--ex-vw, 100vw) * 0.026), 3rem);
+  }
+}
+
+/* 100% OS scale on 1080p: zoom hero arch to fill viewport */
 @media (min-width: 1600px) {
   .experience-hero__top {
     --eh-art-base: min(1920px, calc(100vw - 2rem));
@@ -274,7 +324,7 @@
   }
 
   .experience-hero__title {
-    font-size: clamp(7.35rem, calc((100vw - 2rem) * 0.25), 19.25rem) !important;
+    font-size: clamp(7.35rem, calc((100vw - 2rem) * 0.5), 42rem) !important;
   }
 
   .experience-hero__copy .experience-hero__lede {
@@ -306,11 +356,10 @@
   .experience-hero__lede {
     display: block;
     width: 100%;
-    text-align: right;
-    transform: translateX(clamp(-3.5rem, -14vw, -2rem));
+    text-align: center;
+    transform: none;
     margin: 0 0 clamp(0.35rem, 1.5vw, 0.75rem);
-    padding-right: clamp(1rem, 7vw, 2.75rem);
-    padding-left: 0;
+    padding-inline: 0;
     font-size: clamp(1.1rem, 4.1vw, 1.65rem);
     line-height: 1.12;
     letter-spacing: -0.015em;
@@ -373,10 +422,9 @@
   }
 
   .experience-hero__lede {
-    padding-right: clamp(0.5rem, 4vw, 1.25rem);
     font-size: clamp(0.95rem, 4.6vw, 1.35rem);
     margin-bottom: clamp(0.25rem, 1.2vw, 0.5rem);
-    transform: translateX(clamp(-4.25rem, -18vw, -2.75rem));
+    transform: none;
   }
 
   .experience-hero__title {
@@ -411,8 +459,7 @@
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .experience-hero__lede {
     font-size: clamp(1.35rem, 2.8vw, 1.85rem);
-    padding-right: clamp(0.75rem, 6vw, 2.25rem);
-    transform: translateX(clamp(-4rem, -12vw, -2.5rem));
+    transform: none;
   }
 
   .experience-hero__title {
@@ -424,22 +471,8 @@
   .experience-hero__top .experience-hero__copy .experience-hero__lede {
     display: block;
     width: 100%;
-    text-align: right;
-    transform: translateX(clamp(-3.5rem, -14vw, -2rem));
-    padding-right: clamp(1rem, 7vw, 2.75rem);
-  }
-}
-
-@media (max-width: 639.98px) {
-  .experience-hero__top .experience-hero__copy .experience-hero__lede {
-    transform: translateX(clamp(-4.25rem, -18vw, -2.75rem));
-    padding-right: clamp(0.5rem, 4vw, 1.25rem);
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1023.98px) {
-  .experience-hero__top .experience-hero__copy .experience-hero__lede {
-    transform: translateX(clamp(-4rem, -12vw, -2.5rem));
-    padding-right: clamp(0.75rem, 6vw, 2.25rem);
+    text-align: center;
+    transform: none;
+    padding-inline: 0;
   }
 }
