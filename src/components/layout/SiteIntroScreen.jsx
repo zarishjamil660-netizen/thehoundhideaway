@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import tennisBall from '../../assets/fxemoji_tennisball.png'
 import './SiteIntroScreen.css'
 
+const INTRO_STORAGE_KEY = 'thh-intro-done'
 const BOUNCE_GRAVITY = 1.35
 const BOUNCE_DAMPING = 0.58
 const BOUNCE_FLOOR_PAD = 48
@@ -13,10 +14,19 @@ function isTouchIntro() {
   return window.matchMedia('(max-width: 1023px), (pointer: coarse)').matches
 }
 
+export function hasSeenSiteIntro() {
+  try {
+    return localStorage.getItem(INTRO_STORAGE_KEY) === '1'
+  } catch {
+    return false
+  }
+}
+
 function getHomePosition() {
+  const touch = isTouchIntro()
   return {
     x: window.innerWidth * 0.5,
-    y: window.innerHeight * 0.6,
+    y: window.innerHeight * (touch ? 0.52 : 0.6),
   }
 }
 
@@ -48,6 +58,11 @@ export function SiteIntroScreen({ onEnter }) {
     modeRef.current = 'done'
     clearIntroBodyLock()
     setPhase('exit')
+    try {
+      localStorage.setItem(INTRO_STORAGE_KEY, '1')
+    } catch {
+      /* ignore */
+    }
     window.clearTimeout(bounceTimeoutRef.current)
     exitTimerRef.current = window.setTimeout(() => {
       setPhase('gone')

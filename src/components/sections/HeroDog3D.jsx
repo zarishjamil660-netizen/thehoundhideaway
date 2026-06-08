@@ -103,6 +103,57 @@ export function HeroDog3D() {
   }, [])
 
   useEffect(() => {
+    const wrap = wrapRef.current
+    if (!wrap) return undefined
+
+    const hero = wrap.closest('.hero--home-2')
+    if (!hero) return undefined
+
+    const isMobile = () => window.matchMedia('(max-width: 640px)').matches
+
+    const getChestRatio = () => {
+      if (isMobile()) return 0.6
+      if (window.matchMedia('(max-width: 1023px)').matches) return 0.56
+      return 0.54
+    }
+
+    const updateForestSplit = () => {
+      const heroRect = hero.getBoundingClientRect()
+      const dogRect = wrap.getBoundingClientRect()
+      const splitPx = dogRect.top - heroRect.top + dogRect.height * getChestRatio()
+      hero.style.setProperty('--hero-split', `${Math.round(splitPx)}px`)
+
+      if (isMobile()) {
+        const feetRatio = 0.7
+        const collapse = Math.max(0, wrap.offsetHeight * (1 - feetRatio))
+        wrap.style.marginBottom = `${-Math.round(collapse * 0.45)}px`
+      } else {
+        wrap.style.removeProperty('margin-bottom')
+      }
+    }
+
+    updateForestSplit()
+
+    const resizeObserver = new ResizeObserver(updateForestSplit)
+    resizeObserver.observe(hero)
+    resizeObserver.observe(wrap)
+
+    window.addEventListener('resize', updateForestSplit)
+
+    const retryIds = [0, 120, 400, 900, 1800].map(delay =>
+      window.setTimeout(updateForestSplit, delay),
+    )
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', updateForestSplit)
+      retryIds.forEach(id => window.clearTimeout(id))
+      hero.style.removeProperty('--hero-split')
+      wrap.style.removeProperty('margin-bottom')
+    }
+  }, [use3d, viewportMode])
+
+  useEffect(() => {
     const mobileMq = window.matchMedia('(max-width: 640px)')
     const desktop1920Mq = window.matchMedia('(min-width: 1900px) and (max-width: 1940px)')
 

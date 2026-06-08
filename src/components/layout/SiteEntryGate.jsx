@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
-import { SiteIntroScreen } from './SiteIntroScreen.jsx'
+import { hasSeenSiteIntro, SiteIntroScreen } from './SiteIntroScreen.jsx'
 
 export function SiteEntryGate({ loadReady, children }) {
-  const [introDone, setIntroDone] = useState(false)
+  const [introDone, setIntroDone] = useState(() => hasSeenSiteIntro())
   const [loadFallback, setLoadFallback] = useState(false)
 
   useEffect(() => {

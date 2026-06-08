@@ -1,7 +1,6 @@
 import { lazy, Suspense } from 'react'
 import Header from '../layout/Header'
 import { AnimatedText } from '../motion/AnimatedText'
-import heroBg from '../../assets/Bgg for site 1.png'
 import { ScrollReveal } from '../motion/ScrollReveal'
 import './HeroSection.css'
 
@@ -24,12 +23,6 @@ function HeroDog3DPlaceholder() {
 export function HeroSection2() {
   return (
     <section className="hero hero--home-2" id="top">
-      <div className="hero__bg" aria-hidden>
-        <div className="hero__bg-strip">
-          <img src={heroBg} alt="" className="hero__bg-img" loading="lazy" decoding="async" />
-        </div>
-      </div>
-
       <Header />
 
       <ScrollReveal
@@ -72,15 +65,6 @@ export function HeroSection2() {
           </div>
         </div>
       </ScrollReveal>
-
-      <div className="hero__wave" aria-hidden>
-        <svg className="hero__wave-svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
-          <path
-            fill="var(--thh-forest)"
-            d="M0,55 C180,5 360,95 540,50 C720,5 900,95 1080,48 C1260,5 1350,40 1440,35 L1440,100 L0,100 Z"
-          />
-        </svg>
-      </div>
     </section>
   )
 }
