@@ -155,7 +155,7 @@
 @media (min-width: 1024px) {
   .truth-ref {
     /* Content height only — scroll runway is a fixed ::after block (no vh scaling) */
-    min-height: 0;
+    min-height: calc(100vh + 8rem);
     padding-bottom: 2.5rem;
   }
 
@@ -164,7 +164,7 @@
     content: '';
     display: block;
     width: 100%;
-    height: clamp(6rem, 12vh, 9rem);
+    height: clamp(14rem, 32vh, 22rem);
     flex-shrink: 0;
     pointer-events: none;
   }
@@ -184,7 +184,7 @@
 
 @media (min-width: 1921px) {
   .truth-ref::after {
-    height: 6rem;
+    height: 14rem;
   }
 
   .truth-ref__cards {

@@ -31,6 +31,36 @@ export function TruthSection() {
     let unlockTimer = 0
     let releaseTimer = 0
     let lastCardReleased = false
+    let wasInCaptureZone = false
+    let zoneArmedAt = 0
+
+    const ZONE_ARM_MS = 280
+    const SCROLL_STEP_THRESHOLD = 360
+    const STEP_LOCK_MS = 680
+
+    const getZones = () => {
+      const rect = el.getBoundingClientRect()
+      const vh = window.innerHeight || 1
+      const cardsRow = el.querySelector('.truth-ref__cards')
+      const cardsRect = cardsRow?.getBoundingClientRect()
+      const cardsNearView =
+        Boolean(cardsRect) &&
+        cardsRect.top < vh * 0.78 &&
+        cardsRect.bottom > vh * 0.18
+
+      const inCaptureZone =
+        cardsNearView &&
+        rect.top <= vh * 0.42 &&
+        rect.bottom >= vh * 0.55
+
+      return { inCaptureZone, rect, vh, cardsRect }
+    }
+
+    const revealFirstCardIfNeeded = () => {
+      if (cardIndex < 0) {
+        syncState(0)
+      }
+    }
 
     const syncState = index => {
       cardIndex = index
@@ -47,29 +77,57 @@ export function TruthSection() {
       lastCardReleased = false
       releaseTimer = window.setTimeout(() => {
         lastCardReleased = true
-      }, 900)
+      }, 850)
     }
 
     const onWheel = e => {
       if (window.innerWidth < DESKTOP_MIN) return
 
-      const rect = el.getBoundingClientRect()
-      const vh = window.innerHeight || 1
-      const inLockZone = rect.top <= vh * 0.2 && rect.bottom >= vh * 0.8
-      if (!inLockZone) return
-
+      const { inCaptureZone, rect, vh } = getZones()
       const maxIndex = cards.length - 1
       const movingDown = e.deltaY > 0
       const movingUp = e.deltaY < 0
 
-      if (cardIndex === maxIndex && lastCardReleased && movingUp) {
+      if (cardIndex === maxIndex && lastCardReleased) {
         return
       }
 
+      if (!inCaptureZone) {
+        if (wasInCaptureZone && rect.bottom < vh * 0.3) {
+          syncState(-1)
+          clearReleaseTimer()
+          lastCardReleased = false
+        }
+        wasInCaptureZone = false
+        scrollBucket = 0
+        lastDirection = 0
+        return
+      }
+
+      if (!wasInCaptureZone) {
+        wasInCaptureZone = true
+        zoneArmedAt = performance.now()
+        scrollBucket = 0
+        lastDirection = 0
+        stepLocked = false
+        revealFirstCardIfNeeded()
+      }
+
       e.preventDefault()
+      revealFirstCardIfNeeded()
+
+      if (cardIndex === maxIndex && !lastCardReleased) {
+        scrollBucket = 0
+        lastDirection = 0
+        return
+      }
+
+      if (cardIndex < 0 && performance.now() - zoneArmedAt < ZONE_ARM_MS) {
+        return
+      }
 
       const direction = movingDown ? 1 : -1
-      const shouldAdvance = (movingDown && cardIndex < maxIndex) || (movingUp && cardIndex >= 0)
+      const shouldAdvance = (movingDown && cardIndex < maxIndex) || (movingUp && cardIndex > 0)
 
       if (!shouldAdvance) {
         scrollBucket = 0
@@ -86,19 +144,20 @@ export function TruthSection() {
         scrollBucket += e.deltaY
       }
 
-      const SCROLL_STEP_THRESHOLD = 360
       if (Math.abs(scrollBucket) >= SCROLL_STEP_THRESHOLD) {
-        const nextIndex = Math.min(maxIndex, Math.max(-1, cardIndex + direction))
+        const nextIndex = Math.min(maxIndex, Math.max(0, cardIndex + direction))
         syncState(nextIndex)
         scrollBucket = 0
         stepLocked = true
         if (unlockTimer) window.clearTimeout(unlockTimer)
         unlockTimer = window.setTimeout(() => {
           stepLocked = false
-        }, 760)
+        }, STEP_LOCK_MS)
 
         if (nextIndex === maxIndex) {
           queueLastCardRelease()
+          scrollBucket = 0
+          lastDirection = 0
         } else {
           clearReleaseTimer()
           lastCardReleased = false
@@ -106,10 +165,27 @@ export function TruthSection() {
       }
     }
 
+    const onScroll = () => {
+      if (window.innerWidth < DESKTOP_MIN) return
+
+      const cardsRow = el.querySelector('.truth-ref__cards')
+      const cardsRect = cardsRow?.getBoundingClientRect()
+      const vh = window.innerHeight || 1
+
+      if (
+        cardsRect &&
+        cardsRect.top < vh * 0.68 &&
+        cardsRect.bottom > vh * 0.22
+      ) {
+        revealFirstCardIfNeeded()
+      }
+    }
+
     const onResize = () => {
       if (window.innerWidth >= DESKTOP_MIN) {
         syncState(-1)
       }
+      wasInCaptureZone = false
       scrollBucket = 0
       lastDirection = 0
       stepLocked = false
@@ -123,12 +199,14 @@ export function TruthSection() {
     }
 
     window.addEventListener('wheel', onWheel, { passive: false })
+    window.addEventListener('scroll', onScroll, { passive: true })
     window.addEventListener('resize', onResize)
 
     return () => {
       if (unlockTimer) window.clearTimeout(unlockTimer)
       clearReleaseTimer()
       window.removeEventListener('wheel', onWheel)
+      window.removeEventListener('scroll', onScroll)
       window.removeEventListener('resize', onResize)
     }
   }, [])
