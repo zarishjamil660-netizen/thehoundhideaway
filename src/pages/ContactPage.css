@@ -372,6 +372,7 @@ main.thh-page--contact + .site-footer {
 }
 
 .contact-page__form {
+  --cp-control-h: clamp(3.5rem, 11vw, 5.5rem);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -427,13 +428,18 @@ main.thh-page--contact + .site-footer {
 }
 
 .contact-page__field input {
-  min-height: clamp(3.5rem, 11vw, 5.5rem);
+  min-height: var(--cp-control-h);
+  height: var(--cp-control-h);
+}
+
+.contact-page__field--message textarea {
+  min-height: clamp(9rem, 26vw, 13.5rem);
+  height: auto;
 }
 
 .contact-page__field textarea {
   border-radius: clamp(1.5rem, 4.5vw, 2.25rem);
   resize: vertical;
-  min-height: clamp(9rem, 26vw, 13.5rem);
 }
 
 .contact-page__field input:focus,
@@ -446,12 +452,15 @@ main.thh-page--contact + .site-footer {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   align-self: stretch;
   margin-top: clamp(0.35rem, 1.5vw, 0.65rem);
   width: 100%;
-  min-height: clamp(3rem, 11vw, 117px);
-  height: auto;
-  padding: 0.75rem 1.5rem;
+  min-height: var(--cp-control-h);
+  height: var(--cp-control-h);
+  padding: 0 clamp(1.1rem, 4vw, 1.5rem);
   border: none;
   border-radius: 999px;
   background: var(--cp-mint);
@@ -738,11 +747,13 @@ main.thh-page--contact + .site-footer {
     max-width: min(100%, 1094px);
   }
 
+  .contact-page__form {
+    --cp-control-h: 117px;
+  }
+
   /* Comp: submit — 1094×117 */
   .contact-page__submit {
     width: 1094px;
-    height: 117px;
-    min-height: 117px;
     max-width: 100%;
   }
 }

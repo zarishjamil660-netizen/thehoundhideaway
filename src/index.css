@@ -1,2 +1,19 @@
 @import 'tailwindcss';
+
+@layer base {
+  /* Layout comps target ~1280px (150% zoom on 1920). 1440px comps apply at 1921+ only. */
+  html,
+  :host {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}
+
 @import './styles/global.css';
+
+@layer utilities {
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}

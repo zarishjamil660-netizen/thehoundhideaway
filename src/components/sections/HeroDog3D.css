@@ -56,9 +56,9 @@
 
 @media (max-width: 640px) {
   .hero--home-2 .hero__dog-wrap--3d {
-    margin-top: clamp(-4.75rem, -10vw, -3.25rem);
+    margin-top: clamp(-6.25rem, -13vw, -4.75rem);
     margin-bottom: 0;
-    translate: 0 clamp(1.25rem, 4vw, 2rem);
+    translate: 0 clamp(-0.75rem, -1vw, -0.25rem);
     z-index: 1;
   }
 

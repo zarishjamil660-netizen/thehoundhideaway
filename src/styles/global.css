@@ -7,11 +7,6 @@
   box-sizing: border-box;
 }
 
-html {
-  -webkit-text-size-adjust: 100%;
-  /* Layout comps target ~1280px (150% zoom on 1920). 1440px comps apply at 1921+ only. */
-}
-
 @media (min-width: 1024px) {
   :root {
     --layout-vw: min(100vw, 1280px);
