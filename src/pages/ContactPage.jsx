@@ -27,7 +27,6 @@ export function ContactPage() {
   const titleTouchRef = useRef(null)
   const dogParallaxRef = useRef(null)
   const dogWrapRef = useRef(null)
-  const dogShadowRef = useRef(null)
   const pawRef = useRef(null)
   const socialRefs = useRef([])
   const formHeadingRef = useRef(null)
@@ -44,7 +43,6 @@ export function ContactPage() {
       titleTouch: titleTouchRef,
       dogParallax: dogParallaxRef,
       dogWrap: dogWrapRef,
-      dogShadow: dogShadowRef,
       paw: pawRef,
       socialLinks: socialRefs,
       formHeading: formHeadingRef,
@@ -109,7 +107,6 @@ export function ContactPage() {
                   loading="lazy"
                   decoding="async"
                 />
-                <div ref={dogShadowRef} className="contact-page__dog-shadow" aria-hidden />
               </div>
             </div>
             <figure ref={pawRef} className="contact-page__paw">
@@ -165,15 +162,15 @@ export function ContactPage() {
           <form className="contact-page__form" onSubmit={handleSubmit} noValidate>
             <label className="contact-page__field">
               <span className="contact-page__field-label">Full name</span>
-              <input type="text" name="name" autoComplete="name" required />
+              <input type="text" name="name" autoComplete="name" placeholder=" " required />
             </label>
             <label className="contact-page__field">
               <span className="contact-page__field-label">Email</span>
-              <input type="email" name="email" autoComplete="email" required />
+              <input type="email" name="email" autoComplete="email" placeholder=" " required />
             </label>
             <label className="contact-page__field">
               <span className="contact-page__field-label">Phone</span>
-              <input type="tel" name="phone" autoComplete="tel" />
+              <input type="tel" name="phone" autoComplete="tel" placeholder=" " />
             </label>
             <label className="contact-page__field contact-page__field--message">
               <span className="contact-page__field-label">Message</span>

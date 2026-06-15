@@ -24,8 +24,7 @@
   .hero__btn,
   .experience-hero__cta-btn,
   .private-suites__cta,
-  .story__family-btn,
-  .suites-pricing__cta {
+  .story__family-btn {
     flex: none;
     width: 100%;
     min-height: 2.72rem;
@@ -47,16 +46,5 @@
 
   .experience-hero__cta-btn--outline {
     border-color: var(--thh-mint-soft);
-  }
-
-  .suites-pricing__cta {
-    width: 100%;
-    max-width: min(20rem, 100%);
-    margin-inline: auto;
-    border: 2px solid var(--thh-mint-soft);
-    background: var(--thh-mint-soft);
-    color: var(--thh-forest-deep);
-    font-weight: 800;
-    letter-spacing: 0.04em;
   }
 }

@@ -9,7 +9,7 @@ export function ExperienceHero({ imageSrc, imageAlt }) {
         <Header surface="mint" />
 
         <div className="experience-hero__stage">
-          <div className="experience-hero__copy relative z-10 mx-auto max-w-6xl px-4 pt-6 md:px-8 md:pt-10 lg:px-12">
+          <div className="experience-hero__copy relative mx-auto max-w-6xl px-4 pt-6 md:px-8 md:pt-10 lg:px-12">
             <div className="experience-hero__copy-inner mx-auto max-w-4xl text-center">
               <p
                 className="experience-hero__lede font-normal leading-snug [font-family:Franie,var(--font-sans)] tracking-[-0.01em] text-[var(--thh-forest-deep)] lg:text-6xl"
@@ -36,7 +36,7 @@ export function ExperienceHero({ imageSrc, imageAlt }) {
           </div>
 
           <div
-            className="experience-hero__media relative z-10"
+            className="experience-hero__media relative"
             data-experience-reveal="image"
             style={{ '--experience-delay': '360ms' }}
           >

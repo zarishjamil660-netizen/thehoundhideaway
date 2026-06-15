@@ -352,10 +352,13 @@
   .experience-hero__copy {
     padding-inline: clamp(0.75rem, 3vw, 1.25rem);
     transform: translateY(clamp(-2.25rem, -4.5vw, -1.25rem));
+    z-index: auto;
   }
 
   .experience-hero__lede {
     display: block;
+    position: relative;
+    z-index: 3;
     width: 100%;
     text-align: center;
     transform: translateX(clamp(0.9rem, 4.5vw, 1.65rem));
@@ -368,12 +371,20 @@
   }
 
   .experience-hero__title {
+    position: relative;
+    z-index: 1;
     margin-top: 0;
     font-size: clamp(6rem, 24vw, 10.5rem);
     line-height: 0.84;
   }
 
+  .experience-hero__copy p.mt-5 {
+    position: relative;
+    z-index: 3;
+  }
+
   .experience-hero__media {
+    z-index: 2;
     width: min(100%, 46rem);
     max-width: 100%;
     margin-top: clamp(-37rem, -58vw, -25rem);
@@ -431,7 +442,7 @@
   }
 
   .experience-hero__title {
-    font-size: clamp(5.25rem, 26vw, 8.25rem);
+    font-size: clamp(6.5rem, 32vw, 10.25rem);
   }
 
   .experience-hero__circle-layout {

@@ -133,7 +133,7 @@ export function SuitesPricingPage() {
         <BookStayBall />
       </section>
 
-      <section className="suites-pricing__closing" aria-label="Book a stay">
+      <section className="suites-pricing__closing" aria-label="Happy dogs">
         <img
           src={dogsTrio}
           alt="Happy dogs ready for their stay"
@@ -143,9 +143,6 @@ export function SuitesPricingPage() {
           loading="lazy"
           decoding="async"
         />
-        <a href="/book-now" className="suites-pricing__cta">
-          Book their stay
-        </a>
       </section>
     </main>
   )

@@ -19,7 +19,6 @@ export function useContactPageMotion(refs) {
       titleTouch,
       dogParallax,
       dogWrap,
-      dogShadow,
       paw,
       socialLinks,
       formHeading,
@@ -62,17 +61,6 @@ export function useContactPageMotion(refs) {
             repeat: -1,
             yoyo: true,
             delay: 1.2,
-          })
-        }
-
-        if (dogShadow.current) {
-          gsap.to(dogShadow.current, {
-            scale: 0.92,
-            opacity: 0.55,
-            duration: 4.5,
-            ease: 'sine.inOut',
-            repeat: -1,
-            yoyo: true,
           })
         }
 

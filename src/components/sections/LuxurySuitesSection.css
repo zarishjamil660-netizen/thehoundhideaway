@@ -494,9 +494,9 @@
     height: auto;
     transform: none;
     margin-top: 0;
-    margin-bottom: clamp(0.75rem, 3vw, 1.25rem);
-    padding: clamp(0.45rem, 2vw, 0.8rem) clamp(1rem, 4vw, 1.35rem)
-      clamp(4.25rem, 14vw, 5.5rem);
+    margin-bottom: clamp(1.25rem, 4.5vw, 2rem);
+    padding: clamp(1.15rem, 4vw, 1.75rem) clamp(1rem, 4vw, 1.35rem)
+      clamp(6.5rem, 20vw, 7.75rem);
     box-sizing: border-box;
   }
 
@@ -524,12 +524,14 @@
   .lux-ref__in-label {
     width: 100%;
     max-width: 100%;
-    padding-inline: 0 clamp(4.5rem, 19vw, 5.75rem);
-    margin-top: clamp(1rem, 3.6vw, 1.5rem);
+    padding-inline: clamp(4.5rem, 19vw, 5.75rem);
+    margin-top: clamp(2rem, 6.5vw, 2.85rem);
     font-size: clamp(2.1rem, 10vw, 3.1rem);
     line-height: 0.9;
     color: var(--thh-mint-soft);
     box-sizing: border-box;
+    align-items: center;
+    text-align: center;
   }
 
   .lux-ref__in-the {
@@ -552,7 +554,7 @@
     top: auto;
     left: auto;
     right: clamp(1rem, 4vw, 1.5rem);
-    bottom: clamp(1.35rem, 4.8vw, 2.15rem);
+    bottom: clamp(2.25rem, 6.5vw, 3.35rem);
     width: auto;
     height: auto;
     transform: none;

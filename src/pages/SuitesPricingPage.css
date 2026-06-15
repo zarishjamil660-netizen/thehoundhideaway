@@ -405,37 +405,6 @@
   opacity: 1;
 }
 
-.suites-pricing__cta {
-  box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: min(100%, 610px);
-  min-height: clamp(3rem, 12vw, 100px);
-  padding: 0.7rem clamp(1.75rem, 8vw, 3.25rem);
-  border-radius: 43.41px;
-  border: 6.09px solid var(--sp-mint);
-  background: var(--sp-mint);
-  color: var(--sp-text);
-  font-family: Franie, var(--font-sans);
-  font-weight: 700;
-  font-size: clamp(0.65rem, 2.4vw, 0.8rem);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  opacity: 1;
-  transition: filter 0.2s ease, transform 0.2s ease;
-}
-
-.suites-pricing__cta:hover {
-  filter: brightness(1.05);
-}
-
-.suites-pricing__cta:focus-visible {
-  outline: 2px solid var(--sp-mint);
-  outline-offset: 3px;
-}
-
 @keyframes sp-card-in-left {
   from {
     opacity: 0;
@@ -948,14 +917,5 @@
     object-fit: contain;
     object-position: center bottom;
     opacity: 1;
-  }
-
-  /* Comp: “Book their stay” — 610×100 */
-  .suites-pricing__cta {
-    width: 610px;
-    height: 100px;
-    min-height: 100px;
-    padding: 0 1.5rem;
-    align-self: center;
   }
 }
