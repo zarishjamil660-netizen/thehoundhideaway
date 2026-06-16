@@ -2,8 +2,7 @@ import { useMemo, useRef } from 'react'
 import { useFrame } from '@react-three/fiber'
 import { Center, useGLTF } from '@react-three/drei'
 import { dogSwayRadians, getDog3DRenderConfig, getDogMotionElapsedSeconds } from '../../lib/dogHeroMotion'
-
-const dogGlbUrl = new URL('../../assets/cartoon+dog+3d+model.glb', import.meta.url).href
+import { dogGlbUrl } from '../../lib/preloadHeroDog'
 
 /** Model is authored facing +X; rotate to face the camera (-Z). */
 const FACE_CAMERA_Y = -Math.PI / 2

@@ -1,24 +1,8 @@
-import { lazy, Suspense } from 'react'
 import Header from '../layout/Header'
 import { AnimatedText } from '../motion/AnimatedText'
 import { ScrollReveal } from '../motion/ScrollReveal'
+import { HeroDog3D } from './HeroDog3D'
 import './HeroSection.css'
-
-const HeroDog3D = lazy(() =>
-  import('./HeroDog3D.jsx').then((module) => ({ default: module.HeroDog3D })),
-)
-
-function HeroDog3DPlaceholder() {
-  return (
-    <div className="hero__dog-wrap hero__dog-wrap--3d" aria-hidden>
-      <div className="hero__dog-stack">
-        <div className="hero__dog-bob">
-          <div className="hero__dog-3d-canvas hero__dog-3d-canvas--loading" />
-        </div>
-      </div>
-    </div>
-  )
-}
 
 export function HeroSection2() {
   return (
@@ -42,9 +26,7 @@ export function HeroSection2() {
             <AnimatedText as="span" className="hero__trust" effect="burst" split="words" delay={240}>
               Trust
             </AnimatedText>
-            <Suspense fallback={<HeroDog3DPlaceholder />}>
-              <HeroDog3D />
-            </Suspense>
+            <HeroDog3D />
             <AnimatedText as="p" className="hero__begins" effect="skate" split="words" delay={340}>
               BEGINS!
             </AnimatedText>

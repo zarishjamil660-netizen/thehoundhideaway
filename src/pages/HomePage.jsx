@@ -1,3 +1,4 @@
+import '../lib/preloadHeroDog'
 import { HeroSection2 } from '../components/sections/HeroSection2'
 import { LuxurySuitesSection } from '../components/sections/LuxurySuitesSection'
 import { TruthSection } from '../components/sections/TruthSection'

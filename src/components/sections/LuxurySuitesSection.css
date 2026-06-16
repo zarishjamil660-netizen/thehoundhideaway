@@ -496,11 +496,12 @@
     margin-top: 0;
     margin-bottom: clamp(1.25rem, 4.5vw, 2rem);
     padding: clamp(1.15rem, 4vw, 1.75rem) clamp(1rem, 4vw, 1.35rem)
-      clamp(6.5rem, 20vw, 7.75rem);
+      clamp(2.75rem, 9vw, 4rem);
     box-sizing: border-box;
   }
 
   .lux-ref__upper {
+    order: 1;
     width: 100%;
     max-width: none;
     padding-inline: 0;
@@ -522,23 +523,28 @@
   }
 
   .lux-ref__in-label {
+    order: 2;
     width: 100%;
     max-width: 100%;
-    padding-inline: clamp(4.5rem, 19vw, 5.75rem);
+    padding-inline: 0;
     margin-top: clamp(2rem, 6.5vw, 2.85rem);
+    margin-inline: auto;
     font-size: clamp(2.1rem, 10vw, 3.1rem);
     line-height: 0.9;
     color: var(--thh-mint-soft);
     box-sizing: border-box;
     align-items: center;
+    justify-content: center;
     text-align: center;
   }
 
   .lux-ref__in-the {
-    left: 0;
-    top: 0;
-    margin-left: auto;
-    margin-right: auto;
+    position: static;
+    left: auto;
+    top: auto;
+    margin: 0 auto clamp(0.1rem, 0.5vw, 0.2rem);
+    text-align: center;
+    align-self: center;
   }
 
   .lux-ref__in-title {
@@ -546,22 +552,36 @@
     line-height: 1.12;
     letter-spacing: -0.02em;
     white-space: nowrap;
-    max-width: none;
+    max-width: 100%;
     overflow-wrap: normal;
+    margin-inline: auto;
+    text-align: center;
+    align-self: center;
   }
 
   .lux-ref__pager {
+    order: 3;
+    position: relative;
     top: auto;
     left: auto;
-    right: clamp(1rem, 4vw, 1.5rem);
-    bottom: clamp(2.25rem, 6.5vw, 3.35rem);
-    width: auto;
+    right: auto;
+    bottom: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     height: auto;
+    margin-top: clamp(0.75rem, 3vw, 1.15rem);
     transform: none;
     pointer-events: none;
   }
 
   .lux-ref__pager-dial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: auto;
     transform: none;
     transition: none;
   }
