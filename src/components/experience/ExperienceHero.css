@@ -365,10 +365,10 @@
     width: 100%;
     max-width: 100%;
     text-align: center;
-    transform: translateX(clamp(0.65rem, 3vw, 1.35rem));
+    transform: translateX(clamp(1.15rem, 5vw, 2rem));
     margin: 0 0 0.15rem;
     padding-inline: 0.25rem;
-    font-size: clamp(1.05rem, 4.2vw, 1.55rem);
+    font-size: clamp(0.92rem, 3.6vw, 1.35rem);
     line-height: 1.15;
     letter-spacing: -0.015em;
     white-space: normal;
@@ -472,8 +472,8 @@
   }
 
   .experience-hero__lede {
-    font-size: clamp(0.95rem, 4.5vw, 1.2rem);
-    transform: translateX(clamp(0.5rem, 2.5vw, 1rem));
+    font-size: clamp(0.82rem, 3.8vw, 1.05rem);
+    transform: translateX(clamp(0.95rem, 4.5vw, 1.65rem));
     margin-bottom: 0;
   }
 
@@ -521,8 +521,8 @@
 
 @media (min-width: 768px) and (max-width: 1023.98px) {
   .experience-hero__lede {
-    font-size: clamp(1.35rem, 2.8vw, 1.85rem);
-    transform: translateX(clamp(1rem, 2.5vw, 1.75rem));
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    transform: translateX(clamp(1.5rem, 3.5vw, 2.35rem));
     white-space: nowrap;
   }
 
