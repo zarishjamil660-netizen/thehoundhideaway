@@ -574,7 +574,7 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   .contact-page__book-ball {
     justify-content: center;
     margin-top: clamp(0.5rem, 2vw, 1.25rem);
-    margin-bottom: clamp(-2.5rem, -6vw, -0.75rem);
+    margin-bottom: clamp(0.75rem, 3vw, 1.5rem);
     z-index: 1;
   }
 
@@ -619,12 +619,12 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   }
 
   main.thh-page--contact + .site-footer .site-footer__inner {
-    padding-top: clamp(0.15rem, 1vw, 0.5rem);
+    padding-top: clamp(0.65rem, 2.5vw, 1.15rem);
   }
 
   .contact-page__book-ball {
     margin-top: clamp(0.75rem, 2.5vw, 1.75rem);
-    margin-bottom: clamp(-3rem, -7vw, -1rem);
+    margin-bottom: clamp(0.5rem, 2vw, 1.25rem);
     z-index: 1;
   }
 
