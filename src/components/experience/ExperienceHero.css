@@ -348,9 +348,9 @@
 
   .experience-hero__copy {
     padding-inline: clamp(0.85rem, 4vw, 1.5rem);
-    padding-top: 0;
+    padding-top: clamp(0.35rem, 1.5vw, 0.75rem);
     padding-bottom: 0;
-    transform: translateY(clamp(-0.35rem, -1.5vw, 0));
+    transform: translateY(clamp(0.65rem, 2.5vw, 1.25rem));
     z-index: 3;
   }
 
@@ -467,8 +467,8 @@
   }
 
   .experience-hero__copy {
-    padding-top: 0;
-    transform: translateY(-0.15rem);
+    padding-top: clamp(0.5rem, 2vw, 0.85rem);
+    transform: translateY(clamp(0.85rem, 3.5vw, 1.5rem));
   }
 
   .experience-hero__lede {

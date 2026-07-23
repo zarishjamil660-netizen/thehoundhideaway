@@ -567,14 +567,24 @@ main.thh-page--contact + .site-footer .site-footer__inner {
 }
 
 @media (max-width: 767.98px) {
+  .contact-page__form-section {
+    margin-bottom: clamp(1.25rem, 4vw, 2rem);
+  }
+
   .contact-page__book-ball {
     justify-content: center;
-    margin-top: clamp(-7rem, -14vw, -3.5rem);
-    margin-bottom: clamp(-5rem, -10vw, -2.5rem);
+    margin-top: clamp(0.5rem, 2vw, 1.25rem);
+    margin-bottom: clamp(-2.5rem, -6vw, -0.75rem);
+    z-index: 1;
   }
 
   .contact-page__book-ball .book-stay-ball--contact {
     transform: none;
+  }
+
+  .contact-page__submit {
+    position: relative;
+    z-index: 2;
   }
 
   .contact-page__body {
@@ -610,6 +620,12 @@ main.thh-page--contact + .site-footer .site-footer__inner {
 
   main.thh-page--contact + .site-footer .site-footer__inner {
     padding-top: clamp(0.15rem, 1vw, 0.5rem);
+  }
+
+  .contact-page__book-ball {
+    margin-top: clamp(0.75rem, 2.5vw, 1.75rem);
+    margin-bottom: clamp(-3rem, -7vw, -1rem);
+    z-index: 1;
   }
 
   .contact-page__body {
