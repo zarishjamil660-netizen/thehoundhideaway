@@ -1,6 +1,8 @@
+/* Opacity-only reveals — never set transform here.
+   Hero media needs translateX(-50%) for centering; lede uses layout transforms. */
 main.thh-page--experience.experience-motion-ready [data-experience-reveal] {
   opacity: 0;
-  transition: opacity 500ms ease;
+  transition: opacity 580ms ease;
   transition-delay: var(--experience-delay, 0ms);
   will-change: opacity;
 }
@@ -9,7 +11,7 @@ main.thh-page--experience.experience-motion-ready [data-experience-reveal].is-vi
   opacity: 1;
 }
 
-/* Hero mint arch is always above the fold — never hide copy behind scroll reveal */
+/* Hero mint arch is always above the fold */
 main.thh-page--experience.experience-motion-ready .experience-hero__top [data-experience-reveal] {
   opacity: 1;
 }

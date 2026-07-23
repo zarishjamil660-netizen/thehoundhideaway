@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Header from '../components/layout/Header'
-import suiteCardArt from '../assets/Gemini_Generated_Image_9hv6jc9hv6jc9hv6 1.png'
+import countrysideImg from '../assets/Gemini_Generated_Image_9hv6jc9hv6jc9hv6 1.png'
+import luxurySuiteImg from '../assets/Luxury Suite.jpg.jpeg'
+import riverLodgeImg from '../assets/River Lodge.png'
 import heroDog from '../assets/This_dog_resting_looking_happy_202605152211 1.png'
 import tennisBall from '../assets/fxemoji_tennisball.png'
 import './PrivateSuitesPage.css'
 
-const AUTOPLAY_MS = 5000
+const AUTOPLAY_MS = 4000
 
 function getVisibleSlides(activeIndex, slides) {
   const len = slides.length
@@ -18,7 +20,7 @@ function getVisibleSlides(activeIndex, slides) {
 
 const SLIDES = [
   {
-    src: suiteCardArt,
+    src: countrysideImg,
     alt: 'Outdoor countryside dog suites with fenced runs under open sky',
     titleLine1: 'Countryside',
     titleLine2: 'Suites',
@@ -26,18 +28,18 @@ const SLIDES = [
     captionSub: '(Room with a view, more stimulation)',
   },
   {
-    src: suiteCardArt,
-    alt: 'Spacious garden-facing suite accommodation for dogs',
-    titleLine1: 'Garden',
+    src: luxurySuiteImg,
+    alt: 'Luxury private suite accommodation for dogs',
+    titleLine1: 'Luxury',
     titleLine2: 'Suites',
     captionLead: 'Best for calmer dogs',
     captionSub: '(Soft routines, gentle sensory load)',
   },
   {
-    src: suiteCardArt,
-    alt: 'Premium private suite with dedicated space',
-    titleLine1: 'Signature',
-    titleLine2: 'Suite',
+    src: riverLodgeImg,
+    alt: 'Riverside lodge stay for dogs by the water',
+    titleLine1: 'Riverside',
+    titleLine2: 'Lodge',
     captionLead: 'Maximum privacy',
     captionSub: '(Bespoke daily rhythm)',
   },
@@ -50,67 +52,29 @@ export function PrivateSuitesPage() {
   const [autoplayPaused, setAutoplayPaused] = useState(false)
   const isAnimatingRef = useRef(false)
   const shiftRef = useRef(0)
+  const indexRef = useRef(0)
+  const autoplayPausedRef = useRef(false)
   const transitionFallbackTimeoutRef = useRef(/** @type {number | null} */ (null))
   const len = SLIDES.length
   const slide = SLIDES[index]
   const visibleSlides = getVisibleSlides(index, SLIDES)
 
   shiftRef.current = shift
+  indexRef.current = index
+  autoplayPausedRef.current = autoplayPaused
 
-  const go = useCallback(
-    (direction) => {
-      if (isAnimatingRef.current || shiftRef.current !== 0) return
+  const clearTransitionFallback = useCallback(() => {
+    if (transitionFallbackTimeoutRef.current !== null) {
+      window.clearTimeout(transitionFallbackTimeoutRef.current)
+      transitionFallbackTimeoutRef.current = null
+    }
+  }, [])
 
-      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        setIndex((i) => (direction === 'next' ? (i + 1) % len : (i - 1 + len) % len))
-        return
-      }
-
-      if (transitionFallbackTimeoutRef.current !== null) {
-        window.clearTimeout(transitionFallbackTimeoutRef.current)
-        transitionFallbackTimeoutRef.current = null
-      }
-
-      isAnimatingRef.current = true
-      setShift(direction === 'next' ? -1 : 1)
-
-      // Safety net: if CSS transitionend doesn't fire (browser quirks / style overrides),
-      // we still reset state so autoplay keeps working.
-      transitionFallbackTimeoutRef.current = window.setTimeout(() => {
-        if (shiftRef.current === 0) return
-
-        const dir = direction === 'next'
-        setNoTransition(true)
-        setIndex((i) => (dir ? (i + 1) % len : (i - 1 + len) % len))
-        setShift(0)
-        shiftRef.current = 0
-
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            setNoTransition(false)
-            isAnimatingRef.current = false
-            if (transitionFallbackTimeoutRef.current !== null) {
-              window.clearTimeout(transitionFallbackTimeoutRef.current)
-              transitionFallbackTimeoutRef.current = null
-            }
-          })
-        })
-      }, 1050)
-    },
-    [len],
-  )
-
-  const handleTrackTransitionEnd = useCallback(
-    (e) => {
-      if (e.target !== e.currentTarget || e.propertyName !== 'transform' || shiftRef.current === 0) return
-
-      if (transitionFallbackTimeoutRef.current !== null) {
-        window.clearTimeout(transitionFallbackTimeoutRef.current)
-        transitionFallbackTimeoutRef.current = null
-      }
-
-      const dir = shiftRef.current
-      const nextIndex = dir === -1 ? (index + 1) % len : (index - 1 + len) % len
+  const finishShift = useCallback(
+    (dir) => {
+      clearTransitionFallback()
+      const nextIndex =
+        dir === -1 ? (indexRef.current + 1) % len : (indexRef.current - 1 + len) % len
       setNoTransition(true)
       setIndex(nextIndex)
       setShift(0)
@@ -122,23 +86,66 @@ export function PrivateSuitesPage() {
         })
       })
     },
-    [index, len],
+    [clearTransitionFallback, len],
+  )
+
+  const go = useCallback(
+    (direction) => {
+      if (isAnimatingRef.current || shiftRef.current !== 0) return
+
+      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        setIndex((i) => (direction === 'next' ? (i + 1) % len : (i - 1 + len) % len))
+        return
+      }
+
+      clearTransitionFallback()
+
+      const nextShift = direction === 'next' ? -1 : 1
+      isAnimatingRef.current = true
+      shiftRef.current = nextShift
+      setShift(nextShift)
+
+      // Safety net: if CSS transitionend doesn't fire, still unlock for autoplay.
+      transitionFallbackTimeoutRef.current = window.setTimeout(() => {
+        if (shiftRef.current === 0) return
+        finishShift(shiftRef.current)
+      }, 1050)
+    },
+    [clearTransitionFallback, finishShift, len],
+  )
+
+  const handleTrackTransitionEnd = useCallback(
+    (e) => {
+      if (e.target !== e.currentTarget || e.propertyName !== 'transform' || shiftRef.current === 0) return
+      finishShift(shiftRef.current)
+    },
+    [finishShift],
   )
 
   const prev = useCallback(() => go('prev'), [go])
   const next = useCallback(() => go('next'), [go])
 
+  /* Auto-advance cards every few seconds (pause only while pointer is over the carousel). */
   useEffect(() => {
     if (typeof window === 'undefined') return undefined
-    const tick = () => {
-      if (!autoplayPaused && !isAnimatingRef.current && shiftRef.current === 0) {
-        go('next')
-      }
-    }
 
-    const id = window.setInterval(tick, AUTOPLAY_MS)
+    const id = window.setInterval(() => {
+      if (autoplayPausedRef.current) return
+
+      // If a prior transition got stuck, force-complete then advance on the next tick.
+      if (shiftRef.current !== 0) {
+        finishShift(shiftRef.current)
+        return
+      }
+      if (isAnimatingRef.current) {
+        isAnimatingRef.current = false
+      }
+
+      go('next')
+    }, AUTOPLAY_MS)
+
     return () => window.clearInterval(id)
-  }, [autoplayPaused, index, go])
+  }, [finishShift, go, index])
 
   return (
     <main className="private-suites thh-page--private-suites">
@@ -178,14 +185,9 @@ export function PrivateSuitesPage() {
 
           <div
             className="private-suites__carousel"
-            tabIndex={0}
             aria-roledescription="carousel"
             onMouseEnter={() => setAutoplayPaused(true)}
             onMouseLeave={() => setAutoplayPaused(false)}
-            onFocus={() => setAutoplayPaused(true)}
-            onBlur={(e) => {
-              if (!e.currentTarget.contains(e.relatedTarget)) setAutoplayPaused(false)
-            }}
           >
             <div className="private-suites__viewport">
               <ul

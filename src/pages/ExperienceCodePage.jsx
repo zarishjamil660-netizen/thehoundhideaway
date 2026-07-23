@@ -1,6 +1,8 @@
 import { useLayoutEffect, useRef } from 'react'
-import maskGroup from '../assets/experience/Mask group.png'
+import group26 from '../assets/Group 26.png'
 import maskGroup1 from '../assets/experience/Mask group (1).png'
+import diveInPool from '../assets/Dive In (Pool).jpg.jpeg'
+import calmStructure from '../assets/Gemini_Generated_Image_mxah3kmxah3kmxah.jpg.jpeg'
 import trustIllustrationFullBody from '../assets/ChatGPT Image May 6, 2026, 03_49_23 AM 1.png'
 import groomedDogs from '../assets/experience/groomed dogs 1.png'
 import rescueImage from '../assets/experience/Rescue 1.png'
@@ -67,23 +69,47 @@ export function ExperienceCodePage() {
       className="thh-page--experience min-h-svh w-full max-w-full overflow-x-clip bg-[var(--thh-mint-soft)] text-[var(--thh-body-text)]"
     >
       <ExperienceHero
-        imageSrc={maskGroup}
-        imageAlt="Illustration of dogs relaxing together in a cozy home scene"
+        imageSrc={group26}
+        imageAlt="Illustration of two dogs relaxing on a sofa in a cozy home scene"
       />
       <ExperienceTennisBalls />
       <ExperienceBoarding />
       <ExperienceStepSection
         id="countryside"
         sectionTitle="Core Experience"
-        number="01"
-        title="Countryside Walks"
-        bullets={[
-          'Safe, structured walks',
-          'Tailored to energy levels',
-          'Fully supervised',
+        steps={[
+          {
+            number: '01',
+            title: 'Countryside Walks',
+            bullets: [
+              'Safe, structured walks',
+              'Tailored to energy levels',
+              'Fully supervised',
+            ],
+            imageSrc: maskGroup1,
+            imageAlt: 'Illustration of dogs on a countryside walk along a path',
+          },
+          {
+            number: '02',
+            title: 'Dive In (Pool)',
+            bullets: [
+              'The best part of the day.',
+              'Supervised. Safe. Pure fun.',
+            ],
+            imageSrc: diveInPool,
+            imageAlt: 'Dogs enjoying a supervised pool session',
+          },
+          {
+            number: '03',
+            title: 'Calm & Structure',
+            bullets: [
+              "We don't rush dogs.",
+              'We let them settle, adjust, and feel safe.',
+            ],
+            imageSrc: calmStructure,
+            imageAlt: 'Calm structured day for dogs settling in',
+          },
         ]}
-        imageSrc={maskGroup1}
-        imageAlt="Illustration of dogs on a countryside walk along a path"
         reverse={false}
         curveTop
       />

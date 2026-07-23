@@ -191,7 +191,7 @@
 }
 
 @media (max-width: 767.98px) {
-  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center) {
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center):not(.book-stay-ball--contact) {
     width: min(100vw, 80rem);
   }
 
@@ -202,7 +202,7 @@
 }
 
 @media (min-width: 1024px) {
-  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center) {
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center):not(.book-stay-ball--contact) {
     width: min(102rem, 100%);
     --book-ball-rotate: 0deg;
   }
@@ -221,6 +221,77 @@
 
   .book-stay-ball:hover .book-stay-ball__art {
     filter: none;
+  }
+}
+
+/* —— Contact page: measure off-flow, then crop to disc diameter —— */
+.book-stay-ball--contact {
+  --book-contact-measure: clamp(34rem, 78vw, 60rem);
+  width: var(--book-contact-box, var(--book-contact-measure));
+  max-width: min(100%, 60rem);
+  height: var(--book-contact-box, auto);
+  margin: 0;
+  aspect-ratio: 1 / 1;
+  --book-ball-rotate: 0deg;
+  overflow: hidden;
+  line-height: 0;
+}
+
+/* Avoid reserving the full artboard height before pivot measure finishes */
+.book-stay-ball--contact:not(.book-stay-ball--ready) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: var(--book-contact-measure) !important;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.book-stay-ball--contact.book-stay-ball--ready {
+  position: relative;
+  visibility: visible;
+  pointer-events: auto;
+  aspect-ratio: auto;
+  max-width: none;
+  width: var(--book-contact-box) !important;
+  height: var(--book-contact-box) !important;
+  overflow: hidden;
+}
+
+.book-stay-ball--contact.book-stay-ball--ready .book-stay-ball__wrapper {
+  transform: translate(var(--book-center-x), var(--book-center-y));
+}
+
+.book-stay-ball--contact.book-stay-ball--ready {
+  --book-text-left: var(--book-pivot-x);
+  --book-text-top: var(--book-pivot-y);
+  --book-text-rotate: -18deg;
+}
+
+.book-stay-ball--contact .book-stay-ball__text {
+  font-size: calc(var(--book-disc-r, 8rem) * 0.34);
+  max-width: calc(var(--book-disc-r, 8rem) * 1.15);
+  gap: 0.1em;
+  line-height: 0.82;
+}
+
+.book-stay-ball--contact .book-stay-ball__line--mid {
+  font-size: 0.46em;
+}
+
+@media (max-width: 767.98px) {
+  .book-stay-ball--contact {
+    --book-contact-measure: clamp(22rem, 94vw, 30rem);
+    width: var(--book-contact-box, var(--book-contact-measure));
+    max-width: min(100%, 30rem);
+    margin-inline: auto;
+  }
+
+  .book-stay-ball--contact .book-stay-ball__text {
+    font-size: calc(var(--book-disc-r, 6rem) * 0.3);
   }
 }
 

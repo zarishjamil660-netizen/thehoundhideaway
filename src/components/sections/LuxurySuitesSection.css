@@ -180,11 +180,29 @@
 .lux-ref__inner-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   object-position: 50% 50%;
   max-width: none;
   display: block;
   flex-shrink: 0;
+}
+
+/* Landscape suite / lodge photos — keep the room & building centered in the disc */
+.lux-ref__inner-img--suite {
+  object-fit: cover;
+  object-position: 48% 42%;
+  transform: scale(1.08);
+}
+
+.lux-ref__inner-img--lodge {
+  object-fit: cover;
+  object-position: 42% 48%;
+  transform: scale(1.06);
+}
+
+.lux-ref__inner-img--countryside {
+  object-fit: cover;
+  object-position: 50% 55%;
 }
 
 .lux-ref__in-label {

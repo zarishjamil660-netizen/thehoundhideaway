@@ -5,6 +5,14 @@ body:has(main.thh-page--contact),
   background: var(--thh-forest);
 }
 
+#root:has(main.thh-page--contact) {
+  min-height: auto;
+}
+
+#root:has(main.thh-page--contact) .site-footer {
+  margin-top: 0;
+}
+
 .thh-page--contact {
   width: 100%;
   max-width: 100%;
@@ -16,7 +24,7 @@ body:has(main.thh-page--contact),
   --cp-mint: var(--thh-mint-soft);
   --cp-forest: var(--thh-forest);
   --cp-text: var(--thh-forest-deep);
-  min-height: 100%;
+  min-height: 0;
   background: var(--cp-forest);
   color: var(--cp-mint);
 }
@@ -59,7 +67,7 @@ body:has(main.thh-page--contact),
 .contact-page__title {
   position: relative;
   z-index: 1;
-  margin: clamp(2.5rem, 7.5vw, 4rem) auto 0;
+  margin: clamp(3.75rem, 11vw, 6rem) auto 0;
   padding-inline: clamp(1rem, 4vw, 2rem);
   max-width: min(100%, 52rem);
   font-family: var(--font-serif);
@@ -151,10 +159,16 @@ body:has(main.thh-page--contact),
   background: var(--cp-forest);
 }
 
-/* Space above footer — padding (forest) not margin (would show mint body) */
+/* Space above footer — keep forest continuous; no gap under ball */
 main.thh-page--contact + .site-footer {
   margin-top: 0;
-  padding-top: clamp(1rem, 3vw, 1.5rem);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+main.thh-page--contact + .site-footer .site-footer__inner {
+  padding-top: clamp(0.25rem, 1vw, 0.75rem);
+  padding-bottom: clamp(1.25rem, 4vw, 2rem);
 }
 
 /* Follow: dog + paw (composite art includes labels/icons) */
@@ -162,7 +176,7 @@ main.thh-page--contact + .site-footer {
   position: relative;
   z-index: 3;
   margin-top: clamp(-1.5rem, -5vw, -3.5rem);
-  margin-bottom: clamp(2rem, 8vw, 4rem);
+  margin-bottom: clamp(1rem, 4vw, 2rem);
   overflow: visible;
 }
 
@@ -527,46 +541,40 @@ main.thh-page--contact + .site-footer {
   position: relative;
   z-index: 3;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
-  padding: clamp(0.25rem, 1vw, 0.75rem) clamp(0.75rem, 4vw, 1.5rem) 0 0;
-  margin-top: clamp(-10rem, -20vw, -4rem);
-  margin-bottom: 0;
+  max-width: 100%;
+  height: auto;
+  padding: 0;
+  margin-top: clamp(-10rem, -16vw, -5rem);
+  margin-bottom: clamp(-8rem, -12vw, -4rem);
   overflow: visible;
+  box-sizing: border-box;
+  line-height: 0;
 }
 
-.contact-page__book-ball .book-stay-ball--ready {
-  margin-bottom: calc(-50% + var(--book-disc-r));
+.contact-page__book-ball:has(.book-stay-ball--contact:not(.book-stay-ball--ready)) {
+  min-height: clamp(14rem, 36vw, 22rem);
 }
 
-.contact-page__book-ball .book-stay-ball {
-  margin-inline: 0;
-  flex-shrink: 0;
-  align-self: flex-start;
+.contact-page__book-ball .book-stay-ball--contact {
+  transform: translateX(clamp(-2.5rem, -4vw, -1rem));
 }
 
-/* Full-width artboard keeps the disc centred; shift it to the section’s left edge. */
-.contact-page__book-ball .book-stay-ball--ready .book-stay-ball__wrapper {
-  transform: translate(
-    calc(var(--book-center-x) - 50% + var(--book-disc-r) - clamp(1.25rem, 3.5vw, 4rem)),
-    var(--book-center-y)
-  );
-}
-
-.contact-page__book-ball .book-stay-ball:focus-visible .book-stay-ball__wrapper {
+.contact-page__book-ball .book-stay-ball--contact:focus-visible .book-stay-ball__wrapper {
   outline-color: var(--cp-mint);
 }
 
 @media (max-width: 767.98px) {
   .contact-page__book-ball {
-    padding: clamp(0.25rem, 1vw, 0.75rem) 0 0;
-    overflow: visible;
+    justify-content: center;
+    margin-top: clamp(-7rem, -14vw, -3.5rem);
+    margin-bottom: clamp(-5rem, -10vw, -2.5rem);
   }
 
-  .contact-page__book-ball .book-stay-ball {
-    width: min(100vw, 80rem);
+  .contact-page__book-ball .book-stay-ball--contact {
+    transform: none;
   }
 
   .contact-page__body {
@@ -597,7 +605,11 @@ main.thh-page--contact + .site-footer {
 
 @media (max-width: 1023.98px) {
   main.thh-page--contact + .site-footer {
-    padding-top: clamp(1rem, 3vw, 1.5rem);
+    padding-top: 0;
+  }
+
+  main.thh-page--contact + .site-footer .site-footer__inner {
+    padding-top: clamp(0.15rem, 1vw, 0.5rem);
   }
 
   .contact-page__body {
@@ -653,7 +665,14 @@ main.thh-page--contact + .site-footer {
   }
 
   .contact-page__book-ball {
-    margin-left: calc(-1 * clamp(1rem, 4vw, 2rem));
+    margin-left: 0;
+    padding-left: 0;
+    margin-top: clamp(-12rem, -18vw, -6rem);
+    margin-bottom: clamp(-10rem, -14vw, -5rem);
+  }
+
+  .contact-page__book-ball .book-stay-ball--contact {
+    transform: translateX(clamp(-3rem, -5vw, -1.5rem));
   }
 
   .contact-page__dog-parallax {

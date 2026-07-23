@@ -51,7 +51,7 @@
 .private-suites__hero-kicker {
   position: relative;
   z-index: 6;
-  margin: clamp(1rem, 3vw, 1.5rem) auto 0;
+  margin: clamp(2.25rem, 5vw, 3.25rem) auto 0;
   max-width: min(100%, 48rem);
   padding-inline: clamp(1rem, 4vw, 1.5rem);
   box-sizing: border-box;
@@ -436,6 +436,10 @@
     max-width: 960px;
   }
 
+  .private-suites__hero-kicker {
+    margin-top: clamp(3.5rem, 6.5vw, 5.25rem);
+  }
+
   .private-suites__hero-title-calm {
     font-size: clamp(3rem, 7vw, 148.74px);
   }
@@ -491,7 +495,7 @@
     position: relative;
     z-index: 5;
     text-align: center;
-    margin-top: clamp(1rem, 2vw, 1.5rem);
+    margin-top: clamp(3.25rem, 5vw, 4.75rem);
   }
 
   .private-suites__hero-title-calm {
@@ -637,6 +641,7 @@
     width: 100%;
     max-width: min(100%, calc(960px * var(--ps-comp-scale)));
     margin-inline: auto;
+    margin-top: clamp(3.75rem, 7vh, 5.5rem);
     padding-inline: clamp(1rem, 4vw, 2rem);
     padding-left: clamp(5.5rem, 12vw, 10rem);
     text-align: center;

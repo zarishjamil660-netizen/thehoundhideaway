@@ -52,8 +52,8 @@
 
 /* Hero — dogs + title grouped tight under nav */
 .suites-pricing__hero-stage {
-  --sp-dog-left: clamp(10rem, 60vw, 950px);
-  --sp-dog-right: clamp(11rem, 70vw, 1500px);
+  --sp-dog-left: clamp(10rem, 42vw, 20rem);
+  --sp-dog-right: clamp(11rem, 48vw, 24rem);
   --sp-hero-gap: clamp(-1.5rem, -3vw, 0.35rem);
   --sp-dog-inset: clamp(-2rem, -5vw, -0.5rem);
   position: relative;
@@ -89,7 +89,7 @@
   max-width: none;
   margin-right: var(--sp-dog-inset);
   z-index: 3;
-  transform: translate(clamp(5.5rem, 17vw, 14rem), clamp(1.5rem, 4vw, 3.5rem));
+  transform: translate(clamp(2.5rem, 8vw, 8rem), clamp(1rem, 3vw, 2.5rem));
 }
 
 .suites-pricing__hero-dog--right {
@@ -98,8 +98,8 @@
   width: var(--sp-dog-right);
   max-width: none;
   margin-left: var(--sp-dog-inset);
-  z-index: 3;
-  transform: translate(clamp(-16.5rem, -21vw, -9rem), clamp(1.5rem, 4vw, 3.5rem));
+  z-index: 1;
+  transform: translate(clamp(-8rem, -14vw, -4rem), clamp(1rem, 3vw, 2.5rem));
 }
 
 .suites-pricing__title {
@@ -138,7 +138,7 @@
 
 .suites-pricing__tiers {
   position: relative;
-  z-index: 2;
+  z-index: 4;
   margin-top: clamp(-6.5rem, -12vw, -2.5rem);
   padding: clamp(0.15rem, 1.5vw, 0.75rem) 0 clamp(2rem, 8vw, 4rem);
 }
@@ -650,24 +650,33 @@
 
 @media (min-width: 1024px) {
   .suites-pricing__hero-stage {
-    --sp-dog-left: clamp(12rem, 54vw, 950px);
-    --sp-dog-right: clamp(12rem, 62vw, 1400px);
+    --sp-dog-left: clamp(12rem, 28vw, 22rem);
+    --sp-dog-right: clamp(14rem, 34vw, 28rem);
     --sp-hero-gap: clamp(-2rem, -4vw, 0.25rem);
     --sp-dog-inset: clamp(-2.5rem, -6vw, -0.75rem);
+    max-width: min(100%, 90rem);
+  }
+
+  .suites-pricing__hero-dog--left {
+    transform: translate(clamp(2.5rem, 6vw, 6rem), clamp(1rem, 2.5vw, 2.5rem));
+  }
+
+  .suites-pricing__hero-dog--right {
+    transform: translate(clamp(-8rem, -12vw, -4rem), clamp(1rem, 2.5vw, 2.5rem));
   }
 
   .suites-pricing__title {
-    font-size: clamp(3.75rem, 11vw, 9rem);
+    font-size: clamp(3.75rem, 7vw, 6.5rem);
     line-height: 1.1;
+    transform: translate(clamp(0.5rem, 2vw, 2rem), clamp(0.35rem, 1vw, 1rem));
+  }
+
+  .suites-pricing__tiers {
+    margin-top: clamp(-3.5rem, -6vw, -1.5rem);
   }
 }
 
 @media (min-width: 900px) {
-  .suites-pricing__hero-stage {
-    --sp-dog-left: clamp(16rem, 42vw, 950px);
-    --sp-dog-right: clamp(16rem, 52vw, 1600px);
-  }
-
   .suites-pricing__trio {
     width: min(100%, 88vw);
     max-width: 1320px;
@@ -680,8 +689,11 @@
   }
 }
 
-/* Comp @ 1440 — dogs 825×825 & 1020×1020 (full asset size); 1921+ = ultrawide / zoomed-out */
-@media (min-width: 1921px) {
+/*
+  True ultrawide only — do NOT use ~1921px: 90% browser zoom on 1080p
+  expands CSS width past 1920 and used to blow dogs up to 2800px.
+*/
+@media (min-width: 2560px) {
   .suites-pricing__hero {
     padding-bottom: 0;
     overflow: visible;
@@ -690,85 +702,58 @@
   .suites-pricing__tiers {
     position: relative;
     z-index: 4;
-    margin-top: -6.5rem;
+    margin-top: clamp(-4rem, -5vw, -2rem);
   }
 
   .suites-pricing__hero-stage {
-    --sp-dog-left: 950px;
-    --sp-dog-right: 2800px;
-    --sp-hero-lift: 24.5rem;
-    /* Nudge layers down inside stage while pulling stage up — same viewport position, title no longer above stage (avoids vertical clip) */
-    --sp-hero-nudge: calc(var(--sp-hero-lift) - 250px);
-    display: block;
+    --sp-dog-left: clamp(18rem, 18vw, 28rem);
+    --sp-dog-right: clamp(22rem, 24vw, 36rem);
+    --sp-hero-gap: -1rem;
+    --sp-dog-inset: -1rem;
+    display: flex;
     width: 100%;
-    max-width: 1440px;
-    height: 900px;
-    min-height: 900px;
-    margin-top: calc(-20rem - var(--sp-hero-nudge));
+    max-width: 90rem;
+    height: auto;
+    min-height: 0;
+    margin-top: -4rem;
     overflow: visible;
     margin-inline: auto;
     padding: 0;
   }
 
   .suites-pricing__title {
-    position: absolute;
+    position: relative;
     z-index: 2;
-    top: calc(250px - var(--sp-hero-lift) + var(--sp-hero-nudge));
-    left: 50%;
-    transform: translate(calc(-50% + 4rem), 0);
-    width: 1004px;
-    max-width: calc(100% - 2rem);
-    font-size: 155.56px;
-    line-height: 1.189;
-    letter-spacing: -0.16px;
+    top: auto;
+    left: auto;
+    transform: translate(1.5rem, 0.5rem);
+    width: max-content;
+    max-width: min(100%, 62rem);
+    font-size: clamp(5rem, 5vw, 7rem);
+    line-height: 1.12;
   }
 
-  .suites-pricing__title-line {
-    line-height: 1.189;
-  }
-
-  .suites-pricing__title-line:last-child {
-    margin-left: -0.08em;
-  }
-
-  /* Left pitbull — over title */
-  .suites-pricing__hero-dog--left {
-    position: absolute;
-    z-index: 3;
-    flex: none;
-    margin: 0;
-    top: calc(250px - var(--sp-hero-lift) + var(--sp-hero-nudge));
-    bottom: auto;
-    left: 365px;
-    width: 950px;
-    height: 950px;
-    max-width: none;
-    margin-right: 0;
-    transform: translate(15.5rem, 4rem);
-    object-fit: contain;
-    object-position: right bottom;
-  }
-
-  /* Right beagle — large, over title */
+  .suites-pricing__hero-dog--left,
   .suites-pricing__hero-dog--right {
-    position: absolute;
-    z-index: 3;
-    flex: none;
-    margin: 0;
-    top: max(0px, calc(240px - var(--sp-hero-lift) + var(--sp-hero-nudge)));
-    bottom: auto;
-    left: 0;
+    position: relative;
+    top: auto;
+    left: auto;
     right: auto;
-    width: 2800px;
-    height: 2800px;
+    bottom: auto;
+    height: auto;
     max-width: none;
-    margin-left: 0;
-    transform: translate(-27rem, 8rem);
-    object-fit: contain;
-    object-position: left bottom;
   }
 
-  /* Comp: rectangles 28 / 32 — proportional @ 470px card width */
+  .suites-pricing__hero-dog--left {
+    width: var(--sp-dog-left);
+    transform: translate(4rem, 1.5rem);
+  }
+
+  .suites-pricing__hero-dog--right {
+    width: var(--sp-dog-right);
+    transform: translate(-6rem, 1.5rem);
+  }
+
   .suites-pricing {
     --sp-card-w: 470px;
     --sp-label-size: 55.25px;
@@ -807,7 +792,6 @@
     margin-inline: 0;
   }
 
-  /* Comp: “Go fetch” — 271×38.34, Franie 700 28.63px */
   .suites-pricing__fetch {
     width: 271px;
     min-height: 38.34416961669922px;
@@ -815,7 +799,6 @@
     line-height: 38.34416961669922px;
   }
 
-  /* Comp: “make them look happy” trio — 1240×1240, centered in section */
   .suites-pricing__closing {
     align-items: center;
   }

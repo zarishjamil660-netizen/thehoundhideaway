@@ -1,11 +1,28 @@
 import { useCallback, useEffect, useState } from 'react'
-import suiteImg1 from '../../assets/Mask group.png'
+import countrysideImg from '../../assets/Mask group.png'
+import luxurySuiteImg from '../../assets/Luxury Suite.jpg.jpeg'
+import riverLodgeImg from '../../assets/River Lodge.png'
 import './LuxurySuitesSection.css'
 
 const slides = [
-  { src: suiteImg1, alt: 'Outdoor countryside dog suites', caption: 'Countryside Suites' },
-  { src: suiteImg1, alt: 'Outdoor countryside dog suites', caption: 'Garden Suites' },
-  { src: suiteImg1, alt: 'Outdoor countryside dog suites', caption: 'Signature Suite' },
+  {
+    src: countrysideImg,
+    alt: 'Outdoor countryside dog suites',
+    caption: 'Countryside Suites',
+    fit: 'countryside',
+  },
+  {
+    src: luxurySuiteImg,
+    alt: 'Luxury private suite accommodation for dogs',
+    caption: 'Luxury Suites',
+    fit: 'suite',
+  },
+  {
+    src: riverLodgeImg,
+    alt: 'Riverside lodge stay for dogs by the water',
+    caption: 'Riverside Lodge',
+    fit: 'lodge',
+  },
 ]
 
 const pagerLabels = ['01', '02', '03']
@@ -63,7 +80,12 @@ export function LuxurySuitesSection() {
               </button>
             </div>
             <div className="lux-ref__inner-ring" aria-live="polite">
-              <img key={slide.src} src={slide.src} alt={slide.alt} className="lux-ref__inner-img" />
+              <img
+                key={slide.src}
+                src={slide.src}
+                alt={slide.alt}
+                className={`lux-ref__inner-img lux-ref__inner-img--${slide.fit}`}
+              />
             </div>
           </div>
 

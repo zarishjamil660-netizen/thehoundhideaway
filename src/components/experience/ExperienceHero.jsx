@@ -5,11 +5,10 @@ export function ExperienceHero({ imageSrc, imageAlt }) {
   return (
     <section className="relative text-[var(--thh-body-text)]" id="top">
       <div className="experience-hero__top">
-        <div className="experience-hero__circle-layout" aria-hidden />
         <Header surface="mint" />
 
         <div className="experience-hero__stage">
-          <div className="experience-hero__copy relative mx-auto max-w-6xl px-4 pt-6 md:px-8 md:pt-10 lg:px-12">
+          <div className="experience-hero__copy relative mx-auto max-w-6xl px-4 pt-2 md:px-8 md:pt-8 lg:px-12 lg:pt-10">
             <div className="experience-hero__copy-inner mx-auto max-w-4xl text-center">
               <p
                 className="experience-hero__lede font-normal leading-snug [font-family:Franie,var(--font-sans)] tracking-[-0.01em] text-[var(--thh-forest-deep)] lg:text-6xl"
@@ -26,7 +25,7 @@ export function ExperienceHero({ imageSrc, imageAlt }) {
                 Good
               </h1>
               <p
-                className="mt-5 text-end pr-12 text-2xl font-semibold uppercase leading-snug [font-family:Franie,var(--font-sans)] tracking-[-0.01em] text-[var(--thh-forest-deep)] md:pr-20 md:text-4xl lg:pr-28 lg:text-5xl"
+                className="experience-hero__for-them mt-5 text-end text-2xl font-semibold uppercase leading-snug [font-family:Franie,var(--font-sans)] tracking-[-0.01em] text-[var(--thh-forest-deep)] md:text-4xl lg:text-5xl"
                 data-experience-reveal
                 style={{ '--experience-delay': '280ms' }}
               >
@@ -34,21 +33,21 @@ export function ExperienceHero({ imageSrc, imageAlt }) {
               </p>
             </div>
           </div>
+        </div>
 
-          <div
-            className="experience-hero__media relative"
-            data-experience-reveal="image"
-            style={{ '--experience-delay': '360ms' }}
-          >
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              className="experience-hero__art"
-              width={1440}
-              height={1305}
-              decoding="async"
-            />
-          </div>
+        <div
+          className="experience-hero__media"
+          data-experience-reveal="image"
+          style={{ '--experience-delay': '360ms' }}
+        >
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            className="experience-hero__art"
+            width={1600}
+            height={1600}
+            decoding="async"
+          />
         </div>
       </div>
 

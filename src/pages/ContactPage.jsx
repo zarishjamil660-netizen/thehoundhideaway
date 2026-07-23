@@ -188,7 +188,7 @@ export function ContactPage() {
         </section>
 
         <section className="contact-page__book-ball" aria-label="Book their stay">
-          <BookStayBall />
+          <BookStayBall className="book-stay-ball--contact" />
         </section>
       </div>
     </main>

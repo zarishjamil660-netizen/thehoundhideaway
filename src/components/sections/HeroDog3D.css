@@ -56,9 +56,9 @@
 
 @media (max-width: 640px) {
   .hero--home-2 .hero__dog-wrap--3d {
-    margin-top: clamp(-6.25rem, -13vw, -4.75rem);
+    margin-top: clamp(-8rem, -16vw, -6rem);
     margin-bottom: 0;
-    translate: 0 clamp(-0.75rem, -1vw, -0.25rem);
+    translate: 0 clamp(-1.5rem, -3vw, -0.75rem);
     z-index: 1;
   }
 
@@ -69,10 +69,12 @@
 
 @media (min-width: 1024px) {
   .hero--home-2 .hero__dog-wrap--3d {
-    z-index: 4;
-    margin-top: clamp(6.25rem, 7.75vw, 9.5rem);
-    margin-bottom: clamp(-16rem, -22vw, -11rem);
-    translate: 0 clamp(-1.75rem, -3vw, -3rem);
+    z-index: 2;
+    width: min(72%, 72rem);
+    margin-top: clamp(3rem, 4.25vw, 4.75rem);
+    /* Keep some tuck under Trust; don’t cover subtitle at 100% zoom */
+    margin-bottom: clamp(-6rem, -8vw, -4rem);
+    translate: 0 clamp(-2.75rem, -4vw, -3.75rem);
   }
 
   .hero--home-2 .hero__dog-3d-canvas {
@@ -82,23 +84,13 @@
   .hero--home-2 .hero__sub,
   .hero--home-2 .hero__actions {
     position: relative;
-    z-index: 1;
+    z-index: 5;
   }
 }
 
-/* 1920 @ 100% zoom — taller canvas + feet above copy (150% zoom ≈ 1280px, unchanged) */
 @media (min-width: 1900px) and (max-width: 1940px) {
   .hero--home-2 .hero__dog-3d-canvas {
     aspect-ratio: 664 / 1540;
-  }
-
-  .hero--home-2 .hero__dog-wrap--3d {
-    z-index: 4;
-  }
-
-  .hero--home-2 .hero__sub {
-    position: relative;
-    z-index: 1;
   }
 }
 
