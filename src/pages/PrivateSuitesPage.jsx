@@ -37,8 +37,8 @@ const SLIDES = [
   },
   {
     src: riverLodgeImg,
-    alt: 'Riverside lodge stay for dogs by the water',
-    titleLine1: 'Riverside',
+    alt: 'River lodge stay for dogs by the water',
+    titleLine1: 'River',
     titleLine2: 'Lodge',
     captionLead: 'Maximum privacy',
     captionSub: '(Bespoke daily rhythm)',

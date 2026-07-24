@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import countrysideImg from '../../assets/Mask group.png'
 import luxurySuiteImg from '../../assets/Luxury Suite.jpg.jpeg'
 import riverLodgeImg from '../../assets/River Lodge.png'
@@ -19,28 +19,17 @@ const slides = [
   },
   {
     src: riverLodgeImg,
-    alt: 'Riverside lodge stay for dogs by the water',
-    caption: 'Riverside Lodge',
+    alt: 'River lodge stay for dogs by the water',
+    caption: 'River Lodge',
     fit: 'lodge',
   },
 ]
 
 const pagerLabels = ['01', '02', '03']
 
-/** Degrees between adjacent dots on the arc (three positions: -step, 0, +step). */
-const PAGER_STEP_DEG = 56
-
 export function LuxurySuitesSection() {
   const [index, setIndex] = useState(0)
   const len = slides.length
-  const pagerRotation = `${-index * PAGER_STEP_DEG}deg`
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setIndex((i) => (i + 1) % len)
-    }, 3500)
-    return () => window.clearInterval(timer)
-  }, [len])
 
   const prev = useCallback(() => {
     setIndex((i) => (i - 1 + len) % len)
@@ -81,7 +70,6 @@ export function LuxurySuitesSection() {
             </div>
             <div className="lux-ref__inner-ring" aria-live="polite">
               <img
-                key={slide.src}
                 src={slide.src}
                 alt={slide.alt}
                 className={`lux-ref__inner-img lux-ref__inner-img--${slide.fit}`}
@@ -89,12 +77,7 @@ export function LuxurySuitesSection() {
             </div>
           </div>
 
-          <div
-            className="lux-ref__pager"
-            role="tablist"
-            aria-label="Suite slides"
-            style={{ '--pager-rotation': pagerRotation }}
-          >
+          <div className="lux-ref__pager" role="tablist" aria-label="Suite slides">
             <div className="lux-ref__pager-dial">
               {pagerLabels.map((label, i) => (
                 <button

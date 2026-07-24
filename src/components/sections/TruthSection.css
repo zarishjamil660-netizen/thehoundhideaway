@@ -180,6 +180,29 @@
     top: clamp(4.5rem, 12vh, 7rem);
     margin-top: 5.5rem;
   }
+
+  .truth-ref__card {
+    gap: clamp(0.35rem, 0.9vw, 0.65rem);
+    padding: clamp(1.6rem, 4vw, 2.4rem) clamp(1.1rem, 3.2vw, 1.75rem);
+  }
+
+  .truth-ref__card-n {
+    line-height: 0.9;
+  }
+
+  .truth-ref__card-q {
+    margin-top: clamp(1.15rem, 2.8vw, 1.65rem);
+    line-height: 1.2;
+  }
+
+  .truth-ref__card-q .truth-ref__line--compact {
+    line-height: 1.25;
+  }
+
+  .truth-ref__line--accent {
+    margin-top: clamp(0.55rem, 1.4vw, 0.95rem);
+    line-height: 0.95;
+  }
 }
 
 @media (min-width: 1921px) {

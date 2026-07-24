@@ -12,8 +12,8 @@ export const BOOKING_SUITES = [
     priceNote: 'per dog / night',
   },
   {
-    id: 'riverside',
-    label: 'Riverside Lodge',
+    id: 'river',
+    label: 'River Lodge',
     price: '€44.99',
     priceNote: 'per dog / night',
   },

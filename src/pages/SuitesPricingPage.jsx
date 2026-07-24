@@ -24,7 +24,7 @@ const TIERS = [
     priceLabel: '34.99 euros',
   },
   {
-    name: 'Riverside Lodge',
+    name: 'River Lodge',
     price: '€44.99',
     priceLabel: '44.99 euros',
   },
