@@ -156,12 +156,12 @@
     width: min(100vw, 80rem);
   }
 
-  .book-stay-ball:not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center) {
+  .book-stay-ball:not(.book-stay-ball--experience):not(.book-stay-ball--experience-left):not(.book-stay-ball--experience-center) {
     --book-text-top: 66%;
     --book-text-rotate: -14deg;
   }
 
-  .book-stay-ball__text {
+  .book-stay-ball:not(.book-stay-ball--experience) .book-stay-ball__text {
     font-size: clamp(1.05rem, 2.6vw, 1.45rem);
     max-width: 22%;
   }
@@ -225,14 +225,38 @@
   }
 }
 
+/* Mobile-only: keep “Book Their Stay” on measured disc centre */
+@media (max-width: 767.98px) {
+  .book-stay-ball--experience {
+    --book-text-left: calc(var(--book-pivot-x) - 1.5%);
+    --book-text-top: calc(var(--book-pivot-y) + 0.5%);
+    --book-text-rotate: -58deg;
+  }
+
+  .book-stay-ball--experience .book-stay-ball__text {
+    font-size: clamp(1.55rem, 6.8vw, 2.35rem);
+    max-width: 30%;
+    gap: 0.08em;
+    line-height: 0.8;
+  }
+}
+
 @media (max-width: 639.98px) {
   .book-stay-ball--experience {
     top: calc(var(--ball-book) * -0.38);
     right: calc(var(--ball-book) * -0.42);
+    --book-text-left: calc(var(--book-pivot-x) - 1.5%);
+    --book-text-top: calc(var(--book-pivot-y) + 0.5%);
+    --book-text-rotate: -56deg;
   }
 
   .book-stay-ball--experience .book-stay-ball__wrapper {
     translate: clamp(2rem, 5vw, 4rem) var(--ball-book-nudge-y);
+  }
+
+  .book-stay-ball--experience .book-stay-ball__text {
+    font-size: clamp(1.45rem, 7.2vw, 2.1rem);
+    max-width: 32%;
   }
 }
 
