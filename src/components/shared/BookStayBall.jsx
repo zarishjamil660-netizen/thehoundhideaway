@@ -23,9 +23,6 @@ export function BookStayBall({
     const root = rootRef.current
     if (!img?.naturalWidth || !ball || !root) return
 
-    const isContact = root.classList.contains('book-stay-ball--contact')
-    if (isContact && root.dataset.bookLayoutFrozen === '1') return
-
     const { width, height } = ball.getBoundingClientRect()
     if (width < 1 || height < 1) return
 
@@ -39,29 +36,12 @@ export function BookStayBall({
     root.style.setProperty('--book-plate-w', `${width}px`)
     root.style.setProperty('--book-plate-h', `${height}px`)
     root.style.setProperty('--book-disc-r', `${discR}px`)
-
-    if (isContact) {
-      /* Layout box = exact disc diameter (no artboard chrome gaps) */
-      const box = discR * 2
-      root.style.setProperty('--book-contact-box', `${box}px`)
-      root.style.setProperty('--book-center-x', `${box / 2 - pivotPxX}px`)
-      root.style.setProperty('--book-center-y', `${box / 2 - pivotPxY}px`)
-      root.dataset.bookLayoutFrozen = '1'
-    } else {
-      root.style.setProperty('--book-center-x', `${width / 2 - pivotPxX}px`)
-      root.style.setProperty('--book-center-y', `${height / 2 - pivotPxY}px`)
-    }
-
+    root.style.setProperty('--book-center-x', `${width / 2 - pivotPxX}px`)
+    root.style.setProperty('--book-center-y', `${height / 2 - pivotPxY}px`)
     setLayoutReady(true)
   }, [])
 
   useLayoutEffect(() => {
-    const root = rootRef.current
-    if (root) {
-      delete root.dataset.bookLayoutFrozen
-      root.style.removeProperty('--book-contact-box')
-    }
-    setLayoutReady(false)
     applyLayout()
 
     const ball = ballRef.current
@@ -112,7 +92,7 @@ export function BookStayBall({
   }
 
   return (
-    <a ref={rootRef} href="/book-now" className={rootClass}>
+    <a ref={rootRef} href="/#book" className={rootClass}>
       {ball}
       <span className="sr-only">Book their stay</span>
     </a>

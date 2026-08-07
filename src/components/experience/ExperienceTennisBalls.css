@@ -31,10 +31,6 @@
 }
 
 @media (min-width: 1024px) {
-  .experience-balls {
-    padding-bottom: 20rem;
-  }
-
   .experience-balls__stage {
     --ball-stage: 36rem;
     --ball-book: 98rem;

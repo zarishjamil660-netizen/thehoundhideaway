@@ -5,14 +5,6 @@ body:has(main.thh-page--contact),
   background: var(--thh-forest);
 }
 
-#root:has(main.thh-page--contact) {
-  min-height: auto;
-}
-
-#root:has(main.thh-page--contact) .site-footer {
-  margin-top: 0;
-}
-
 .thh-page--contact {
   width: 100%;
   max-width: 100%;
@@ -24,7 +16,7 @@ body:has(main.thh-page--contact),
   --cp-mint: var(--thh-mint-soft);
   --cp-forest: var(--thh-forest);
   --cp-text: var(--thh-forest-deep);
-  min-height: 0;
+  min-height: 100%;
   background: var(--cp-forest);
   color: var(--cp-mint);
 }
@@ -57,17 +49,10 @@ body:has(main.thh-page--contact),
   pointer-events: none;
 }
 
-/* 100% OS scale on 1080p (~1920px viewport): widen circle to fill like 150% scale */
-@media (min-width: 1600px) {
-  .contact-page__hero {
-    --cp-circle-size: min(2130px, 111vw);
-  }
-}
-
 .contact-page__title {
   position: relative;
   z-index: 1;
-  margin: clamp(3.75rem, 11vw, 6rem) auto 0;
+  margin: clamp(1.5rem, 5vw, 2.75rem) auto 0;
   padding-inline: clamp(1rem, 4vw, 2rem);
   max-width: min(100%, 52rem);
   font-family: var(--font-serif);
@@ -159,16 +144,10 @@ body:has(main.thh-page--contact),
   background: var(--cp-forest);
 }
 
-/* Space above footer — keep forest continuous; no gap under ball */
+/* Space above footer — padding (forest) not margin (would show mint body) */
 main.thh-page--contact + .site-footer {
   margin-top: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
-main.thh-page--contact + .site-footer .site-footer__inner {
-  padding-top: clamp(0.25rem, 1vw, 0.75rem);
-  padding-bottom: clamp(1.25rem, 4vw, 2rem);
+  padding-top: clamp(1rem, 3vw, 1.5rem);
 }
 
 /* Follow: dog + paw (composite art includes labels/icons) */
@@ -176,7 +155,7 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   position: relative;
   z-index: 3;
   margin-top: clamp(-1.5rem, -5vw, -3.5rem);
-  margin-bottom: clamp(1rem, 4vw, 2rem);
+  margin-bottom: clamp(2rem, 8vw, 4rem);
   overflow: visible;
 }
 
@@ -223,10 +202,23 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   z-index: 1;
 }
 
+.contact-page__dog-shadow {
+  position: absolute;
+  z-index: 0;
+  left: 8%;
+  right: 12%;
+  bottom: -2%;
+  height: clamp(1.5rem, 4vw, 2.75rem);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgb(0 0 0 / 0.35) 0%, transparent 72%);
+  transform-origin: center center;
+  pointer-events: none;
+}
+
 .contact-page__paw {
   position: relative;
   top: clamp(-2.5rem, -5vw, -3.5rem);
-  left: auto;
+  left: clamp(1.75rem, 7vw, 4.75rem);
   z-index: 1;
   margin: 0;
   width: min(100%, 92vw, 620px);
@@ -373,7 +365,6 @@ main.thh-page--contact + .site-footer .site-footer__inner {
 }
 
 .contact-page__form {
-  --cp-control-h: clamp(3.5rem, 11vw, 5.5rem);
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -389,6 +380,7 @@ main.thh-page--contact + .site-footer .site-footer__inner {
 
 .contact-page__field-label {
   position: absolute;
+  top: clamp(0.7rem, 2.2vw, 0.95rem);
   left: clamp(1.1rem, 4vw, 1.5rem);
   z-index: 1;
   font-family: Franie, var(--font-sans);
@@ -401,28 +393,12 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   pointer-events: none;
 }
 
-.contact-page__field:not(.contact-page__field--message) .contact-page__field-label {
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.contact-page__field--message .contact-page__field-label {
-  top: clamp(1.15rem, 3.4vw, 1.45rem);
-  transform: none;
-}
-
-.contact-page__field:not(.contact-page__field--message):focus-within .contact-page__field-label,
-.contact-page__field:not(.contact-page__field--message):has(input:not(:placeholder-shown)) .contact-page__field-label {
-  top: clamp(0.55rem, 1.75vw, 0.8rem);
-  transform: none;
-  font-size: clamp(0.5625rem, 1.5vw, 0.6875rem);
-}
-
 .contact-page__field input,
 .contact-page__field textarea {
   box-sizing: border-box;
   width: 100%;
-  padding: 0 clamp(1.1rem, 4vw, 1.5rem);
+  padding: clamp(1.85rem, 5vw, 2.35rem) clamp(1.1rem, 4vw, 1.5rem)
+    clamp(0.85rem, 2.5vw, 1.1rem);
   border: 1px solid #b9dca9;
   border-radius: 999px;
   background: transparent;
@@ -430,13 +406,12 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   font-family: Franie, var(--font-sans);
   font-weight: 500;
   font-size: clamp(0.875rem, 2.5vw, 1rem);
-  line-height: 1.35;
+  line-height: 1.4;
   outline: none;
   transition:
     border-color 0.25s ease,
     box-shadow 0.25s ease,
-    transform 0.15s ease,
-    padding 0.2s ease;
+    transform 0.15s ease;
 }
 
 .contact-page__field input:active,
@@ -445,34 +420,13 @@ main.thh-page--contact + .site-footer .site-footer__inner {
 }
 
 .contact-page__field input {
-  min-height: var(--cp-control-h);
-  height: var(--cp-control-h);
-  line-height: calc(var(--cp-control-h) - 2px);
-}
-
-.contact-page__field:not(.contact-page__field--message):focus-within input,
-.contact-page__field:not(.contact-page__field--message):has(input:not(:placeholder-shown)) input {
-  padding-top: clamp(1.15rem, 3.4vw, 1.5rem);
-  padding-bottom: clamp(0.35rem, 1.2vw, 0.55rem);
-  line-height: 1.35;
-}
-
-.contact-page__field--message textarea {
-  min-height: clamp(9rem, 26vw, 13.5rem);
-  height: auto;
-  padding: clamp(2.25rem, 6vw, 2.75rem) clamp(1.1rem, 4vw, 1.5rem)
-    clamp(0.85rem, 2.5vw, 1.1rem);
-  line-height: 1.4;
+  min-height: clamp(3.5rem, 11vw, 5.5rem);
 }
 
 .contact-page__field textarea {
   border-radius: clamp(1.5rem, 4.5vw, 2.25rem);
   resize: vertical;
-}
-
-.contact-page__field input::placeholder,
-.contact-page__field textarea::placeholder {
-  color: transparent;
+  min-height: clamp(9rem, 26vw, 13.5rem);
 }
 
 .contact-page__field input:focus,
@@ -485,16 +439,13 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   align-self: stretch;
   margin-top: clamp(0.35rem, 1.5vw, 0.65rem);
   width: 100%;
-  min-height: var(--cp-control-h);
-  height: var(--cp-control-h);
-  padding: 0 clamp(1.1rem, 4vw, 1.5rem);
-  border: 1px solid transparent;
+  min-height: clamp(3rem, 11vw, 117px);
+  height: auto;
+  padding: 0.75rem 1.5rem;
+  border: none;
   border-radius: 999px;
   background: var(--cp-mint);
   color: var(--cp-text);
@@ -541,103 +492,59 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   position: relative;
   z-index: 3;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
   width: 100%;
-  max-width: 100%;
-  height: auto;
-  padding: 0;
-  margin-top: clamp(-10rem, -16vw, -5rem);
-  margin-bottom: clamp(-8rem, -12vw, -4rem);
+  padding: clamp(0.25rem, 1vw, 0.75rem) clamp(0.75rem, 4vw, 1.5rem) 0 0;
+  margin-top: clamp(-10rem, -20vw, -4rem);
+  margin-bottom: 0;
   overflow: visible;
-  box-sizing: border-box;
-  line-height: 0;
 }
 
-.contact-page__book-ball:has(.book-stay-ball--contact:not(.book-stay-ball--ready)) {
-  min-height: clamp(14rem, 36vw, 22rem);
+.contact-page__book-ball .book-stay-ball--ready {
+  margin-bottom: calc(-50% + var(--book-disc-r));
 }
 
-.contact-page__book-ball .book-stay-ball--contact {
-  transform: translateX(clamp(-2.5rem, -4vw, -1rem));
+.contact-page__book-ball .book-stay-ball {
+  margin-inline: 0;
+  flex-shrink: 0;
+  align-self: flex-start;
 }
 
-.contact-page__book-ball .book-stay-ball--contact:focus-visible .book-stay-ball__wrapper {
+/* Full-width artboard keeps the disc centred; shift it to the section’s left edge. */
+.contact-page__book-ball .book-stay-ball--ready .book-stay-ball__wrapper {
+  transform: translate(
+    calc(var(--book-center-x) - 50% + var(--book-disc-r) - clamp(1.25rem, 3.5vw, 4rem)),
+    var(--book-center-y)
+  );
+}
+
+.contact-page__book-ball .book-stay-ball:focus-visible .book-stay-ball__wrapper {
   outline-color: var(--cp-mint);
 }
 
 @media (max-width: 767.98px) {
-  .contact-page__form-section {
-    margin-bottom: clamp(1.25rem, 4vw, 2rem);
-  }
-
   .contact-page__book-ball {
-    justify-content: center;
-    margin-top: clamp(0.5rem, 2vw, 1.25rem);
-    margin-bottom: clamp(0.75rem, 3vw, 1.5rem);
-    z-index: 1;
+    padding: clamp(0.25rem, 1vw, 0.75rem) 0 0;
+    overflow: visible;
   }
 
-  .contact-page__book-ball .book-stay-ball--contact {
-    transform: none;
-  }
-
-  .contact-page__submit {
-    position: relative;
-    z-index: 2;
-  }
-
-  .contact-page__body {
-    padding-right: 0;
-  }
-
-  .contact-page__follow-inner {
-    align-items: stretch;
-    padding-left: clamp(1rem, 4vw, 2rem);
-    padding-right: 0;
-  }
-
-  .contact-page__paw {
-    align-self: flex-end;
-    width: min(82vw, 500px);
-    max-width: none;
-    margin-left: auto;
-    margin-right: 0;
-  }
-
-  .contact-page__paw-art {
-    width: 103%;
-    max-width: none;
-    margin-left: auto;
-    object-position: right bottom;
+  .contact-page__book-ball .book-stay-ball {
+    width: min(100vw, 80rem);
   }
 }
 
 @media (max-width: 1023.98px) {
   main.thh-page--contact + .site-footer {
-    padding-top: 0;
-  }
-
-  main.thh-page--contact + .site-footer .site-footer__inner {
-    padding-top: clamp(0.65rem, 2.5vw, 1.15rem);
-  }
-
-  .contact-page__book-ball {
-    margin-top: clamp(0.75rem, 2.5vw, 1.75rem);
-    margin-bottom: clamp(0.5rem, 2vw, 1.25rem);
-    z-index: 1;
+    padding-top: clamp(1rem, 3vw, 1.5rem);
   }
 
   .contact-page__body {
     padding-left: 0;
   }
 
-  .contact-page__follow-inner {
-    padding-left: clamp(1rem, 4vw, 2rem);
-    padding-right: 0;
-    box-sizing: border-box;
-  }
-
+  .contact-page__follow-inner,
   .contact-page__form-section {
     padding-inline: clamp(1rem, 4vw, 2rem);
     box-sizing: border-box;
@@ -648,10 +555,8 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   .contact-page__follow-inner {
     flex-direction: row;
     align-items: flex-end;
-    justify-content: space-between;
+    justify-content: center;
     gap: clamp(0.5rem, 2vw, 1.5rem);
-    max-width: 100%;
-    padding-right: 0;
   }
 
   .contact-page__dog-parallax {
@@ -662,12 +567,10 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   }
 
   .contact-page__paw {
-    flex: 0 1 auto;
-    width: min(48%, 560px);
+    flex: 1 1 48%;
+    width: min(52%, 560px);
     max-width: 560px;
     top: clamp(-3rem, -6vw, -4.5rem);
-    margin-left: auto;
-    margin-right: calc(-1 * clamp(1rem, 4vw, 2rem));
   }
 
   .contact-page__form-section {
@@ -681,14 +584,7 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   }
 
   .contact-page__book-ball {
-    margin-left: 0;
-    padding-left: 0;
-    margin-top: clamp(-12rem, -18vw, -6rem);
-    margin-bottom: clamp(-10rem, -14vw, -5rem);
-  }
-
-  .contact-page__book-ball .book-stay-ball--contact {
-    transform: translateX(clamp(-3rem, -5vw, -1.5rem));
+    margin-left: calc(-1 * clamp(1rem, 4vw, 2rem));
   }
 
   .contact-page__dog-parallax {
@@ -697,10 +593,8 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   }
 
   .contact-page__paw {
-    width: min(46%, 600px);
+    width: min(50%, 600px);
     max-width: 600px;
-    margin-left: auto;
-    margin-right: calc(-1 * clamp(1rem, 4vw, 2rem));
   }
 }
 
@@ -745,7 +639,6 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   .contact-page__follow-inner {
     max-width: min(1800px, 100%);
     gap: clamp(0.25rem, 1.5vw, 1rem);
-    padding-right: 0;
   }
 
   .contact-page__dog-parallax {
@@ -780,13 +673,11 @@ main.thh-page--contact + .site-footer .site-footer__inner {
   }
 
   .contact-page__paw {
-    flex: 0 1 auto;
-    width: min(46%, 600px);
+    flex: 0 1 52%;
+    width: min(52%, 600px);
     max-width: 600px;
     top: -5rem;
-    left: auto;
-    margin-left: auto;
-    margin-right: calc(-1 * clamp(1rem, 4vw, 2rem));
+    left: 7rem;
   }
 
   /* Comp: “Any Questions?” — The New Elegance 182.97px */
@@ -801,13 +692,11 @@ main.thh-page--contact + .site-footer .site-footer__inner {
     max-width: min(100%, 1094px);
   }
 
-  .contact-page__form {
-    --cp-control-h: 117px;
-  }
-
   /* Comp: submit — 1094×117 */
   .contact-page__submit {
     width: 1094px;
+    height: 117px;
+    min-height: 117px;
     max-width: 100%;
   }
 }

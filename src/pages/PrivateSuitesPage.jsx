@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Header from '../components/layout/Header'
 import countrysideImg from '../assets/Gemini_Generated_Image_9hv6jc9hv6jc9hv6 1.png'
 import luxurySuiteImg from '../assets/Luxury Suite.jpg.jpeg'
-import riverLodgeImg from '../assets/River Lodge.png'
+import riverLodgeImg from '../assets/river-lodge.png'
 import heroDog from '../assets/This_dog_resting_looking_happy_202605152211 1.png'
 import tennisBall from '../assets/fxemoji_tennisball.png'
 import './PrivateSuitesPage.css'
 
-const AUTOPLAY_MS = 4000
+const AUTOPLAY_MS = 5000
 
 function getVisibleSlides(activeIndex, slides) {
   const len = slides.length
@@ -47,105 +47,26 @@ const SLIDES = [
 
 export function PrivateSuitesPage() {
   const [index, setIndex] = useState(0)
-  const [shift, setShift] = useState(0)
-  const [noTransition, setNoTransition] = useState(false)
-  const [autoplayPaused, setAutoplayPaused] = useState(false)
-  const isAnimatingRef = useRef(false)
-  const shiftRef = useRef(0)
-  const indexRef = useRef(0)
-  const autoplayPausedRef = useRef(false)
-  const transitionFallbackTimeoutRef = useRef(/** @type {number | null} */ (null))
   const len = SLIDES.length
   const slide = SLIDES[index]
   const visibleSlides = getVisibleSlides(index, SLIDES)
 
-  shiftRef.current = shift
-  indexRef.current = index
-  autoplayPausedRef.current = autoplayPaused
+  const prev = useCallback(() => {
+    setIndex((i) => (i - 1 + len) % len)
+  }, [len])
 
-  const clearTransitionFallback = useCallback(() => {
-    if (transitionFallbackTimeoutRef.current !== null) {
-      window.clearTimeout(transitionFallbackTimeoutRef.current)
-      transitionFallbackTimeoutRef.current = null
-    }
-  }, [])
+  const next = useCallback(() => {
+    setIndex((i) => (i + 1) % len)
+  }, [len])
 
-  const finishShift = useCallback(
-    (dir) => {
-      clearTransitionFallback()
-      const nextIndex =
-        dir === -1 ? (indexRef.current + 1) % len : (indexRef.current - 1 + len) % len
-      setNoTransition(true)
-      setIndex(nextIndex)
-      setShift(0)
-      shiftRef.current = 0
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setNoTransition(false)
-          isAnimatingRef.current = false
-        })
-      })
-    },
-    [clearTransitionFallback, len],
-  )
-
-  const go = useCallback(
-    (direction) => {
-      if (isAnimatingRef.current || shiftRef.current !== 0) return
-
-      if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        setIndex((i) => (direction === 'next' ? (i + 1) % len : (i - 1 + len) % len))
-        return
-      }
-
-      clearTransitionFallback()
-
-      const nextShift = direction === 'next' ? -1 : 1
-      isAnimatingRef.current = true
-      shiftRef.current = nextShift
-      setShift(nextShift)
-
-      // Safety net: if CSS transitionend doesn't fire, still unlock for autoplay.
-      transitionFallbackTimeoutRef.current = window.setTimeout(() => {
-        if (shiftRef.current === 0) return
-        finishShift(shiftRef.current)
-      }, 1050)
-    },
-    [clearTransitionFallback, finishShift, len],
-  )
-
-  const handleTrackTransitionEnd = useCallback(
-    (e) => {
-      if (e.target !== e.currentTarget || e.propertyName !== 'transform' || shiftRef.current === 0) return
-      finishShift(shiftRef.current)
-    },
-    [finishShift],
-  )
-
-  const prev = useCallback(() => go('prev'), [go])
-  const next = useCallback(() => go('next'), [go])
-
-  /* Auto-advance cards every few seconds (pause only while pointer is over the carousel). */
+  // Auto-advance every 5s; timer resets after every change (manual or auto).
   useEffect(() => {
-    if (typeof window === 'undefined') return undefined
-
-    const id = window.setInterval(() => {
-      if (autoplayPausedRef.current) return
-
-      // If a prior transition got stuck, force-complete then advance on the next tick.
-      if (shiftRef.current !== 0) {
-        finishShift(shiftRef.current)
-        return
-      }
-      if (isAnimatingRef.current) {
-        isAnimatingRef.current = false
-      }
-
-      go('next')
+    const id = window.setTimeout(() => {
+      setIndex((i) => (i + 1) % len)
     }, AUTOPLAY_MS)
 
-    return () => window.clearInterval(id)
-  }, [finishShift, go, index])
+    return () => window.clearTimeout(id)
+  }, [index, len])
 
   return (
     <main className="private-suites thh-page--private-suites">
@@ -183,22 +104,12 @@ export function PrivateSuitesPage() {
             Luxury&nbsp;stays
           </h2>
 
-          <div
-            className="private-suites__carousel"
-            aria-roledescription="carousel"
-            onMouseEnter={() => setAutoplayPaused(true)}
-            onMouseLeave={() => setAutoplayPaused(false)}
-          >
+          <div className="private-suites__carousel" aria-roledescription="carousel">
             <div className="private-suites__viewport">
-              <ul
-                className={`private-suites__track${noTransition ? ' private-suites__track--instant' : ''}${shift !== 0 ? ' private-suites__track--shifting' : ''}`}
-                data-shift={shift === 0 ? undefined : String(shift)}
-                style={{ '--ps-shift': String(shift) }}
-                onTransitionEnd={handleTrackTransitionEnd}
-              >
+              <ul className="private-suites__track" key={index}>
                 {visibleSlides.map(({ slide: s, slot }) => (
                   <li
-                    key={`${slot}-${s.titleLine1}-${s.titleLine2}`}
+                    key={`${index}-${slot}-${s.titleLine1}`}
                     className="private-suites__slide"
                     aria-current={slot === 'current' ? 'true' : undefined}
                   >

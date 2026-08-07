@@ -204,6 +204,10 @@
 
 /* Mobile + tablet: keep slogan readable — less dog overlap on mint band */
 @media (max-width: 1023.98px) {
+  .experience-grooming__inner {
+    margin-top: clamp(0.75rem, 2.5vw, 1.5rem);
+  }
+
   .experience-grooming__grid {
     grid-template-columns: 1fr;
     gap: clamp(0.55rem, 1.6vw, 0.9rem);

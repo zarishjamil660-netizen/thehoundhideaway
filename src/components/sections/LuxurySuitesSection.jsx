@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 import countrysideImg from '../../assets/Mask group.png'
 import luxurySuiteImg from '../../assets/Luxury Suite.jpg.jpeg'
-import riverLodgeImg from '../../assets/River Lodge.png'
+import riverLodgeImg from '../../assets/river-lodge.png'
 import './LuxurySuitesSection.css'
 
 const slides = [

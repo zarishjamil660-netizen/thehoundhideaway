@@ -363,20 +363,6 @@
   display: none;
 }
 
-/* Home 2 — solid forest canopy + mint meadow (no cloud PNG) */
-.hero--home-2 {
-  --hero-split: clamp(36rem, 72vh, 54rem);
-  background:
-    linear-gradient(
-      to bottom,
-      #143828 0,
-      var(--hero-bg-dark) min(7rem, calc(var(--hero-split) * 0.12)),
-      var(--hero-bg-dark) var(--hero-split),
-      var(--hero-bg-mint) var(--hero-split),
-      var(--hero-bg-mint) 100%
-    );
-}
-
 @keyframes hero-dog-breathe {
   0%,
   100% {
@@ -425,21 +411,14 @@
 @media (max-width: 1023px) {
   .hero {
     --hero-split: clamp(18rem, 40vh, 26rem);
-  }
-
-  .hero--home-2 {
-    --hero-split: clamp(42rem, 78vh, 56rem);
-  }
-
-  .hero:not(.hero--home-2) {
     background:
       linear-gradient(
         to bottom,
         var(--hero-bg-dark) 0,
         var(--hero-bg-dark) var(--hero-split),
-      var(--hero-bg-mint) var(--hero-split),
-      var(--hero-bg-mint) 100%
-    );
+        var(--hero-bg-mint) var(--hero-split),
+        var(--hero-bg-mint) 100%
+      );
   }
 
   .hero__where {
@@ -502,10 +481,6 @@
     --hero-split: clamp(27.5rem, 66vh, 39rem);
   }
 
-  .hero--home-2 {
-    --hero-split: clamp(44rem, 82vh, 60rem);
-  }
-
   .hero__bg-strip {
     transform: translateY(-28%);
   }
@@ -522,11 +497,6 @@
 
   .hero__cluster {
     min-height: clamp(31rem, 104vw, 42rem);
-  }
-
-  .hero--home-2 .hero__cluster {
-    min-height: 0;
-    padding-bottom: 0;
   }
 
   .hero__trust {
@@ -546,7 +516,7 @@
   }
 
   .hero__begins {
-    top: clamp(5.05rem, 17.5vw, 7.85rem);
+    top: clamp(5.75rem, 19vw, 8.5rem);
     right: clamp(-0.35rem, -1.2vw, 0.2rem);
     left: auto;
     transform: none;
@@ -561,48 +531,11 @@
     line-height: 1.22;
     padding: 0 clamp(0.35rem, 2vw, 0.75rem);
   }
-
-  .hero--home-2 .hero__sub {
-    position: relative;
-    z-index: 3;
-    margin-top: clamp(0.35rem, 1.5vw, 0.65rem);
-  }
-
-  .hero--home-2 .hero__actions {
-    position: relative;
-    z-index: 3;
-    margin-top: clamp(0.75rem, 2vw, 1rem);
-  }
-
-  .hero--home-2 {
-    padding-bottom: clamp(2rem, 5vw, 3rem);
-  }
 }
 
 @media (min-width: 641px) and (max-width: 1023px) {
   .hero {
     --hero-split: clamp(25.5rem, 56vh, 37rem);
-  }
-
-  .hero--home-2 {
-    --hero-split: clamp(42rem, 76vh, 54rem);
-  }
-
-  .hero--home-2 .hero__cluster {
-    min-height: 0;
-    padding-bottom: 0;
-  }
-
-  .hero--home-2 .hero__sub {
-    margin-top: clamp(-2.5rem, -6vw, -1rem);
-  }
-
-  .hero--home-2 .hero__actions {
-    margin-top: clamp(1rem, 2.5vw, 1.5rem);
-  }
-
-  .hero--home-2 {
-    padding-bottom: clamp(2.5rem, 6vw, 4rem);
   }
 
   .hero__bg-strip {
@@ -618,10 +551,6 @@
   .hero {
     --hero-split: clamp(24.2rem, 38.5vw, 40.8rem);
     --hero-forest-w: min(100vw, 120rem);
-  }
-
-  .hero--home-2 {
-    --hero-split: clamp(68rem, 86vh, 82rem);
   }
 
   .hero__bg-strip {
@@ -645,7 +574,7 @@
 
   .hero__where {
     font-size: clamp(2.35rem, 2.85vw, 3.45rem);
-    transform: translateX(clamp(1rem, 1.75vw, 2.25rem));
+    transform: translateX(clamp(-0.5rem, -0.6vw, -0.25rem));
   }
 
   .hero__cluster {
@@ -653,16 +582,16 @@
   }
 
   .hero__trust {
-    font-size: clamp(12.5rem, 16vw, 18rem);
+    font-size: clamp(18rem, 21vw, 25rem);
   }
 
   .hero__dog-wrap {
     width: min(81%, 83rem);
-    margin-top: clamp(4rem, 5.5vw, 6.5rem);
+    margin-top: clamp(8.5rem, 10.5vw, 12.5rem);
   }
 
   .hero__begins {
-    top: clamp(12.5rem, 14vw, 17.5rem);
+    top: clamp(14.9rem, 16.4vw, 20.35rem);
     right: clamp(3.35rem, 7.2vw, 6.95rem);
   }
 
@@ -674,19 +603,17 @@
   }
 
   .hero--home-2 .hero__sub {
-    margin-top: clamp(1.5rem, 3vw, 3rem);
-    z-index: 5;
+    margin-top: clamp(5.5rem, 10vw, 8rem);
+    z-index: 1;
   }
 
   .hero--home-2 .hero__actions {
     position: relative;
-    z-index: 5;
-    margin-top: clamp(1.25rem, 2vw, 1.75rem);
+    z-index: 1;
   }
 
   .hero--home-2 .hero__cluster {
-    min-height: 0;
-    padding-bottom: 0;
+    padding-bottom: clamp(3rem, 5vw, 5rem);
   }
 
   .hero__actions {
@@ -736,29 +663,19 @@
   }
 }
 
-/* Home 2 @ 1920×1080, 100% zoom — copy clears dog feet */
+/* Home 2 @ 1920×1080, 100% zoom — copy below dog feet; 150% zoom ≈ 1280px (out of range) */
 @media (min-width: 1900px) and (max-width: 1940px) {
-  .hero--home-2 {
-    --hero-split: clamp(68rem, 86vh, 80rem);
-  }
-
   .hero--home-2 .hero__cluster {
     padding-bottom: clamp(2rem, 3vw, 3rem);
   }
 
-  .hero--home-2 .hero__dog-wrap--3d {
-    margin-bottom: clamp(-5rem, -6vw, -3.5rem);
-  }
-
   .hero--home-2 .hero__sub {
-    margin-top: clamp(3.5rem, 5vw, 5.5rem);
+    margin-top: clamp(10rem, 12vw, 12rem);
     transform: none;
-    z-index: 5;
   }
 
   .hero--home-2 .hero__actions {
     margin-top: clamp(2.35rem, 3vw, 2.85rem);
     transform: none;
-    z-index: 5;
   }
 }
