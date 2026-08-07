@@ -301,7 +301,7 @@ main.thh-page--contact + .site-footer {
   pointer-events: none;
 }
 
-/* Toe-pad centers on followus.png — icons above baked-in labels */
+/* Toe-pad centers — Facebook gap is the reference; IG down / TT up to match */
 .contact-page__social-link:nth-child(1) {
   top: 46.5%;
   left: 26%;
@@ -310,12 +310,14 @@ main.thh-page--contact + .site-footer {
 }
 
 .contact-page__social-link:nth-child(2) {
-  top: 24.5%;
+  /* Slightly more gap above INSTAGRAM */
+  top: 26%;
   left: 50%;
 }
 
 .contact-page__social-link:nth-child(3) {
-  top: 24.5%;
+  /* Less gap above TIKTOK */
+  top: 23.5%;
   left: 91.5%;
   width: clamp(1.75rem, 5.5vw, 3.85rem);
   height: clamp(1.75rem, 5.5vw, 3.85rem);
@@ -661,12 +663,12 @@ main.thh-page--contact + .site-footer {
   }
 
   .contact-page__social-link:nth-child(2) {
-    top: 24%;
+    top: 25.5%;
     left: 50%;
   }
 
   .contact-page__social-link:nth-child(3) {
-    top: 24%;
+    top: 23%;
     left: 91.5%;
     width: 66px;
     height: 66px;

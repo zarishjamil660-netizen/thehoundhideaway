@@ -7,6 +7,7 @@ import { PrivateSuitesPage } from './pages/PrivateSuitesPage.jsx'
 import { SuitesPricingPage } from './pages/SuitesPricingPage.jsx'
 import { ContactPage } from './pages/ContactPage.jsx'
 import { ExperienceCodePage } from './pages/ExperienceCodePage.jsx'
+import { BookNowPage } from './pages/BookNowPage.jsx'
 import { PageLoadScreen } from './components/layout/PageLoadScreen.jsx'
 import { PageTransitions } from './components/layout/PageTransitions.jsx'
 import { RouteErrorBoundary } from './components/layout/RouteErrorBoundary.jsx'
@@ -53,6 +54,7 @@ createRoot(document.getElementById('root')).render(
               <Route path="/pricing" element={<SuitesPricingPage />} />
               <Route path="/experience" element={<ExperienceCodePage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/book-now" element={<BookNowPage />} />
               <Route path="*" element={<HomeRoute />} />
             </Route>
           </Routes>

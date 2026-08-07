@@ -228,8 +228,8 @@
 /* Mobile-only: keep “Book Their Stay” on measured disc centre */
 @media (max-width: 767.98px) {
   .book-stay-ball--experience {
-    --book-text-left: calc(var(--book-pivot-x) - 1.5%);
-    --book-text-top: calc(var(--book-pivot-y) + 0.5%);
+    --book-text-left: calc(var(--book-pivot-x) + 2.5%);
+    --book-text-top: calc(var(--book-pivot-y) - 3%);
     --book-text-rotate: -58deg;
   }
 
@@ -245,8 +245,8 @@
   .book-stay-ball--experience {
     top: calc(var(--ball-book) * -0.38);
     right: calc(var(--ball-book) * -0.42);
-    --book-text-left: calc(var(--book-pivot-x) - 1.5%);
-    --book-text-top: calc(var(--book-pivot-y) + 0.5%);
+    --book-text-left: calc(var(--book-pivot-x) + 2.5%);
+    --book-text-top: calc(var(--book-pivot-y) - 3%);
     --book-text-rotate: -56deg;
   }
 

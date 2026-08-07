@@ -64,18 +64,16 @@ export function useContactPageMotion(refs) {
           })
         }
 
-        /* —— 4. Social bubble float (staggered) —— */
+        /* —— 4. Social bubble float (same amplitude so gaps stay matched) —— */
         socialLinks.current?.forEach((el, i) => {
           if (!el) return
-          const y = i === 0 ? -8 : i === 1 ? -15 : -10
-          const duration = i === 0 ? 3.2 : i === 1 ? 4.1 : 3.6
           gsap.to(el, {
-            y,
-            duration,
+            y: -6,
+            duration: 3.6,
             ease: 'sine.inOut',
             repeat: -1,
             yoyo: true,
-            delay: i * 0.4,
+            delay: i * 0.35,
           })
         })
 
@@ -137,11 +135,9 @@ export function useContactPageMotion(refs) {
           { el: heroCircle.current, factor: 0.5 },
           { el: title3d.current, factor: 1, rotate: true },
           { el: dogParallax.current, factor: 1.2 },
+          /* Paw (and pinned social icons) move together — don't parallax icons alone */
+          { el: paw.current, factor: 0.7 },
         ]
-
-        socialLinks.current?.forEach(el => {
-          if (el) parallaxTargets.push({ el, factor: 1.5, xOnly: true })
-        })
 
         const quick = parallaxTargets
           .filter(t => t.el)
