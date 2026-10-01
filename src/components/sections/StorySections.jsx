@@ -92,7 +92,7 @@ export function StorySections() {
           </div>
         </ScrollReveal>
         <ScrollReveal className="story__family-actions" variant="lift" delay={120}>
-          <a className="story__family-btn story__family-btn--primary" href="#book">
+          <a className="story__family-btn story__family-btn--primary" href="/book-now">
             Book their stay
           </a>
           <a className="story__family-btn story__family-btn--ghost" href="/experience">

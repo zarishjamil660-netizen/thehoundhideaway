@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import countrysideImg from '../../assets/Mask group.png'
 import luxurySuiteImg from '../../assets/Luxury Suite.jpg.jpeg'
 import riverLodgeImg from '../../assets/river-lodge.png'
+import privateSuitesImg from '../../assets/private.jpeg'
 import './LuxurySuitesSection.css'
 
 const slides = [
@@ -23,9 +24,15 @@ const slides = [
     caption: 'River Lodge',
     fit: 'lodge',
   },
+  {
+    src: privateSuitesImg,
+    alt: 'Private suites accommodation for dogs',
+    caption: 'Private Suites',
+    fit: 'suite',
+  },
 ]
 
-const pagerLabels = ['01', '02', '03']
+const pagerLabels = ['01', '02', '03', '04']
 
 export function LuxurySuitesSection() {
   const [index, setIndex] = useState(0)

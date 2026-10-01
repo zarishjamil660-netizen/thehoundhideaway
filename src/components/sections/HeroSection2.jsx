@@ -38,7 +38,7 @@ export function HeroSection2() {
           </p>
 
           <div className="hero__actions">
-            <a className="hero__btn hero__btn--primary" href="#book">
+            <a className="hero__btn hero__btn--primary" href="/book-now">
               Book their stay
             </a>
             <a className="hero__btn hero__btn--ghost" href="/experience">

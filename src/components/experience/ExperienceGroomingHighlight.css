@@ -5,7 +5,7 @@
 .experience-grooming__upper {
   background: var(--thh-forest);
   color: var(--thh-mint-soft);
-  padding: clamp(5rem, 12vw, 7rem) clamp(1rem, 4vw, 3rem) clamp(0rem, 0.75vw, 0.35rem);
+  padding: clamp(4.15rem, 10.5vw, 6.25rem) clamp(1rem, 4vw, 3rem) clamp(0rem, 0.75vw, 0.35rem);
   overflow: visible;
 }
 
@@ -81,7 +81,7 @@
 .experience-grooming__list li {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: start;
+  align-items: center;
   column-gap: var(--groom-paw-gap);
 }
 
@@ -90,10 +90,10 @@
   flex-shrink: 0;
   width: var(--groom-paw-size);
   height: var(--groom-paw-size);
-  margin-top: clamp(0.12rem, 0.45vw, 0.28rem);
+  margin-top: 0;
   object-fit: contain;
   transform: rotate(-11deg);
-  transform-origin: 50% 55%;
+  transform-origin: center center;
 }
 
 .experience-grooming__list li + li {
@@ -205,16 +205,16 @@
 /* Mobile + tablet: keep slogan readable — less dog overlap on mint band */
 @media (max-width: 1023.98px) {
   .experience-grooming__inner {
-    margin-top: clamp(0.75rem, 2.5vw, 1.5rem);
+    margin-top: clamp(0.35rem, 1.5vw, 0.85rem);
   }
 
   .experience-grooming__grid {
     grid-template-columns: 1fr;
-    gap: clamp(0.55rem, 1.6vw, 0.9rem);
+    gap: clamp(0.25rem, 1vw, 0.5rem);
   }
 
   .experience-grooming__list {
-    margin-top: clamp(0.85rem, 3vw, 1.35rem);
+    margin-top: clamp(1.25rem, 4vw, 1.85rem);
   }
 
   .experience-grooming__list li + li {
@@ -252,7 +252,7 @@
 
 @media (max-width: 639.98px) {
   .experience-grooming__list {
-    margin-top: clamp(1rem, 3.5vw, 1.5rem);
+    margin-top: clamp(1.4rem, 4.5vw, 2rem);
   }
 
   .experience-grooming__list li + li {

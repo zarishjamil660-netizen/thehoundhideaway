@@ -202,19 +202,6 @@ main.thh-page--contact + .site-footer {
   z-index: 1;
 }
 
-.contact-page__dog-shadow {
-  position: absolute;
-  z-index: 0;
-  left: 8%;
-  right: 12%;
-  bottom: -2%;
-  height: clamp(1.5rem, 4vw, 2.75rem);
-  border-radius: 50%;
-  background: radial-gradient(ellipse at center, rgb(0 0 0 / 0.35) 0%, transparent 72%);
-  transform-origin: center center;
-  pointer-events: none;
-}
-
 .contact-page__paw {
   position: relative;
   top: clamp(-2.5rem, -5vw, -3.5rem);
@@ -382,7 +369,6 @@ main.thh-page--contact + .site-footer {
 
 .contact-page__field-label {
   position: absolute;
-  top: clamp(0.7rem, 2.2vw, 0.95rem);
   left: clamp(1.1rem, 4vw, 1.5rem);
   z-index: 1;
   font-family: Franie, var(--font-sans);
@@ -393,14 +379,34 @@ main.thh-page--contact + .site-footer {
   text-transform: uppercase;
   color: rgb(140 190 130 / 0.9);
   pointer-events: none;
+  transition:
+    top 0.2s ease,
+    transform 0.2s ease,
+    font-size 0.2s ease;
+}
+
+/* Single-line fields: label mid-aligned when empty */
+.contact-page__field:not(.contact-page__field--message) .contact-page__field-label {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.contact-page__field:not(.contact-page__field--message):has(input:focus) .contact-page__field-label,
+.contact-page__field:not(.contact-page__field--message):has(input:not(:placeholder-shown)) .contact-page__field-label {
+  top: clamp(0.55rem, 1.6vw, 0.75rem);
+  transform: none;
+  font-size: clamp(0.55rem, 1.5vw, 0.65rem);
+}
+
+.contact-page__field--message .contact-page__field-label {
+  top: clamp(0.7rem, 2.2vw, 0.95rem);
+  transform: none;
 }
 
 .contact-page__field input,
 .contact-page__field textarea {
   box-sizing: border-box;
   width: 100%;
-  padding: clamp(1.85rem, 5vw, 2.35rem) clamp(1.1rem, 4vw, 1.5rem)
-    clamp(0.85rem, 2.5vw, 1.1rem);
   border: 1px solid #b9dca9;
   border-radius: 999px;
   background: transparent;
@@ -423,12 +429,25 @@ main.thh-page--contact + .site-footer {
 
 .contact-page__field input {
   min-height: clamp(3.5rem, 11vw, 5.5rem);
+  padding: 0 clamp(1.1rem, 4vw, 1.5rem);
+}
+
+.contact-page__field:not(.contact-page__field--message):has(input:focus) input,
+.contact-page__field:not(.contact-page__field--message):has(input:not(:placeholder-shown)) input {
+  padding-top: clamp(1.25rem, 3.5vw, 1.65rem);
+  padding-bottom: clamp(0.5rem, 1.4vw, 0.7rem);
+}
+
+.contact-page__field input::placeholder {
+  color: transparent;
 }
 
 .contact-page__field textarea {
   border-radius: clamp(1.5rem, 4.5vw, 2.25rem);
   resize: vertical;
   min-height: clamp(9rem, 26vw, 13.5rem);
+  padding: clamp(1.85rem, 5vw, 2.35rem) clamp(1.1rem, 4vw, 1.5rem)
+    clamp(0.85rem, 2.5vw, 1.1rem);
 }
 
 .contact-page__field input:focus,

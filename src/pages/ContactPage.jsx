@@ -7,6 +7,7 @@ import tennisBall from '../assets/fxemoji_tennisball.png'
 import iconFacebook from '../assets/ic_baseline-facebook.png'
 import iconInstagram from '../assets/mdi_instagram.png'
 import iconTiktok from '../assets/ic_outline-tiktok.png'
+import { sendFormSubmit } from '../lib/formSubmit'
 import { useContactPageMotion } from './useContactPageMotion'
 import './ContactPage.css'
 
@@ -18,6 +19,8 @@ const SOCIAL = [
 
 export function ContactPage() {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   const pageRef = useRef(null)
   const heroCircleRef = useRef(null)
@@ -27,7 +30,6 @@ export function ContactPage() {
   const titleTouchRef = useRef(null)
   const dogParallaxRef = useRef(null)
   const dogWrapRef = useRef(null)
-  const dogShadowRef = useRef(null)
   const pawRef = useRef(null)
   const socialRefs = useRef([])
   const formHeadingRef = useRef(null)
@@ -44,7 +46,6 @@ export function ContactPage() {
       titleTouch: titleTouchRef,
       dogParallax: dogParallaxRef,
       dogWrap: dogWrapRef,
-      dogShadow: dogShadowRef,
       paw: pawRef,
       socialLinks: socialRefs,
       formHeading: formHeadingRef,
@@ -56,10 +57,33 @@ export function ContactPage() {
 
   useContactPageMotion(motionRefs)
 
-  const handleSubmit = useCallback(e => {
+  const handleSubmit = useCallback(async e => {
     e.preventDefault()
-    setSent(true)
-  }, [])
+    if (sending) return
+
+    const formEl = e.currentTarget
+    const data = new FormData(formEl)
+    setSending(true)
+    setError('')
+
+    try {
+      await sendFormSubmit({
+        name: data.get('name'),
+        email: data.get('email'),
+        phone: data.get('phone') || '',
+        message: data.get('message'),
+        _subject: 'The Hound Hideaway — Contact form',
+        _template: 'table',
+        _captcha: 'false',
+      })
+      setSent(true)
+      formEl.reset()
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
+  }, [sending])
 
   return (
     <main ref={pageRef} className="contact-page thh-page--contact">
@@ -109,7 +133,6 @@ export function ContactPage() {
                   loading="lazy"
                   decoding="async"
                 />
-                <div ref={dogShadowRef} className="contact-page__dog-shadow" aria-hidden />
               </div>
             </div>
             <figure ref={pawRef} className="contact-page__paw">
@@ -165,23 +188,28 @@ export function ContactPage() {
           <form className="contact-page__form" onSubmit={handleSubmit} noValidate>
             <label className="contact-page__field">
               <span className="contact-page__field-label">Full name</span>
-              <input type="text" name="name" autoComplete="name" required />
+              <input type="text" name="name" autoComplete="name" placeholder=" " required />
             </label>
             <label className="contact-page__field">
               <span className="contact-page__field-label">Email</span>
-              <input type="email" name="email" autoComplete="email" required />
+              <input type="email" name="email" autoComplete="email" placeholder=" " required />
             </label>
             <label className="contact-page__field">
               <span className="contact-page__field-label">Phone</span>
-              <input type="tel" name="phone" autoComplete="tel" />
+              <input type="tel" name="phone" autoComplete="tel" placeholder=" " />
             </label>
             <label className="contact-page__field contact-page__field--message">
               <span className="contact-page__field-label">Message</span>
               <textarea name="message" rows={6} required />
             </label>
-            <button ref={submitRef} type="submit" className="contact-page__submit">
-              Submit
+            <button ref={submitRef} type="submit" className="contact-page__submit" disabled={sending}>
+              {sending ? 'Sending…' : 'Submit'}
             </button>
+            {error ? (
+              <p className="contact-page__sent" role="alert">
+                {error}
+              </p>
+            ) : null}
             {sent ? (
               <p className="contact-page__sent" role="status">
                 Thanks — we&apos;ll be in touch soon.

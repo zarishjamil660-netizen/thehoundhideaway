@@ -3,6 +3,7 @@ import Header from '../components/layout/Header'
 import countrysideImg from '../assets/Gemini_Generated_Image_9hv6jc9hv6jc9hv6 1.png'
 import luxurySuiteImg from '../assets/Luxury Suite.jpg.jpeg'
 import riverLodgeImg from '../assets/river-lodge.png'
+import privateApartmentImg from '../assets/private.jpeg'
 import heroDog from '../assets/This_dog_resting_looking_happy_202605152211 1.png'
 import tennisBall from '../assets/fxemoji_tennisball.png'
 import './PrivateSuitesPage.css'
@@ -20,6 +21,7 @@ function getVisibleSlides(activeIndex, slides) {
 
 const SLIDES = [
   {
+    id: 'countryside',
     src: countrysideImg,
     alt: 'Outdoor countryside dog suites with fenced runs under open sky',
     titleLine1: 'Countryside',
@@ -28,6 +30,7 @@ const SLIDES = [
     captionSub: '(Room with a view, more stimulation)',
   },
   {
+    id: 'luxury',
     src: luxurySuiteImg,
     alt: 'Luxury private suite accommodation for dogs',
     titleLine1: 'Luxury',
@@ -36,12 +39,22 @@ const SLIDES = [
     captionSub: '(Soft routines, gentle sensory load)',
   },
   {
+    id: 'river',
     src: riverLodgeImg,
     alt: 'River lodge stay for dogs by the water',
     titleLine1: 'River',
     titleLine2: 'Lodge',
     captionLead: 'Maximum privacy',
     captionSub: '(Bespoke daily rhythm)',
+  },
+  {
+    id: 'private',
+    src: privateApartmentImg,
+    alt: 'Private suites accommodation for dogs',
+    titleLine1: 'Private',
+    titleLine2: 'Suites',
+    captionLead: 'Exclusive private space',
+    captionSub: '(Your own quiet retreat)',
   },
 ]
 
@@ -58,6 +71,14 @@ export function PrivateSuitesPage() {
   const next = useCallback(() => {
     setIndex((i) => (i + 1) % len)
   }, [len])
+
+  // Keep suite images in cache so caption + card swap stay in sync.
+  useEffect(() => {
+    SLIDES.forEach((s) => {
+      const img = new Image()
+      img.src = s.src
+    })
+  }, [])
 
   // Auto-advance every 5s; timer resets after every change (manual or auto).
   useEffect(() => {
@@ -106,16 +127,16 @@ export function PrivateSuitesPage() {
 
           <div className="private-suites__carousel" aria-roledescription="carousel">
             <div className="private-suites__viewport">
-              <ul className="private-suites__track" key={index}>
+              <ul className="private-suites__track">
                 {visibleSlides.map(({ slide: s, slot }) => (
                   <li
-                    key={`${index}-${slot}-${s.titleLine1}`}
+                    key={s.id}
                     className="private-suites__slide"
                     aria-current={slot === 'current' ? 'true' : undefined}
                   >
                     <article className="private-suites__card">
                       <div className="private-suites__card-media">
-                        <img src={s.src} alt={s.alt} loading={slot === 'current' ? 'eager' : 'lazy'} />
+                        <img src={s.src} alt={s.alt} loading="eager" decoding="async" draggable={false} />
                       </div>
                       <div className="private-suites__card-body">
                         <h3 className="private-suites__card-title">

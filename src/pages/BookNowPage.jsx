@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { BOOKING_DOG_COUNTS, BOOKING_SUITES } from '../data/bookingServices'
+import { sendFormSubmit } from '../lib/formSubmit'
 import './BookNowPage.css'
 
 const STEP_COUNT = 3
@@ -25,6 +26,8 @@ export function BookNowPage() {
   const navigate = useNavigate()
   const [step, setStep] = useState(1)
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
   const [form, setForm] = useState(INITIAL_FORM)
 
   const selectedSuite = useMemo(
@@ -53,14 +56,38 @@ export function BookNowPage() {
     navigate(-1)
   }
 
-  const handleNext = (e) => {
+  const handleNext = async (e) => {
     e.preventDefault()
-    if (!canAdvance) return
+    if (!canAdvance || sending) return
     if (step < STEP_COUNT) {
       setStep(s => s + 1)
+      setError('')
       return
     }
-    setSubmitted(true)
+
+    setSending(true)
+    setError('')
+    try {
+      await sendFormSubmit({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        suite: suiteLabel(form.suiteId),
+        dogCount: form.dogCount,
+        checkIn: form.checkIn,
+        checkOut: form.checkOut,
+        dogNames: form.dogNames || '',
+        notes: form.notes || '',
+        _subject: 'The Hound Hideaway — Booking request',
+        _template: 'table',
+        _captcha: 'false',
+      })
+      setSubmitted(true)
+    } catch {
+      setError('Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -241,9 +268,18 @@ export function BookNowPage() {
                 />
               </label>
 
-              <button type="submit" className="book-now__next book-now__next--primary" disabled={!canAdvance}>
-                request booking
+              <button
+                type="submit"
+                className="book-now__next book-now__next--primary"
+                disabled={!canAdvance || sending}
+              >
+                {sending ? 'sending…' : 'request booking'}
               </button>
+              {error ? (
+                <p className="book-now__hint" role="alert">
+                  {error}
+                </p>
+              ) : null}
             </form>
           ) : null}
         </div>

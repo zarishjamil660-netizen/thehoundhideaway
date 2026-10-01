@@ -90,7 +90,6 @@
   font-size: clamp(2rem, 7vw, 3.25rem);
   line-height: 1.05;
   letter-spacing: -0.02em;
-  text-transform: lowercase;
   color: var(--thh-mint-soft);
 }
 
